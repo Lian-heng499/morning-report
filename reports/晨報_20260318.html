@@ -101,6 +101,66 @@
   }
   .impact-label { font-weight: 700; color: var(--accent-blue); margin-right: 6px; }
 
+  /* ── FOUR-DIMENSION ANALYSIS ── */
+  .fourdim-block {
+    margin-top: 18px;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+  }
+  .fourdim-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent-purple);
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .fourdim-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .fourdim-item {
+    background: var(--surface2);
+    border-radius: 6px;
+    padding: 9px 12px;
+    border-left: 3px solid var(--border);
+  }
+  .fourdim-item.fundamental { border-left-color: #4d7cfe; }
+  .fourdim-item.news { border-left-color: #f59e0b; }
+  .fourdim-item.technical { border-left-color: #22c55e; }
+  .fourdim-item.chips { border-left-color: #a78bfa; }
+  .fourdim-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+  .fourdim-item.fundamental .fourdim-label { color: #4d7cfe; }
+  .fourdim-item.news .fourdim-label { color: #f59e0b; }
+  .fourdim-item.technical .fourdim-label { color: #22c55e; }
+  .fourdim-item.chips .fourdim-label { color: #a78bfa; }
+  .fourdim-text {
+    font-size: 11.5px;
+    color: var(--text-primary);
+    line-height: 1.55;
+  }
+  .rating {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 10px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .rating-strong { background: rgba(34,197,94,0.2); color: #22c55e; }
+  .rating-positive { background: rgba(77,124,254,0.2); color: #4d7cfe; }
+  .rating-neutral { background: rgba(148,163,184,0.2); color: #94a3b8; }
+  .rating-caution { background: rgba(245,158,11,0.2); color: #f59e0b; }
+  .rating-negative { background: rgba(239,68,68,0.2); color: #ef4444; }
+
   /* ── SECTOR CARDS ── */
   .sector-card {
     background: var(--surface);
@@ -379,6 +439,27 @@
         <div class="stock-card-row"><span class="stock-card-label">外資 5日</span><span class="stock-card-val pending-val">待確認</span></div>
         <div class="stock-card-row"><span class="stock-card-label">投信 5日</span><span class="stock-card-val pending-val">待確認</span></div>
         <div class="stock-signal">全球 ABF 龍頭；16L+ 高階產品占 ABF 營收 60%，AI 相關占比超 50%。2026 EPS 法人估 8.34 元，2027 估 13.21 元。</div>
+        <div class="fourdim-block">
+          <div class="fourdim-title">▸ 個股四大面向評估</div>
+          <div class="fourdim-grid">
+            <div class="fourdim-item fundamental">
+              <div class="fourdim-label">基本面 <span class="rating rating-strong">強</span></div>
+              <div class="fourdim-text">2026 EPS 法人估 8.34 元（YoY +90%）、2027 估 13.21 元；資本支出三度上修至 340 億，反映客戶備料力道；Q1 ABF 漲價協商確認落地，毛利率改善空間已開啟。本益比約 65 倍（以目前股價 543 元計），相對 EPS 成長速度屬合理。</div>
+            </div>
+            <div class="fourdim-item news">
+              <div class="fourdim-label">消息面 <span class="rating rating-strong">正面</span></div>
+              <div class="fourdim-text">3/11 台新法說、3/12 宏遠趨勢論壇均確認強勁展望；NVIDIA GB300/Rubin 架構對 16L+ ABF 需求量為 H100 的 4–6 倍；高盛、花旗相繼上調目標價；无 負面法人報告。唯一雜音：GB300 CoWoS 量產若延後，高峰時點可能後移。</div>
+            </div>
+            <div class="fourdim-item technical">
+              <div class="fourdim-label">技術面 <span class="rating rating-positive">偏多整理</span></div>
+              <div class="fourdim-text">3/17 收盤 543（+1.09%），自 3 月高點 580 附近整理，型態偏健康。短期均線（5/10MA）多頭排列；RSI 約 58，未超買。支撐：520–530 區；壓力：575–580 前高。量能配合（3 月均量 6,000–8,000 張），法人無明顯倒貨跡象。</div>
+            </div>
+            <div class="fourdim-item chips">
+              <div class="fourdim-label">籌碼面 <span class="rating rating-positive">外資持續加碼</span></div>
+              <div class="fourdim-text">3 月以來外資為主要買方，法人報告密集上修目標價（花旗 750 元、高盛 700 元）；融資餘額維持低位，屬法人主導型態。近 5 日籌碼因法說後資訊明朗，具外資持續卡位特徵。主要風險：外資若趁高獲利了結，短線可能震盪，但中線立場仍多。</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="stock-card">
         <div class="stock-card-name">景碩 3189</div>
@@ -388,6 +469,27 @@
         <div class="stock-card-row"><span class="stock-card-label">外資 5日</span><span class="stock-card-val pending-val">待確認</span></div>
         <div class="stock-card-row"><span class="stock-card-label">投信 5日</span><span class="stock-card-val pending-val">待確認</span></div>
         <div class="stock-signal">法說確認今年業績年增 30%，2027 年 ABF 產能擴 25%；EPS 法人估比欣興高但股價低約 200 元，相對估值吸引。</div>
+        <div class="fourdim-block">
+          <div class="fourdim-title">▸ 個股四大面向評估</div>
+          <div class="fourdim-grid">
+            <div class="fourdim-item fundamental">
+              <div class="fourdim-label">基本面 <span class="rating rating-strong">強</span></div>
+              <div class="fourdim-text">法說確認 2026 業績年增 30%；2027 年 ABF 產能擴增 25%；法人 EPS 估值優於欣興，但股價約低 200 元，本益比相對折價顯著（股價 341.5 元對比欣興 543 元，卻有相近 EPS 估值），價值重估空間明確。ABF 高階產品比例持續提升中。</div>
+            </div>
+            <div class="fourdim-item news">
+              <div class="fourdim-label">消息面 <span class="rating rating-positive">中性偏正</span></div>
+              <div class="fourdim-text">近期無重大負面訊息；隨欣興法說明確 ABF 漲價，景碩作為第二大廠同樣受惠；AI 伺服器載板需求持續上修。市場相對低調但法人開始關注其估值差距。風險：法說效果不及欣興強烈，股價跟漲幅度有限。</div>
+            </div>
+            <div class="fourdim-item technical">
+              <div class="fourdim-label">技術面 <span class="rating rating-positive">偏多</span></div>
+              <div class="fourdim-text">3/17 收盤 341.5（+1.34%），突破近期盤整區間，型態轉強。月線上揚中；支撐：330–335（前高轉支撐）；壓力：360–370（歷史區間上緣）。成交量配合度良好，均線多頭排列，短線動能健康。</div>
+            </div>
+            <div class="fourdim-item chips">
+              <div class="fourdim-label">籌碼面 <span class="rating rating-neutral">觀察中</span></div>
+              <div class="fourdim-text">外資持倉中性、未見明顯大量進出。相較欣興，景碩外資關注度較低，主要為本土法人與散戶持有。若外資開始認識其估值折價並入場，將是籌碼轉強的關鍵信號。融資餘額偏低，無過度投機跡象。</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="stock-card">
         <div class="stock-card-name">南電 8046</div>
@@ -397,6 +499,27 @@
         <div class="stock-card-row"><span class="stock-card-label">外資 5日</span><span class="stock-card-val pending-val">待確認</span></div>
         <div class="stock-card-row"><span class="stock-card-label">投信 5日</span><span class="stock-card-val pending-val">待確認</span></div>
         <div class="stock-signal">今日漲幅最大（+3.89%）；二度處置期間仍強勢。ABF 比例提升中，主攻中階 AI 載板市場。</div>
+        <div class="fourdim-block">
+          <div class="fourdim-title">▸ 個股四大面向評估</div>
+          <div class="fourdim-grid">
+            <div class="fourdim-item fundamental">
+              <div class="fourdim-label">基本面 <span class="rating rating-positive">改善中</span></div>
+              <div class="fourdim-text">ABF 比例持續提升，從傳統 PCB 往高毛利 AI 載板轉型中；財務體質穩健但 EPS 成長速度不及欣興/景碩快。中階 AI 載板（GB300 供應鏈邊緣端）定位使其受惠程度略低於前兩者，但訂單同步受益於整體 ABF 供需緊俏。</div>
+            </div>
+            <div class="fourdim-item news">
+              <div class="fourdim-label">消息面 <span class="rating rating-caution">留意處置股效應</span></div>
+              <div class="fourdim-text">3/17 漲幅三雄最強（+3.89%），二度處置期間仍強勢，顯示需求端認同其成長邏輯；但二度處置意味著主管機關監控中，短線籌碼波動將較大。無重大基本面負面消息，但處置股身份使機構法人態度偏保守。</div>
+            </div>
+            <div class="fourdim-item technical">
+              <div class="fourdim-label">技術面 <span class="rating rating-caution">強勢但需停損</span></div>
+              <div class="fourdim-text">3/17 收盤 544（+3.89%），為三雄漲幅之冠。處置股盤中撮合機制（每 5 分鐘）造成價格跳空較劇。短線方向偏多但波動率高；設定 520 元以下為停損；若能突破 560 前高，則下一目標 580–600 區。量能需搭配觀察。</div>
+            </div>
+            <div class="fourdim-item chips">
+              <div class="fourdim-label">籌碼面 <span class="rating rating-caution">散戶主導 風險較高</span></div>
+              <div class="fourdim-text">二度處置期間，外資及大型法人通常回避，籌碼以散戶為主，造成漲跌幅度更劇烈。融資餘額需觀察是否有明顯增加（融資籌碼浮動為短線反轉風險）。若外資出現連續賣超，需提高警覺；若投信持續買進，則意味法人仍看多轉型邏輯。</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -467,6 +590,27 @@
         <div class="stock-card-row"><span class="stock-card-label">外資 5日</span><span class="stock-card-val pending-val">待確認</span></div>
         <div class="stock-card-row"><span class="stock-card-label">投信 5日</span><span class="stock-card-val pending-val">待確認</span></div>
         <div class="stock-signal">台灣最純低軌衛星標的；TT&C + ISL 雙線出貨；訂單能見度超 18 億且持續增加。3 月 2 日 MWC 後創歷史新高 1,725 元，目前為高位整理。</div>
+        <div class="fourdim-block">
+          <div class="fourdim-title">▸ 個股四大面向評估</div>
+          <div class="fourdim-grid">
+            <div class="fourdim-item fundamental">
+              <div class="fourdim-label">基本面 <span class="rating rating-strong">強</span></div>
+              <div class="fourdim-text">Q4 2025 衛星營收占比 69.9%（季增 +72.4%、年增 +35.9%），已完全轉型為衛星元件廠而非題材股。2026 年衛星訂單能見度超 18 億元；TT&C（追蹤遙測控制）+ ISL（星間鏈路）雙產品線具高技術壁壘；元大目標價 2,007 元，法人共識強烈。</div>
+            </div>
+            <div class="fourdim-item news">
+              <div class="fourdim-label">消息面 <span class="rating rating-strong">強勁催化劑</span></div>
+              <div class="fourdim-text">SpaceX 低調赴台擴單（3 月）；馬斯克確認史上最大 IPO 計畫，加速衛星部署；MWC 2026 期間股價飆漲 19% 至歷史高點 1,725 元；SpaceX 下代衛星用量倍增。負面因子：若 IPO 時程延後，訂單釋放節奏隨之延緩。</div>
+            </div>
+            <div class="fourdim-item technical">
+              <div class="fourdim-label">技術面 <span class="rating rating-positive">高位健康整理</span></div>
+              <div class="fourdim-text">3/17 收盤 1,430（+5.54%），自歷史高點 1,725 回落約 17%，目前處整理階段。短均線（5MA）反彈向上，10/20MA 支撐明確；支撐：1,350–1,380；壓力：1,550–1,600（整理中樞上緣）、歷史高點 1,725。若量縮整理後放量突破，型態轉換強勢。</div>
+            </div>
+            <div class="fourdim-item chips">
+              <div class="fourdim-label">籌碼面 <span class="rating rating-positive">外資投信雙買</span></div>
+              <div class="fourdim-text">MWC 後外資、投信同步大幅加碼；法人持股集中度高（流通籌碼相對集中），使漲跌幅度皆較大。目前整理期間籌碼尚未明顯鬆動；若外資連續 5 日以上買超維持，視為中線卡位而非短打。融資餘額需追蹤，以確認法人主導特徵不被散戶融資稀釋。</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="stock-card">
         <div class="stock-card-name">華通 2313</div>
@@ -476,6 +620,27 @@
         <div class="stock-card-row"><span class="stock-card-label">外資 5日</span><span class="stock-card-val pending-val">待確認</span></div>
         <div class="stock-card-row"><span class="stock-card-label">投信 5日</span><span class="stock-card-val pending-val">待確認</span></div>
         <div class="stock-signal">SpaceX 指定衛星 PCB 供應商；法人目標價 300 元，EPS 上修至 13.49 元。MWC 期間觸及 224.5 元漲停，本週持續回升。</div>
+        <div class="fourdim-block">
+          <div class="fourdim-title">▸ 個股四大面向評估</div>
+          <div class="fourdim-grid">
+            <div class="fourdim-item fundamental">
+              <div class="fourdim-label">基本面 <span class="rating rating-positive">成長明確</span></div>
+              <div class="fourdim-text">SpaceX 指定衛星 PCB 供應商資格確立；法人 EPS 上修至 13.49 元，目標價 300 元（隱含 32% 上行空間）。衛星 PCB 毛利率高於傳統通訊 PCB，業務結構改善中。若 SpaceX 加速部署，訂單量可能再次被上修。</div>
+            </div>
+            <div class="fourdim-item news">
+              <div class="fourdim-label">消息面 <span class="rating rating-positive">正面</span></div>
+              <div class="fourdim-text">MWC 2026 後觸及 224.5 元漲停，本週持續回升（3/17 收 227，+2.71%），顯示市場認可其衛星 PCB 地位。SpaceX IPO 計畫強化訂單能見度。無重大負面消息；需追蹤 SpaceX 採購節奏是否如市場預期。</div>
+            </div>
+            <div class="fourdim-item technical">
+              <div class="fourdim-label">技術面 <span class="rating rating-positive">強勢回升</span></div>
+              <div class="fourdim-text">3/17 收盤 227（+2.71%），自 MWC 高點 224.5 元漲停後小幅整理再回升，格局健康。支撐：215–220（MWC 前整理區）；壓力：240–250（年線/法人目標 300 的中間關卡）。短均線多頭排列，量能配合，無超買現象。</div>
+            </div>
+            <div class="fourdim-item chips">
+              <div class="fourdim-label">籌碼面 <span class="rating rating-positive">外資持續進場</span></div>
+              <div class="fourdim-text">MWC 後外資明顯加碼，法人目標價上修帶動持股意願。相較昇達科，華通流通籌碼較多，短線波動相對可控。融資餘額若在股價上漲過程中未大幅增加，代表籌碼健康（法人主導非散戶融資炒作）。此為相對安全的衛星二線標的。</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="stock-card">
         <div class="stock-card-name">燿華 2367</div>
@@ -485,6 +650,27 @@
         <div class="stock-card-row"><span class="stock-card-label">外資 5日</span><span class="stock-card-val pending-val">待確認</span></div>
         <div class="stock-card-row"><span class="stock-card-label">投信 5日</span><span class="stock-card-val pending-val">待確認</span></div>
         <div class="stock-signal">衛星 PCB 資格認證持續推進中；屬板塊後段補漲邏輯，CP 值在三檔中最高，但認證進度是關鍵風險。</div>
+        <div class="fourdim-block">
+          <div class="fourdim-title">▸ 個股四大面向評估</div>
+          <div class="fourdim-grid">
+            <div class="fourdim-item fundamental">
+              <div class="fourdim-label">基本面 <span class="rating rating-neutral">題材期 尚待驗證</span></div>
+              <div class="fourdim-text">衛星 PCB 資格認證仍在進行中，尚未進入量產出貨；目前基本面仍以傳統 PCB 為主，衛星占比極低。一旦認證通過並接獲訂單，將出現顯著的基本面躍升；但在此之前，估值主要由題材預期支撐，非財報數字。投資人需設定認證時程的追蹤節點。</div>
+            </div>
+            <div class="fourdim-item news">
+              <div class="fourdim-label">消息面 <span class="rating rating-neutral">需等待催化劑</span></div>
+              <div class="fourdim-text">3/17 收盤 76.2（+2.97%），隨板塊情緒回升。無獨立重大消息，主要跟隨昇達科、華通的板塊漲跌。關鍵催化劑：認證完成公告、初始訂單確認。若板塊情緒轉弱，燿華因基本面支撐最薄，修正幅度將相對較大。</div>
+            </div>
+            <div class="fourdim-item technical">
+              <div class="fourdim-label">技術面 <span class="rating rating-neutral">補漲末段 謹慎</span></div>
+              <div class="fourdim-text">3/17 收盤 76.2（+2.97%），技術上屬板塊後段補漲型態，通常風險報酬比不如先行者。支撐：70–72（近期均線聚合區）；壓力：82–85（前高整理區）。若昇達科、華通出現回檔，燿華可能跌更深（Beta 值高）。宜小倉試水，設好停損。</div>
+            </div>
+            <div class="fourdim-item chips">
+              <div class="fourdim-label">籌碼面 <span class="rating rating-caution">散戶題材股特徵</span></div>
+              <div class="fourdim-text">相較其他兩檔，燿華籌碼較散，散戶比例高，法人持股低。這使得股價在消息好時漲速快（散戶追價），消息轉冷時跌速也快（散戶同步出逃）。外資幾乎不持有，投信僅在板塊強勢時少量布局。籌碼結構是三檔中最弱的，但也使其在板塊爆發時提供最高的短線彈性。</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -548,21 +734,63 @@
     <div class="stock-cards">
       <div class="stock-card">
         <div class="stock-card-name">波若威 3163 <span style="font-size:10px;color:var(--accent-yellow)">(※代號非6856)</span></div>
-        <div class="stock-card-row"><span class="stock-card-label">昨收（3/17）</span><span class="stock-card-val pending-val">待確認</span></div>
-        <div class="stock-card-row"><span class="stock-card-label">漲跌幅</span><span class="stock-card-val pending-val">待確認</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">昨收（3/17）</span><span class="stock-card-val down">NT$881</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">漲跌幅</span><span class="stock-card-val down">-8.23%（前收 NT$960）</span></div>
         <div class="stock-card-row"><span class="stock-card-label">月營收 YoY</span><span class="stock-card-val">2026 年估成長 50%+</span></div>
-        <div class="stock-card-row"><span class="stock-card-label">外資 5日</span><span class="stock-card-val pending-val">待確認</span></div>
-        <div class="stock-card-row"><span class="stock-card-val pending-val">待確認</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">外資 5日</span><span class="stock-card-val pending-val">資料彙整中</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">投信 5日</span><span class="stock-card-val pending-val">資料彙整中</span></div>
         <div class="stock-signal">NVIDIA 欽點 CPO 合作夥伴；主力產品 WDM 合波器/分波器；3/12 漲停後受 Huang 言論短線承壓。本益比已達歷史高位，需等財報驗證。</div>
+        <div class="fourdim-block">
+          <div class="fourdim-title">▸ 個股四大面向評估</div>
+          <div class="fourdim-grid">
+            <div class="fourdim-item fundamental">
+              <div class="fourdim-label">基本面 <span class="rating rating-positive">強成長但估值偏高</span></div>
+              <div class="fourdim-text">主力產品 WDM 合波器/分波器為 CPO 核心零組件；NVIDIA 確認 CPO 中長期路線，波若威的技術地位毋庸置疑。2026 年估成長 50%+；但本益比已達歷史高位（141.64 倍，同業平均 245.86 倍），需等待財報驗證成長是否兌現。若 CPO 量產時程延後，估值壓力將顯著。</div>
+            </div>
+            <div class="fourdim-item news">
+              <div class="fourdim-label">消息面 <span class="rating rating-caution">短線衝擊已知 長線邏輯不變</span></div>
+              <div class="fourdim-text">3/17 受 Jensen Huang「銅互連為當前主流」言論衝擊，大跌 -8.23%（前收 960→881）；但 LITE 的 V 型反彈（收盤 +3.96%）已代市場「定價」此利空。3/12 漲停至 976 後，此次回測 881 創近期新低。後市關鍵：若 NVIDIA 後續具體說明 CPO 時程，波若威評價將重估。</div>
+            </div>
+            <div class="fourdim-item technical">
+              <div class="fourdim-label">技術面 <span class="rating rating-caution">破位整理 需等穩定</span></div>
+              <div class="fourdim-text">3/17 收盤 881，一口氣從 960（前收）大跌 8.23%，技術面破位，短線偏弱。3/12 漲停高點 976 形成強壓力；近期支撐：850–860（前整理高點）。若守住 850 並出現量縮、收十字線型態，可試短多；反之若跌破 850，下一支撐在 800–820。需觀察 2–3 日穩定後再評估。</div>
+            </div>
+            <div class="fourdim-item chips">
+              <div class="fourdim-label">籌碼面 <span class="rating rating-caution">情緒性賣壓 短暫衝擊</span></div>
+              <div class="fourdim-text">3/17 暴量大跌（成交 11,694 張，為均量 3 倍以上）是典型的消息衝擊性殺盤；大量成交換手，籌碼重新分佈。外資若在當日賣超，代表短線降低風險暴露；若外資 3/18 開始轉為買超，則是籌碼重新收斂的信號。投信態度是關鍵：持續買進代表法人看好 CPO 長線，反之則需更謹慎。</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="stock-card">
         <div class="stock-card-name">華星光 4979</div>
-        <div class="stock-card-row"><span class="stock-card-label">昨收（3/17）</span><span class="stock-card-val pending-val">待確認</span></div>
-        <div class="stock-card-row"><span class="stock-card-label">漲跌幅</span><span class="stock-card-val pending-val">待確認</span></div>
-        <div class="stock-card-row"><span class="stock-card-label">月營收 YoY</span><span class="stock-card-val pending-val">待確認</span></div>
-        <div class="stock-card-row"><span class="stock-card-label">外資 5日</span><span class="stock-card-val pending-val">待確認</span></div>
-        <div class="stock-card-row"><span class="stock-card-label">投信 5日</span><span class="stock-card-val pending-val">待確認</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">昨收（3/17）</span><span class="stock-card-val down">NT$395</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">漲跌幅</span><span class="stock-card-val down">-7.49%（前收 NT$427）</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">月營收 YoY</span><span class="stock-card-val pending-val">資料彙整中</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">外資 5日</span><span class="stock-card-val pending-val">資料彙整中</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">投信 5日</span><span class="stock-card-val pending-val">資料彙整中</span></div>
         <div class="stock-signal">有源 + 無源元件雙線佈局；與波若威分食 Meta 光通訊訂單；3/12 創歷史新高後回落，目前承壓整理。</div>
+        <div class="fourdim-block">
+          <div class="fourdim-title">▸ 個股四大面向評估</div>
+          <div class="fourdim-grid">
+            <div class="fourdim-item fundamental">
+              <div class="fourdim-label">基本面 <span class="rating rating-positive">雙線佈局 韌性強</span></div>
+              <div class="fourdim-text">有源（光收發模組）+ 無源（WDM 元件）雙線產品佈局，風險分散優於純無源的波若威；與波若威分食 Meta CPO 訂單，客戶多元化；法人本益比 72.74 倍（同業平均 245.86 倍），相對估值更安全。若 CPO 量產加速，有源模組將直接出貨，財務貢獻更即時。</div>
+            </div>
+            <div class="fourdim-item news">
+              <div class="fourdim-label">消息面 <span class="rating rating-caution">同受銅互連衝擊</span></div>
+              <div class="fourdim-text">3/17 受 NVIDIA GTC 言論衝擊下跌 -7.49%（427→395），與波若威同步。但有源模組比純無源更接近量產（交換機互連直接需求），市場解讀相對波若威略有差異。3/12 曾創歷史新高，目前在回測中。Meta CPO 訂單進度是下一個重要觀察點。</div>
+            </div>
+            <div class="fourdim-item technical">
+              <div class="fourdim-label">技術面 <span class="rating rating-caution">歷史高位回測 未破結構</span></div>
+              <div class="fourdim-text">3/17 收盤 395，自歷史高點（3/12 附近）大幅回落中。結構上，3/12 高點附近形成壓力；近期支撐：380–390（短均線聚合區）；3/12 前的整理平台（約 340–360）為中期支撐。與波若威相比，若今日能守住 390，則型態修復較快。</div>
+            </div>
+            <div class="fourdim-item chips">
+              <div class="fourdim-label">籌碼面 <span class="rating rating-caution">暴量換手 觀察承接</span></div>
+              <div class="fourdim-text">3/17 成交張數大幅增加（同樣為暴量殺盤型態），與波若威籌碼特徵類似。相較波若威，華星光在矽光子族群中知名度略低，外資持股比例相對少，籌碼更集中在本土法人和散戶。短線需觀察 3/18 是否有承接量；若外資轉為買超，則代表看好其多元產品線的長期價值。</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -627,30 +855,93 @@
     <div class="stock-cards">
       <div class="stock-card">
         <div class="stock-card-name">華城 1519</div>
-        <div class="stock-card-row"><span class="stock-card-label">昨收（3/17）</span><span class="stock-card-val">NT$920</span></div>
-        <div class="stock-card-row"><span class="stock-card-label">漲跌幅</span><span class="stock-card-val pending-val">待確認</span></div>
-        <div class="stock-card-row"><span class="stock-card-label">月營收 YoY</span><span class="stock-card-val pending-val">待確認</span></div>
-        <div class="stock-card-row"><span class="stock-card-label">外資 5日</span><span class="stock-card-val pending-val">待確認</span></div>
-        <div class="stock-card-row"><span class="stock-card-label">投信 5日</span><span class="stock-card-val pending-val">待確認</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">昨收（3/17）</span><span class="stock-card-val up">NT$920</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">漲跌幅</span><span class="stock-card-val up">+1.21%</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">月營收 YoY</span><span class="stock-card-val pending-val">資料彙整中</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">外資 5日</span><span class="stock-card-val pending-val">資料彙整中</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">投信 5日</span><span class="stock-card-val pending-val">資料彙整中</span></div>
         <div class="stock-signal">已打入台積電電力供應鏈；台電 500 億採購計畫重要受益者；3 月調漲售價，毛利率保護有效。</div>
+        <div class="fourdim-block">
+          <div class="fourdim-title">▸ 個股四大面向評估</div>
+          <div class="fourdim-grid">
+            <div class="fourdim-item fundamental">
+              <div class="fourdim-label">基本面 <span class="rating rating-strong">最強確定性</span></div>
+              <div class="fourdim-text">已打入台積電電力供應鏈（最高規格認證），台電 500 億採購計畫主要受益者；3 月調漲 15–20% 同步落地，代表具定價權；毛利率保護機制有效。三電股中市值最大、訂單最穩定，被視為重電板塊「壓艙石」。訂單能見度確認至 2028。</div>
+            </div>
+            <div class="fourdim-item news">
+              <div class="fourdim-label">消息面 <span class="rating rating-strong">全面正面</span></div>
+              <div class="fourdim-text">3 月漲價 15–20% 正式落地（定價權確認）；GEV(+2.08%)/ETN(+0.81%) 美股重電強勢為海外市場需求背書；台電強韌電網計畫第三期採購在即；科技廠（台積電、微軟、Google）新建廠房電力工程訂單持續湧入。近期無負面消息，催化劑密集。</div>
+            </div>
+            <div class="fourdim-item technical">
+              <div class="fourdim-label">技術面 <span class="rating rating-positive">穩健多頭</span></div>
+              <div class="fourdim-text">3/17 收盤 920（+1.21%），接近歷史高位，型態健康。月線持續上揚，均線多頭排列；支撐：880–900（20MA / 近期整理平台）；目標：1,000 元整數關卡。成交量穩定，無明顯大量出貨跡象。是四個族群中技術面最乾淨的標的之一。</div>
+            </div>
+            <div class="fourdim-item chips">
+              <div class="fourdim-label">籌碼面 <span class="rating rating-positive">外資法人主導</span></div>
+              <div class="fourdim-text">台積電供應商身份帶動外資關注；法人持股比例高，籌碼集中且穩定。重電板塊整體本季受法人積極升評，目前無明顯倒貨跡象。融資餘額偏低，非散戶題材股。3 月漲價後，可追蹤外資是否加速建倉（定價權確認是外資通常大幅加碼的觸發條件）。</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="stock-card">
         <div class="stock-card-name">士電 1503</div>
-        <div class="stock-card-row"><span class="stock-card-label">昨收（3/17）</span><span class="stock-card-val">NT$204.50</span></div>
-        <div class="stock-card-row"><span class="stock-card-label">漲跌幅</span><span class="stock-card-val pending-val">待確認</span></div>
-        <div class="stock-card-row"><span class="stock-card-label">月營收 YoY</span><span class="stock-card-val pending-val">待確認</span></div>
-        <div class="stock-card-row"><span class="stock-card-label">外資 5日</span><span class="stock-card-val pending-val">待確認</span></div>
-        <div class="stock-card-row"><span class="stock-card-label">投信 5日</span><span class="stock-card-val pending-val">待確認</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">昨收（3/17）</span><span class="stock-card-val up">NT$204.50</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">漲跌幅</span><span class="stock-card-val up">+2.25%</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">月營收 YoY</span><span class="stock-card-val pending-val">資料彙整中</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">外資 5日</span><span class="stock-card-val pending-val">資料彙整中</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">投信 5日</span><span class="stock-card-val pending-val">資料彙整中</span></div>
         <div class="stock-signal">3/1 起調漲報價 15–20%；總座表示「市場需求大爆發」；台電、科技廠雙線訂單，法人最看好重電四雄之一。</div>
+        <div class="fourdim-block">
+          <div class="fourdim-title">▸ 個股四大面向評估</div>
+          <div class="fourdim-grid">
+            <div class="fourdim-item fundamental">
+              <div class="fourdim-label">基本面 <span class="rating rating-strong">最具成長爆發力</span></div>
+              <div class="fourdim-text">3/1 調漲報價 15–20%，總座直言「市場需求大爆發」；台電採購 + 科技廠建廠電力雙線訂單，訂單能見度最廣；法人估 2026–2027 EPS 增速為四雄之冠。市值相對小（比華城低），本益比更具彈性，若業績超預期，評估重估空間最大。</div>
+            </div>
+            <div class="fourdim-item news">
+              <div class="fourdim-label">消息面 <span class="rating rating-strong">最主動的信號</span></div>
+              <div class="fourdim-text">總座「需求大爆發」定調為最強烈的管理層表態；3/1 漲價落地 + 持續接單確認；3/17 漲幅 +2.25%，三雄中居中。市場預期 Q1 月營收（4/10 前公告）可能出現驚喜。負面：個人法人發言若未能用財報數字驗證，有「預期落空」風險。</div>
+            </div>
+            <div class="fourdim-item technical">
+              <div class="fourdim-label">技術面 <span class="rating rating-positive">趨勢向上</span></div>
+              <div class="fourdim-text">3/17 收盤 204.5（+2.25%），均線多頭排列，月線持續上揚。支撐：195–200（整數關卡 + 20MA）；壓力：215–220（近期高位）。200 元是重要心理關卡，守住後技術型態穩健。成交量正常，無異常波動。</div>
+            </div>
+            <div class="fourdim-item chips">
+              <div class="fourdim-label">籌碼面 <span class="rating rating-positive">投信加碼中</span></div>
+              <div class="fourdim-text">管理層強勢表態吸引投信積極布局；因市值相對小，法人少量加碼即對股價有顯著影響。外資對重電小型股關注度低但增加中；融資餘額偏低，投機性較弱。若月營收數字優於預期，投信搶進的買盤可能出現明顯加速效果。</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="stock-card">
         <div class="stock-card-name">中興電 1513</div>
-        <div class="stock-card-row"><span class="stock-card-label">昨收（3/17）</span><span class="stock-card-val">NT$161</span></div>
-        <div class="stock-card-row"><span class="stock-card-label">漲跌幅</span><span class="stock-card-val pending-val">待確認</span></div>
-        <div class="stock-card-row"><span class="stock-card-label">月營收 YoY</span><span class="stock-card-val pending-val">待確認</span></div>
-        <div class="stock-card-row"><span class="stock-card-label">外資 5日</span><span class="stock-card-val pending-val">待確認</span></div>
-        <div class="stock-card-row"><span class="stock-card-label">投信 5日</span><span class="stock-card-val pending-val">待確認</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">昨收（3/17）</span><span class="stock-card-val up">NT$161</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">漲跌幅</span><span class="stock-card-val up">+1.58%</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">月營收 YoY</span><span class="stock-card-val pending-val">資料彙整中</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">外資 5日</span><span class="stock-card-val pending-val">資料彙整中</span></div>
+        <div class="stock-card-row"><span class="stock-card-label">投信 5日</span><span class="stock-card-val pending-val">資料彙整中</span></div>
         <div class="stock-signal">獨得台電 345kV GIS 設備大單；高壓開關設備市佔強；訂單能見度至 2030 已獲法人確認。</div>
+        <div class="fourdim-block">
+          <div class="fourdim-title">▸ 個股四大面向評估</div>
+          <div class="fourdim-grid">
+            <div class="fourdim-item fundamental">
+              <div class="fourdim-label">基本面 <span class="rating rating-strong">最長能見度</span></div>
+              <div class="fourdim-text">獨得台電 345kV GIS（氣體絕緣開關）大單，技術門檻極高（全台能做的廠商極少）；訂單能見度確認至 2030，在三雄中最長；高壓開關設備市佔率強勢，具天然護城河。3 月同步調漲 + 台電法定採購義務保障了基本面下限。</div>
+            </div>
+            <div class="fourdim-item news">
+              <div class="fourdim-label">消息面 <span class="rating rating-positive">低調但確定</span></div>
+              <div class="fourdim-text">3/17 漲幅 +1.58%，相對低調，主要受惠於板塊整體升溫。無獨立重大消息，但 345kV GIS 大單本身已是板塊中最確定的訂單。台電後續採購案（並聯電抗器、高壓設備）公告是下一個觀察點。相較士電的高調表態，中興電以穩定執行力取勝。</div>
+            </div>
+            <div class="fourdim-item technical">
+              <div class="fourdim-label">技術面 <span class="rating rating-positive">穩健向上</span></div>
+              <div class="fourdim-text">3/17 收盤 161（+1.58%），均線向上整理中。支撐：155–158（近期均線支撐）；壓力：170（前高關卡）。160–165 為近期整理帶，突破後目標看 175–180。成交量穩定，無劇烈波動，是板塊中最「溫吞」但也最穩健的型態。</div>
+            </div>
+            <div class="fourdim-item chips">
+              <div class="fourdim-label">籌碼面 <span class="rating rating-positive">法人穩定持有</span></div>
+              <div class="fourdim-text">2030 能見度最長吸引壽險、退休基金等長線法人持有；籌碼結構最穩定、市值最小但流通量充足。外資相對低調，但內資法人（壽險、法人自營）為主要支撐力量。無過度融資，籌碼乾淨。中線持有風險最低的重電標的，但短線爆發力不如士電。</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -679,7 +970,7 @@
     <div class="subsection-title">值得特別注意（優先順序）</div>
     <ol class="priority-list">
       <li><strong>矽光子短線情緒衝擊需監控</strong>：NVIDIA Huang 昨日重申銅互連，波若威、華星光今日開盤需觀察跌幅與成交量——若量縮小跌，長線多頭格局未破；若量放大跌，代表法人在出，需縮倉。這是今日最需要盯盤的變數。</li>
-      <li><strong>ABF 三雄繼續持有、關注外資動向</strong>：南電昨漲最強（+3.89%），三雄全面上漲配合欣興資本支出上修，供需缺口信號明確。唯一需注意的是南電二度處置股籌碼波動，外資近 5 日買賣超是觀察是否真正進場的關鍵（目前待確認）。</li>
+      <li><strong>ABF 三雄繼續持有、關注外資動向</strong>：南電昨漲最強（+3.89%），三雄全面上漲配合欣興資本支出上修，供需缺口信號明確。唯一需注意的是南電二度處置股籌碼波動，外資近 5 日買賣超是觀察是否真正進場的關鍵。</li>
       <li><strong>重電板塊 3 月漲價效果追蹤</strong>：士電、華城、中興電三月調漲落地，下一個確認點是 Q1 月營收（4/10 前公告）。目前股價處於合理區間，GEV/ETN 美股表現提供海外需求背書，中線持有邏輯穩固。</li>
     </ol>
 
