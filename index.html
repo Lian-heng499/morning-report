@@ -6,4 +6,325 @@
 <title>產業晨報｜總覽</title>
 <style>
   :root {
- 
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #21253a;
+    --border: #2e3350;
+    --accent-blue: #4d7cfe;
+    --accent-green: #22c55e;
+    --accent-red: #ef4444;
+    --accent-yellow: #f59e0b;
+    --accent-orange: #f97316;
+    --text-primary: #e8eaf6;
+    --text-secondary: #8892b0;
+    --text-muted: #4a5568;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'SF Pro Display', -apple-system, 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 28px 32px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid var(--accent-blue);
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+  }
+  .header-title { font-size: 24px; font-weight: 700; color: #fff; letter-spacing: 1px; }
+  .header-sub { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+  .header-right { text-align: right; font-size: 12px; color: var(--text-secondary); }
+
+  /* SCHEDULE STRIP */
+  .schedule-strip {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .schedule-item {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+  .schedule-icon { font-size: 18px; margin-bottom: 4px; }
+  .schedule-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .schedule-time { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-top: 2px; }
+  .schedule-next { font-size: 11px; color: var(--accent-blue); margin-top: 2px; }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-size: 13px; font-weight: 700;
+    color: var(--accent-blue);
+    border-left: 3px solid var(--accent-blue);
+    padding-left: 10px;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  /* WEEKLY REPORT CARDS */
+  .weekly-card {
+    background: linear-gradient(135deg, #1a1d27 0%, #1e2235 100%);
+    border: 1px solid var(--accent-blue);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .weekly-card:hover { border-color: #7da4ff; background: linear-gradient(135deg, #1e2235 0%, #232842 100%); }
+  .weekly-card-left .week-num { font-size: 11px; color: var(--accent-blue); font-weight: 700; letter-spacing: 1px; }
+  .weekly-card-left .week-range { font-size: 15px; font-weight: 700; color: #fff; margin: 2px 0; }
+  .weekly-card-left .week-days { font-size: 11px; color: var(--text-muted); }
+  .weekly-card-right { font-size: 20px; color: var(--accent-blue); }
+
+  /* DAILY REPORT TABLE */
+  .report-table { width: 100%; border-collapse: collapse; }
+  .report-table th {
+    background: var(--surface2);
+    color: var(--text-secondary);
+    padding: 7px 14px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+  .report-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    vertical-align: middle;
+  }
+  .report-table tr:last-child td { border-bottom: none; }
+  .report-table tr:hover td { background: rgba(77,124,254,0.04); }
+  .report-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .report-link:hover { color: var(--accent-blue); }
+  .report-link .icon { font-size: 14px; }
+  .date-cell { color: var(--text-secondary); font-size: 12px; }
+  .weekday { color: var(--text-muted); font-size: 11px; margin-left: 4px; }
+
+  .signal-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .signal-opp  { background: rgba(34,197,94,0.15);  color: #22c55e; border: 1px solid rgba(34,197,94,0.4); }
+  .signal-watch{ background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.4); }
+  .signal-risk { background: rgba(239,68,68,0.15);  color: #ef4444; border: 1px solid rgba(239,68,68,0.4); }
+  .signal-neutral { background: rgba(148,163,184,0.1); color: #94a3b8; border: 1px solid rgba(148,163,184,0.3); }
+
+  .signals-cell { display: flex; gap: 4px; flex-wrap: wrap; }
+
+  /* FOLDER STRUCTURE */
+  .folder-tree {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 2;
+  }
+  .folder-tree .folder { color: var(--accent-blue); font-weight: 600; }
+  .folder-tree .file { color: var(--text-secondary); }
+  .folder-tree .comment { color: var(--text-muted); }
+
+  .section { margin-bottom: 36px; }
+
+  .empty-state {
+    padding: 24px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+  }
+
+  .footer {
+    margin-top: 40px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div>
+    <div class="header-title">產業晨報｜總覽</div>
+    <div class="header-sub">台灣科技產業研究 · ABF載板｜低軌衛星｜矽光子｜重電</div>
+  </div>
+  <div class="header-right">
+    最後更新：2026/03/22<br>
+    <span style="color:var(--accent-green)">●</span> 自動排程運作中
+  </div>
+</div>
+
+<!-- SCHEDULE STRIP -->
+<div class="schedule-strip">
+  <div class="schedule-item">
+    <div class="schedule-icon">📰</div>
+    <div class="schedule-label">每日晨報</div>
+    <div class="schedule-time">週一至週五 08:45</div>
+    <div class="schedule-next">下次：03/23（一）</div>
+  </div>
+  <div class="schedule-item">
+    <div class="schedule-icon">📊</div>
+    <div class="schedule-label">每週週報</div>
+    <div class="schedule-time">每週六 22:30</div>
+    <div class="schedule-next">下次：03/28（六）</div>
+  </div>
+  <div class="schedule-item">
+    <div class="schedule-icon">📁</div>
+    <div class="schedule-label">本月晨報數</div>
+    <div class="schedule-time">4 份（2026/03）</div>
+    <div class="schedule-next">本週 W12：3/17–3/20</div>
+  </div>
+</div>
+
+<!-- WEEKLY REPORTS -->
+<div class="section">
+  <div class="section-title">週報彙整</div>
+  <a class="weekly-card" href="reports/週報_2026-W12.html">
+    <div class="weekly-card-left">
+      <div class="week-num">2026 · WEEK 12</div>
+      <div class="week-range">3/16（一）— 3/20（五）</div>
+      <div class="week-days">本週晨報：4 份（3/17、3/18、3/19、3/20）</div>
+    </div>
+    <div class="weekly-card-right">→</div>
+  </a>
+</div>
+
+<!-- DAILY REPORTS -->
+<div class="section">
+  <div class="section-title">每日晨報 — 2026年3月</div>
+  <table class="report-table">
+    <thead>
+      <tr>
+        <th>日期</th>
+        <th>檔案</th>
+        <th>板塊訊號</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="date-cell">2026/03/20 <span class="weekday">五</span></td>
+        <td>
+          <a class="report-link" href="reports/晨報_20260320.html">
+            <span class="icon">📄</span> 晨報_20260320.html
+          </a>
+        </td>
+        <td>
+          <div class="signals-cell">
+            <span class="signal-badge signal-opp">ABF 機會</span>
+            <span class="signal-badge signal-watch">LEO 觀察</span>
+            <span class="signal-badge signal-opp">矽光子 機會</span>
+            <span class="signal-badge signal-watch">重電 觀察</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="date-cell">2026/03/19 <span class="weekday">四</span></td>
+        <td>
+          <a class="report-link" href="reports/晨報_20260319.html">
+            <span class="icon">📄</span> 晨報_20260319.html
+          </a>
+        </td>
+        <td>
+          <div class="signals-cell">
+            <span class="signal-badge signal-opp">ABF 機會</span>
+            <span class="signal-badge signal-opp">LEO 機會</span>
+            <span class="signal-badge signal-opp">矽光子 機會</span>
+            <span class="signal-badge signal-watch">重電 觀察</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="date-cell">2026/03/18 <span class="weekday">三</span></td>
+        <td>
+          <a class="report-link" href="reports/晨報_20260318.html">
+            <span class="icon">📄</span> 晨報_20260318.html
+          </a>
+        </td>
+        <td>
+          <div class="signals-cell">
+            <span class="signal-badge signal-opp">ABF 機會</span>
+            <span class="signal-badge signal-opp">LEO 機會</span>
+            <span class="signal-badge signal-watch">矽光子 觀察</span>
+            <span class="signal-badge signal-opp">重電 機會</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="date-cell">2026/03/17 <span class="weekday">二</span></td>
+        <td>
+          <a class="report-link" href="reports/晨報_20260317.html">
+            <span class="icon">📄</span> 晨報_20260317.html
+          </a>
+        </td>
+        <td>
+          <div class="signals-cell">
+            <span class="signal-badge signal-opp">ABF 機會</span>
+            <span class="signal-badge signal-opp">LEO 機會</span>
+            <span class="signal-badge signal-opp">矽光子 機會</span>
+            <span class="signal-badge signal-opp">重電 機會</span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FOLDER STRUCTURE -->
+<div class="section">
+  <div class="section-title">資料夾結構（GitHub Pages）</div>
+  <div class="folder-tree">
+    <span class="folder">📁 morning-report/</span> <span class="comment">← GitHub Pages 根目錄</span><br>
+    &nbsp;&nbsp;<span class="folder">📁 reports/</span> <span class="comment">← 每日晨報 + 每週週報</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<span class="file">📄 晨報_20260317.html</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<span class="file">📄 晨報_20260318.html</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<span class="file">📄 晨報_20260319.html</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<span class="file">📄 晨報_20260320.html</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<span class="file">📄 週報_2026-W12.html</span><br>
+    &nbsp;&nbsp;<span class="file">📄 index.html</span> <span class="comment">← 本頁（入口總覽）</span><br>
+  </div>
+</div>
+
+<div class="footer">
+  <span>產業晨報系統 · 自動產出</span>
+  <span>每日 08:45 更新 · 週報週六 22:30 更新</span>
+</div>
+
+</body>
+</html>
