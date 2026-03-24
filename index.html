@@ -3,336 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ç¢æ¥­æ¨å ±ï½ç¸½è¦½</title>
+<title>產業晨報 — 每日科技產業分析</title>
 <style>
-  :root {
-    --bg: #0f1117;
-    --surface: #1a1d27;
-    --surface2: #21253a;
-    --border: #2e3350;
-    --accent-blue: #4d7cfe;
-    --accent-green: #22c55e;
-    --accent-red: #ef4444;
-    --accent-yellow: #f59e0b;
-    --accent-orange: #f97316;
-    --text-primary: #e8eaf6;
-    --text-secondary: #8892b0;
-    --text-muted: #4a5568;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: var(--bg);
-    color: var(--text-primary);
-    font-family: 'SF Pro Display', -apple-system, 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
-    font-size: 14px;
-    line-height: 1.6;
-    padding: 28px 32px;
-    max-width: 960px;
-    margin: 0 auto;
-  }
-
-  /* HEADER */
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    border-bottom: 2px solid var(--accent-blue);
-    padding-bottom: 16px;
-    margin-bottom: 32px;
-  }
-  .header-title { font-size: 24px; font-weight: 700; color: #fff; letter-spacing: 1px; }
-  .header-sub { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
-  .header-right { text-align: right; font-size: 12px; color: var(--text-secondary); }
-
-  /* SCHEDULE STRIP */
-  .schedule-strip {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 32px;
-  }
-  .schedule-item {
-    flex: 1;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 12px 16px;
-  }
-  .schedule-icon { font-size: 18px; margin-bottom: 4px; }
-  .schedule-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-  .schedule-time { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-top: 2px; }
-  .schedule-next { font-size: 11px; color: var(--accent-blue); margin-top: 2px; }
-
-  /* SECTION TITLE */
-  .section-title {
-    font-size: 13px; font-weight: 700;
-    color: var(--accent-blue);
-    border-left: 3px solid var(--accent-blue);
-    padding-left: 10px;
-    margin-bottom: 12px;
-    letter-spacing: 0.5px;
-  }
-
-  /* WEEKLY REPORT CARDS */
-  .weekly-card {
-    background: linear-gradient(135deg, #1a1d27 0%, #1e2235 100%);
-    border: 1px solid var(--accent-blue);
-    border-radius: 10px;
-    padding: 16px 20px;
-    margin-bottom: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-decoration: none;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .weekly-card:hover { border-color: #7da4ff; background: linear-gradient(135deg, #1e2235 0%, #232842 100%); }
-  .weekly-card-left .week-num { font-size: 11px; color: var(--accent-blue); font-weight: 700; letter-spacing: 1px; }
-  .weekly-card-left .week-range { font-size: 15px; font-weight: 700; color: #fff; margin: 2px 0; }
-  .weekly-card-left .week-days { font-size: 11px; color: var(--text-muted); }
-  .weekly-card-right { font-size: 20px; color: var(--accent-blue); }
-
-  /* DAILY REPORT TABLE */
-  .report-table { width: 100%; border-collapse: collapse; }
-  .report-table th {
-    background: var(--surface2);
-    color: var(--text-secondary);
-    padding: 7px 14px;
-    text-align: left;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    border-bottom: 1px solid var(--border);
-  }
-  .report-table td {
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--border);
-    font-size: 13px;
-    vertical-align: middle;
-  }
-  .report-table tr:last-child td { border-bottom: none; }
-  .report-table tr:hover td { background: rgba(77,124,254,0.04); }
-  .report-link {
-    color: var(--text-primary);
-    text-decoration: none;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .report-link:hover { color: var(--accent-blue); }
-  .report-link .icon { font-size: 14px; }
-  .date-cell { color: var(--text-secondary); font-size: 12px; }
-  .weekday { color: var(--text-muted); font-size: 11px; margin-left: 4px; }
-
-  .signal-badge {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 12px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.3px;
-  }
-  .signal-opp  { background: rgba(34,197,94,0.15);  color: #22c55e; border: 1px solid rgba(34,197,94,0.4); }
-  .signal-watch{ background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.4); }
-  .signal-risk { background: rgba(239,68,68,0.15);  color: #ef4444; border: 1px solid rgba(239,68,68,0.4); }
-  .signal-neutral { background: rgba(148,163,184,0.1); color: #94a3b8; border: 1px solid rgba(148,163,184,0.3); }
-
-  .signals-cell { display: flex; gap: 4px; flex-wrap: wrap; }
-
-  /* FOLDER STRUCTURE */
-  .folder-tree {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 14px 18px;
-    font-family: 'SF Mono', 'Menlo', monospace;
-    font-size: 12px;
-    color: var(--text-secondary);
-    line-height: 2;
-  }
-  .folder-tree .folder { color: var(--accent-blue); font-weight: 600; }
-  .folder-tree .file { color: var(--text-secondary); }
-  .folder-tree .comment { color: var(--text-muted); }
-
-  .section { margin-bottom: 36px; }
-
-  .empty-state {
-    padding: 24px;
-    text-align: center;
-    color: var(--text-muted);
-    font-size: 13px;
-    border: 1px dashed var(--border);
-    border-radius: 8px;
-  }
-
-  .footer {
-    margin-top: 40px;
-    padding-top: 14px;
-    border-top: 1px solid var(--border);
-    font-size: 11px;
-    color: var(--text-muted);
-    display: flex;
-    justify-content: space-between;
-  }
+  :root { --bg:#0f1117; --card:#161b27; --border:#2a3448; --blue:#4d7cfe; --text:#e2e8f0; --muted:#8492a6; --green:#22c55e; --red:#ef4444; --orange:#f97316; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,'Helvetica Neue',Arial,sans-serif; font-size:14px; }
+  .header { background:linear-gradient(135deg,#0f1117 0%,#1a2540 100%); border-bottom:2px solid var(--blue); padding:28px 40px; }
+  .header h1 { font-size:22px; color:var(--blue); font-weight:700; letter-spacing:1px; }
+  .header p { color:var(--muted); font-size:13px; margin-top:6px; }
+  .container { max-width:960px; margin:0 auto; padding:32px 20px; }
+  h2 { font-size:15px; color:var(--blue); border-left:3px solid var(--blue); padding-left:10px; margin-bottom:16px; }
+  table { width:100%; border-collapse:collapse; }
+  thead tr { background:#1c2333; }
+  th { padding:10px 14px; text-align:left; color:var(--muted); font-size:12px; font-weight:600; border-bottom:1px solid var(--border); }
+  td { padding:10px 14px; border-bottom:1px solid var(--border); font-size:13px; }
+  tr:hover td { background:rgba(77,124,254,0.04); }
+  td a { color:var(--blue); text-decoration:none; font-weight:600; }
+  td a:hover { text-decoration:underline; }
+  .signal { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700; }
+  .signal-opp { background:#14532d; color:#4ade80; border:1px solid #22c55e; }
+  .signal-watch { background:#1c1917; color:#fb923c; border:1px solid #f97316; }
+  .signal-risk { background:#450a0a; color:#f87171; border:1px solid #ef4444; }
+  .signal-neut { background:#1e293b; color:#94a3b8; border:1px solid #334155; }
+  .week-row td { background:rgba(77,124,254,0.06); }
+  .footer { text-align:center; color:var(--muted); font-size:12px; padding:24px 0; border-top:1px solid var(--border); margin-top:32px; }
 </style>
 </head>
 <body>
-
-<!-- HEADER -->
 <div class="header">
-  <div>
-    <div class="header-title">ç¢æ¥­æ¨å ±ï½ç¸½è¦½</div>
-    <div class="header-sub">å°ç£ç§æç¢æ¥­ç ç©¶ Â· ABFè¼æ¿ï½ä½è»è¡æï½ç½åå­ï½éé»</div>
-  </div>
-  <div class="header-right">
-    æå¾æ´æ°ï¼2026/03/22<br>
-    <span style="color:var(--accent-green)">â</span> èªåæç¨éä½ä¸­
-  </div>
+  <h1>📊 產業晨報 Morning Report</h1>
+  <p>台灣科技產業每日分析 | ABF載板 · 低軌衛星 · 矽光子 · 重電</p>
 </div>
-
-<!-- SCHEDULE STRIP -->
-<div class="schedule-strip">
-  <div class="schedule-item">
-    <div class="schedule-icon">ð°</div>
-    <div class="schedule-label">æ¯æ¥æ¨å ±</div>
-    <div class="schedule-time">é±ä¸è³é±äº 08:45</div>
-    <div class="schedule-next">ä¸æ¬¡ï¼03/23ï¼ä¸ï¼</div>
-  </div>
-  <div class="schedule-item">
-    <div class="schedule-icon">ð</div>
-    <div class="schedule-label">æ¯é±é±å ±</div>
-    <div class="schedule-time">æ¯é±å­ 22:30</div>
-    <div class="schedule-next">ä¸æ¬¡ï¼03/28ï¼å­ï¼</div>
-  </div>
-  <div class="schedule-item">
-    <div class="schedule-icon">ð</div>
-    <div class="schedule-label">æ¬ææ¨å ±æ¸</div>
-    <div class="schedule-time">4 ä»½ï¼2026/03ï¼</div>
-    <div class="schedule-next">æ¬é± W12ï¼3/17â3/20</div>
-  </div>
-</div>
-
-<!-- WEEKLY REPORTS -->
-<div class="section">
-  <div class="section-title">é±å ±å½æ´</div>
-  <a class="weekly-card" href="reports/é±å ±_2026-W12.html">
-    <div class="weekly-card-left">
-      <div class="week-num">2026 Â· WEEK 12</div>
-      <div class="week-range">3/16ï¼ä¸ï¼â 3/20ï¼äºï¼</div>
-      <div class="week-days">æ¬é±æ¨å ±ï¼4 ä»½ï¼3/17ã3/18ã3/19ã3/20ï¼</div>
-    </div>
-    <div class="weekly-card-right">â</div>
-  </a>
-</div>
-
-<!-- DAILY REPORTS -->
-<div class="section">
-  <div class="section-title">æ¯æ¥æ¨å ± â 2026å¹´3æ</div>
-  <table class="report-table">
+<div class="container">
+  <h2>報告列表</h2>
+  <table>
     <thead>
       <tr>
-        <th>æ¥æ</th>
-        <th>æªæ¡</th>
-        <th>æ¿å¡è¨è</th>
+        <th>日期</th>
+        <th>標題</th>
+        <th>ABF載板</th>
+        <th>低軌衛星</th>
+        <th>矽光子</th>
+        <th>重電</th>
       </tr>
     </thead>
     <tbody>
         <tr>
           <td><a href="reports/晨報_20260324.html">2026/03/24</a></td>
-          <td>2026/03/24（二）</td>
+          <td>2026/03/24（二）晨報</td>
+          <td><span class="signal signal-watch">觀察</span></td>
+          <td><span class="signal signal-opp">機會</span></td>
+          <td><span class="signal signal-opp">機會</span></td>
+          <td><span class="signal signal-watch">觀察</span></td>
+        </tr>
+        <tr>
+          <td><a href="reports/晨報_20260320.html">2026/03/20</a></td>
+          <td>2026/03/20（五）晨報</td>
           <td><span class="signal signal-opp">機會</span></td>
           <td><span class="signal signal-opp">機會</span></td>
           <td><span class="signal signal-opp">機會</span></td>
           <td><span class="signal signal-opp">機會</span></td>
         </tr>
-      <tr>
-        <td class="date-cell">2026/03/20 <span class="weekday">äº</span></td>
-        <td>
-          <a class="report-link" href="reports/æ¨å ±_20260320.html">
-            <span class="icon">ð</span> æ¨å ±_20260320.html
-          </a>
-        </td>
-        <td>
-          <div class="signals-cell">
-            <span class="signal-badge signal-opp">ABF æ©æ</span>
-            <span class="signal-badge signal-watch">LEO è§å¯</span>
-            <span class="signal-badge signal-opp">ç½åå­ æ©æ</span>
-            <span class="signal-badge signal-watch">éé» è§å¯</span>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td class="date-cell">2026/03/19 <span class="weekday">å</span></td>
-        <td>
-          <a class="report-link" href="reports/æ¨å ±_20260319.html">
-            <span class="icon">ð</span> æ¨å ±_20260319.html
-          </a>
-        </td>
-        <td>
-          <div class="signals-cell">
-            <span class="signal-badge signal-opp">ABF æ©æ</span>
-            <span class="signal-badge signal-opp">LEO æ©æ</span>
-            <span class="signal-badge signal-opp">ç½åå­ æ©æ</span>
-            <span class="signal-badge signal-watch">éé» è§å¯</span>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td class="date-cell">2026/03/18 <span class="weekday">ä¸</span></td>
-        <td>
-          <a class="report-link" href="reports/æ¨å ±_20260318.html">
-            <span class="icon">ð</span> æ¨å ±_20260318.html
-          </a>
-        </td>
-        <td>
-          <div class="signals-cell">
-            <span class="signal-badge signal-opp">ABF æ©æ</span>
-            <span class="signal-badge signal-opp">LEO æ©æ</span>
-            <span class="signal-badge signal-watch">ç½åå­ è§å¯</span>
-            <span class="signal-badge signal-opp">éé» æ©æ</span>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td class="date-cell">2026/03/17 <span class="weekday">äº</span></td>
-        <td>
-          <a class="report-link" href="reports/æ¨å ±_20260317.html">
-            <span class="icon">ð</span> æ¨å ±_20260317.html
-          </a>
-        </td>
-        <td>
-          <div class="signals-cell">
-            <span class="signal-badge signal-opp">ABF æ©æ</span>
-            <span class="signal-badge signal-opp">LEO æ©æ</span>
-            <span class="signal-badge signal-opp">ç½åå­ æ©æ</span>
-            <span class="signal-badge signal-opp">éé» æ©æ</span>
-          </div>
-        </td>
-      </tr>
+        <tr>
+          <td><a href="reports/晨報_20260319.html">2026/03/19</a></td>
+          <td>2026/03/19（四）晨報</td>
+          <td><span class="signal signal-opp">機會</span></td>
+          <td><span class="signal signal-opp">機會</span></td>
+          <td><span class="signal signal-opp">機會</span></td>
+          <td><span class="signal signal-opp">機會</span></td>
+        </tr>
+        <tr>
+          <td><a href="reports/晨報_20260318.html">2026/03/18</a></td>
+          <td>2026/03/18（三）晨報</td>
+          <td><span class="signal signal-opp">機會</span></td>
+          <td><span class="signal signal-opp">機會</span></td>
+          <td><span class="signal signal-opp">機會</span></td>
+          <td><span class="signal signal-opp">機會</span></td>
+        </tr>
+        <tr>
+          <td><a href="reports/晨報_20260317.html">2026/03/17</a></td>
+          <td>2026/03/17（一）晨報</td>
+          <td><span class="signal signal-opp">機會</span></td>
+          <td><span class="signal signal-opp">機會</span></td>
+          <td><span class="signal signal-opp">機會</span></td>
+          <td><span class="signal signal-opp">機會</span></td>
+        </tr>
+        <tr class="week-row">
+          <td><a href="reports/週報_2026-W12.html">2026-W12</a></td>
+          <td>第12週週報（3/16-3/20）</td>
+          <td colspan="4" style="color:var(--muted)">週報摘要</td>
+        </tr>
     </tbody>
   </table>
+  <div class="footer">產業晨報 · 資料來源：Yahoo Finance、Bloomberg、Digitimes、NVIDIA Newsroom</div>
 </div>
-
-<!-- FOLDER STRUCTURE -->
-<div class="section">
-  <div class="section-title">è³æå¤¾çµæ§ï¼GitHub Pagesï¼</div>
-  <div class="folder-tree">
-    <span class="folder">ð morning-report/</span> <span class="comment">â GitHub Pages æ ¹ç®é</span><br>
-    &nbsp;&nbsp;<span class="folder">ð reports/</span> <span class="comment">â æ¯æ¥æ¨å ± + æ¯é±é±å ±</span><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;<span class="file">ð æ¨å ±_20260317.html</span><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;<span class="file">ð æ¨å ±_20260318.html</span><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;<span class="file">ð æ¨å ±_20260319.html</span><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;<span class="file">ð æ¨å ±_20260320.html</span><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;<span class="file">ð é±å ±_2026-W12.html</span><br>
-    &nbsp;&nbsp;<span class="file">ð index.html</span> <span class="comment">â æ¬é ï¼å¥å£ç¸½è¦½ï¼</span><br>
-  </div>
-</div>
-
-<div class="footer">
-  <span>ç¢æ¥­æ¨å ±ç³»çµ± Â· èªåç¢åº</span>
-  <span>æ¯æ¥ 08:45 æ´æ° Â· é±å ±é±å­ 22:30 æ´æ°</span>
-</div>
-
 </body>
 </html>
