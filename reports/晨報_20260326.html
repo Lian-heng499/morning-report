@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日產業晨報 2026/03/26</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #161b27;
+    --card2: #1c2333;
+    --border: #2a3448;
+    --blue: #4d7cfe;
+    --blue-dim: #2a4099;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #eab308;
+    --text: #e2e8f0;
+    --muted: #8492a6;
+    --accent: #60a5fa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .header {
+    background: linear-gradient(135deg, #0f1117 0%, #1a2540 100%);
+    border-bottom: 2px solid var(--blue);
+    padding: 24px 32px;
+  }
+  .header h1 { font-size: 24px; color: var(--blue); font-weight: 700; letter-spacing: 1px; }
+  .header .meta { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px 20px; }
+
+  .section { margin-bottom: 32px; }
+  .section-title {
+    font-size: 16px; font-weight: 700;
+    color: var(--blue); border-left: 4px solid var(--blue);
+    padding-left: 10px; margin-bottom: 16px;
+  }
+
+  .signal {
+    display: inline-block; padding: 3px 10px;
+    border-radius: 4px; font-size: 12px; font-weight: 700; margin-left: 10px;
+  }
+  .signal-opp { background: #14532d; color: #4ade80; border: 1px solid #22c55e; }
+  .signal-watch { background: #422006; color: #fbbf24; border: 1px solid #eab308; }
+  .signal-risk { background: #450a0a; color: #f87171; border: 1px solid #ef4444; }
+  .signal-neutral { background: #1e293b; color: #94a3b8; border: 1px solid #475569; }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  th {
+    background: var(--card2); color: var(--muted);
+    font-size: 12px; font-weight: 600; text-align: left;
+    padding: 8px 12px; border-bottom: 1px solid var(--border);
+  }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:hover td { background: rgba(77,124,254,0.05); }
+  .up { color: var(--green); font-weight: 600; }
+  .down { color: var(--red); font-weight: 600; }
+  .neutral { color: var(--muted); }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .card-title { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+
+  .news-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .news-item:last-child { border-bottom: none; }
+  .news-title { font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .news-meta { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  .news-summary { font-size: 13px; color: #b0bcd0; padding-left: 8px; border-left: 2px solid var(--blue-dim); }
+
+  .stock-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+  .stock-card {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .stock-name { font-weight: 700; font-size: 14px; color: var(--accent); }
+  .stock-price { font-size: 18px; font-weight: 700; margin: 4px 0; }
+  .stock-detail { font-size: 12px; color: var(--muted); }
+  .stock-signal { margin-top: 6px; font-size: 12px; color: var(--yellow); }
+
+  .analysis {
+    background: rgba(77,124,254,0.06);
+    border: 1px solid var(--blue-dim);
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-size: 13px;
+    line-height: 1.75;
+    color: #c8d5e8;
+    margin: 12px 0;
+  }
+
+  .cal-item { display: flex; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+  .cal-date { color: var(--blue); font-weight: 700; min-width: 60px; font-size: 12px; }
+  .cal-content { font-size: 13px; }
+  .cal-note { font-size: 12px; color: var(--muted); }
+
+  .ro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .ro-card { padding: 10px 14px; border-radius: 6px; font-size: 13px; }
+  .ro-opp { background: rgba(34,197,94,0.08); border: 1px solid #166534; }
+  .ro-risk { background: rgba(239,68,68,0.08); border: 1px solid #7f1d1d; }
+  .ro-label { font-weight: 700; margin-bottom: 4px; }
+  .ro-opp .ro-label { color: var(--green); }
+  .ro-risk .ro-label { color: var(--red); }
+
+  .priority-list { counter-reset: item; list-style: none; }
+  .priority-list li {
+    counter-increment: item;
+    padding: 8px 0 8px 36px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .priority-list li::before {
+    content: counter(item);
+    position: absolute; left: 0;
+    background: var(--blue); color: white;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; top: 8px;
+  }
+
+  .impact-tag {
+    display: inline-block; padding: 2px 8px; border-radius: 3px;
+    font-size: 11px; font-weight: 600; margin: 0 3px;
+  }
+  .tag-high { background: #7f1d1d; color: #fca5a5; }
+  .tag-med { background: #422006; color: #fde68a; }
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+  .no-data { color: var(--muted); font-style: italic; }
+
+  @media (max-width: 600px) {
+    .ro-grid { grid-template-columns: 1fr; }
+    .stock-grid { grid-template-columns: 1fr; }
+    .header { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 每日產業晨報</h1>
+  <div class="meta">
+    <strong>日期：</strong>2026/03/26（星期四）&nbsp;&nbsp;
+    <strong>產出時間：</strong>07:30&nbsp;&nbsp;
+    <strong>涵蓋板塊：</strong>ABF載板 ／ 低軌衛星 ／ 矽光子 ／ 重電
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ===================== 美國頭部動態 ===================== -->
+<div class="section">
+  <div class="section-title">🇺🇸 美國頭部動態（2026/03/25 收盤）</div>
+  <table>
+    <thead>
+      <tr>
+        <th>公司</th><th>昨收</th><th>漲跌幅</th><th>重點</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>NVIDIA (NVDA)</strong></td>
+        <td>$179.45</td>
+        <td class="up">+2.43%</td>
+        <td>GTC 利多消化期結束，隨大盤 risk-on 反彈；Vera Rubin 平台年底出貨不變，黃仁勳表態將恢復對中國 H200 銷售。</td>
+      </tr>
+      <tr>
+        <td><strong>AMD</strong></td>
+        <td>$220.27</td>
+        <td class="up">+7.26%</td>
+        <td>報導 CPU 全線漲價 10-15%（4月生效），供應鏈吃緊疊加 AI 加速器新訂單，單日爆量飆漲。</td>
+      </tr>
+      <tr>
+        <td><strong>Intel (INTC)</strong></td>
+        <td>$47.18</td>
+        <td class="up">+7.08%</td>
+        <td>同步受惠 CPU 漲價題材；Intel 確認漲價反映「持續性需求與成本上升」，18A 量產時間表不變。</td>
+      </tr>
+      <tr>
+        <td><strong>Broadcom (AVGO)</strong></td>
+        <td>$320.60</td>
+        <td class="up">+0.72%</td>
+        <td>走勢相對溫和，ASIC 業務穩健但缺乏新催化劑；下季法說 6/4，市場等待 Google/Meta XPU 最新指引。</td>
+      </tr>
+      <tr>
+        <td><strong>Lumentum (LITE)</strong></td>
+        <td>$777.17</td>
+        <td class="down">-3.09%</td>
+        <td>S&P 500 納入後第三日，盤中振幅極大（$763-$830）；指數被動買盤持續流入，但獲利了結賣壓同步加大。</td>
+      </tr>
+      <tr>
+        <td><strong>Coherent (COHR)</strong></td>
+        <td>$280.00</td>
+        <td class="up">+9.14%</td>
+        <td>單日暴漲 +9.14%，S&P 500 納入效應外溢；OFC 2026 矽光子產品獲客戶加單，NVIDIA 合作深化帶動估值重評。</td>
+      </tr>
+      <tr>
+        <td><strong>Eaton (ETN)</strong></td>
+        <td>$374.10</td>
+        <td class="up">+4.52%</td>
+        <td>BNP Paribas 重申 2026 年首選股；AI 資料中心電力管理需求加速，Q1 法說 5/5 盤前。</td>
+      </tr>
+      <tr>
+        <td><strong>GE Vernova (GEV)</strong></td>
+        <td>$923.69</td>
+        <td class="up">+4.82%</td>
+        <td>收盤 $923.69 創歷史新高；積壓訂單 $1,500 億持續消化，電力基建資本支出長周期不變。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="card">
+    <div class="card-title">美股對台廠今日影響評估</div>
+    <p>美股週二迎來今年最強 risk-on 交易日之一：AMD/INTC 雙雙暴漲 7% 確認 CPU 漲價週期啟動、COHR 單日飆 +9.14% 延續矽光子狂潮、ETN/GEV 齊創新高鞏固電力基建長多。<strong>對台廠的核心連動：</strong>（1）CPU 漲價→PCB/載板成本轉嫁能力提升，ABF 三雄漲價邏輯再獲美股驗證；（2）COHR +9% 將直接催化波若威、華星光今日開盤；（3）ETN +4.5%/GEV +4.8% 為重電板塊提供海外訂單估值支撐。四大板塊今日全面偏多。</p>
+  </div>
+</div>
+
+<!-- ===================== 一｜ABF 載板 ===================== -->
+<div class="section">
+  <div class="section-title">一｜ABF 載板 <span class="signal signal-opp">機會</span></div>
+
+  <div class="card">
+    <div class="card-title">今日重點新聞</div>
+    <div class="news-item">
+      <div class="news-title">AMD、Intel 宣布 CPU 全線漲價 10-15%，ABF 載板成本轉嫁能力再獲驗證</div>
+      <div class="news-meta">Invezz / GuruFocus / Motley Fool — 2026/03/25</div>
+      <div class="news-summary">AMD 與 Intel 雙雙通知客戶 4 月起 CPU 全線漲價 10-15%，源於供應鏈吃緊與 AI 需求持續擴張。CPU 漲價代表上游晶片廠有定價權，載板作為封裝核心材料，成本轉嫁邏輯進一步強化。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">欣興 capex 大幅上修至 254 億，光復廠與蘆竹新廠鎖定 16 層以上高階產品</div>
+      <div class="news-meta">經濟日報 / 法說會紀要 — 2026/03/近期</div>
+      <div class="news-summary">欣興 2026 年資本支出由 194 億上修至 254 億（+31%），其中光復廠與蘆竹新廠專注 M9 高階材料與 20 層以上載板，ABF 產能年增 60%，以對接 Rubin 平台需求。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">高階 ABF 載板供需缺口 2026H2 達 10%，高盛維持三雄「買進」</div>
+      <div class="news-meta">科技新報 — 2026/02/04（持續有效）</div>
+      <div class="news-summary">高盛最新報告指出 2026H2 供需缺口 10%、2027 年擴大至 21%、2028 年 42%；景碩目標價 370 元、南電 655 元，結構性缺口已進入定價階段。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">大摩翻多 ABF 載板，三雄連袂漲停寫歷史</div>
+      <div class="news-meta">財報狗 — 2026/03/近期</div>
+      <div class="news-summary">Morgan Stanley 由「中性」翻多至「加碼」，強調 GB300 與 AI ASIC 帶動 16 層以上需求倍增，觸發 ABF 三雄一波連續漲停行情。</div>
+    </div>
+  </div>
+
+  <div class="analysis">
+    <strong>產業趨勢解讀：</strong>昨日 AMD/INTC 雙雙暴漲 7% 的意義不只是 CPU 行情，更是一個產業鏈信號——當上游晶片廠都在漲價，中游封裝材料（ABF 載板）的漲價底氣只會更強。欣興 capex 上修 31% 至 254 億不是試探性投資，是「篤定未來 3 年訂單不會掉」的戰略決策。ABF 三雄在 3/23 急跌後已連續兩日反彈修復，成交量恢復正常水位，確認急跌為技術性回測而非趨勢反轉。景碩 NVIDIA 供應鏈市佔率從 5% 跳升至 30% 以上的故事是三雄中估值重估空間最大的，但前提是 Q1 法說會上要拿出具體數據。南電靠 BT 載板佔營收 70% 的結構，在本輪漲價中彈性最大。當前位置：回檔已消化，基本面方向不變，可重新聚焦個股催化事件。
+  </div>
+
+  <div class="stock-grid">
+    <div class="stock-card">
+      <div class="stock-name">欣興 3037</div>
+      <div class="stock-price up">NT$528.00</div>
+      <div class="stock-detail">漲跌：<span class="up">+3.53%</span>（連兩日反彈修復）</div>
+      <div class="stock-detail">月營收 YoY：1-2 月累計年增 +35%</div>
+      <div class="stock-signal">▶ capex 254 億確認攻擊型擴產；16 層以上佔比 60% 為定價護城河；連兩日反彈確認 510 為有效支撐。</div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-name">景碩 3189</div>
+      <div class="stock-price neutral">NT$356.00</div>
+      <div class="stock-detail">漲跌：<span class="neutral">-0.28%</span>（窄幅整理）</div>
+      <div class="stock-detail">月營收 YoY：1-2 月累計 71.7 億，年增 +31%；2月 EPS 0.68 元（年增 46%）</div>
+      <div class="stock-signal">▶ NVIDIA 市佔率躍升故事需 Q1 法說驗證；高盛目標 370 元距現價 4%，估值空間視新指引而定。</div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-name">南電 8046</div>
+      <div class="stock-price up">NT$572.00</div>
+      <div class="stock-detail">漲跌：<span class="up">+3.44%</span>（連兩日反彈修復）</div>
+      <div class="stock-detail">月營收 YoY：1 月 37.2 億（年增 45%）；BT 載板漲價已啟動</div>
+      <div class="stock-signal">▶ BT 載板佔營收 70%，漲價彈性最大；高盛目標 655 元，處置解除後量能持續放大。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">本週行事曆</div>
+    <div class="cal-item">
+      <div class="cal-date">03/26-31</div>
+      <div>
+        <div class="cal-content">觀察 ABF 三雄反彈修復第三日力道與量能</div>
+        <div class="cal-note">追蹤重點：欣興是否站穩 530 元、南電是否挑戰 580 元前高</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">04/10前</div>
+      <div>
+        <div class="cal-content">三雄 3 月月營收公告</div>
+        <div class="cal-note">追蹤重點：欣興單月是否突破 100 億元，景碩環比增速，南電 BT 漲價反映程度</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">04/下旬</div>
+      <div>
+        <div class="cal-content">欣興、景碩、南電 Q1 法說會（時間待確認）</div>
+        <div class="cal-note">追蹤重點：稼動率、漲價落實進度、H2 產能滿載能見度、景碩 NVIDIA 市佔率具體數據</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ro-grid">
+    <div class="ro-card ro-opp">
+      <div class="ro-label">機會</div>
+      AMD/INTC CPU 漲價 10-15% 驗證供應鏈定價權，ABF 載板漲價邏輯再獲強化；供需缺口 2027 年擴大至 21%，欣興 capex 上修 31% 確認攻擊型擴產。
+    </div>
+    <div class="ro-card ro-risk">
+      <div class="ro-label">風險</div>
+      3/23 急跌記憶猶新，短線籌碼面仍需時間修復；若 Q1 法說會數據不及預期（特別是景碩 NVIDIA 市佔率），回檔壓力將再現；CPU 漲價若抑制終端需求，間接影響載板出貨量。
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 二｜低軌衛星 ===================== -->
+<div class="section">
+  <div class="section-title">二｜低軌衛星 <span class="signal signal-opp">機會</span></div>
+
+  <div class="card">
+    <div class="card-title">今日重點新聞</div>
+    <div class="news-item">
+      <div class="news-title">昇達科處置期滿出關，爆量飆漲近 10% 至 NT$1,550</div>
+      <div class="news-meta">CMoney / ETtoday — 2026/03/25</div>
+      <div class="news-summary">昇達科（3491）處置期滿首日即爆量飆漲約 +9.93%，在手訂單從 10 億暴增至 18 億（+80%），SpaceX 直接點名為重點擴單對象，2026 年營收成長目標上看九成。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">低軌衛星族群全面點火，華通觸及漲停創新高</div>
+      <div class="news-meta">財報狗 / Yahoo股市 — 2026/03/25</div>
+      <div class="news-summary">華通盤中觸及漲停價 252 元，收盤 247.50 元（+7.61%）創歷史新高；SpaceX V3 升級週期帶動衛星板訂單加速，2025 全年 LEO 板營收已超越 155 億元。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">燿華泰國廠 3 月開始出貨，低軌衛星板營收比重回升</div>
+      <div class="news-meta">豐雲學堂 / 旺得富 — 2026/03/</div>
+      <div class="news-summary">燿華泰國新廠已於去年 12 月開工，3 月正式開始出貨，主攻 LEO 衛星板與 AI 伺服器板；衛星板佔營收比重目標 20-25%，Q2-Q3 取得客戶認證後將進入量產爬坡。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">SpaceX IPO 正式啟動，估值上看 $1.75 兆，台廠供應鏈估值錨定重設</div>
+      <div class="news-meta">豐雲學堂 / Scientific American — 2026/03/</div>
+      <div class="news-summary">SpaceX 正式啟動 IPO 流程，目標 2026H2 上市，Starlink 為營收主力（$123 億佔 70%），活躍用戶超 460 萬。上市後台廠供應鏈將有明確的估值對標錨點。</div>
+    </div>
+  </div>
+
+  <div class="analysis">
+    <strong>產業趨勢解讀：</strong>昇達科處置解除首日 +9.93% 的爆量行情，本質是市場對「SpaceX 訂單暴增 80%」這個數據的重新定價。18 億在手訂單對一家市值約 200 億的公司而言，意味著訂單營收比已達極高水平。華通同步觸及漲停創新高，顯示低軌衛星不是單一個股行情，而是整個供應鏈的系統性重估。真正值得關注的轉折是：燿華泰國廠 3 月開始出貨——這意味著低軌衛星供應鏈的產能瓶頸正在解除，台廠不再只靠台灣產線，而是進入「雙基地量產」時代。SpaceX IPO 是懸在頭上的最大催化劑，一旦估值定錨（$1.5-1.75 兆），昇達科、華通的估值邏輯將從「台灣中小型電子股」切換到「全球衛星基建核心供應商」。但昇達科已在歷史天價區，籌碼面極度亢奮，短線追高風險不可忽視。
+  </div>
+
+  <div class="stock-grid">
+    <div class="stock-card">
+      <div class="stock-name">昇達科 3491</div>
+      <div class="stock-price up">NT$1,550</div>
+      <div class="stock-detail">漲跌：<span class="up">+9.93%</span>（處置解除首日爆量）</div>
+      <div class="stock-detail">月營收 YoY：LEO 衛星營收佔比目標 80%，全年營收成長目標 +90%</div>
+      <div class="stock-signal">▶ 在手訂單 18 億（+80%），SpaceX 直接點名；處置解除後資金蜂擁，但歷史天價區籌碼面極度脆弱，追高需謹慎。</div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-name">華通 2313</div>
+      <div class="stock-price up">NT$247.50</div>
+      <div class="stock-detail">漲跌：<span class="up">+7.61%</span>（盤中觸及漲停 252 元）</div>
+      <div class="stock-detail">月營收 YoY：2025 全年 LEO 板營收 &gt;155 億；泰國廠月產能 40 萬呎</div>
+      <div class="stock-signal">▶ 全球最大低軌衛星板製造商，SpaceX 首選供應商；創歷史新高確認突破格局，但漲停未鎖住顯示上方拋壓仍在。</div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-name">燿華 2367</div>
+      <div class="stock-price neutral">NT$75.20</div>
+      <div class="stock-detail">漲跌：<span class="neutral">+0.13%</span>（相對落後）</div>
+      <div class="stock-detail">月營收 YoY：泰國廠 3 月開始出貨，衛星板佔比目標 20-25%</div>
+      <div class="stock-signal">▶ 泰國廠出貨啟動是實質營運催化劑，但認證尚未完成；相對低價位+轉型故事=中期補漲空間最大。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">本週行事曆</div>
+    <div class="cal-item">
+      <div class="cal-date">03月</div>
+      <div>
+        <div class="cal-content">燿華泰國廠開始出貨（已啟動）</div>
+        <div class="cal-note">追蹤重點：首批出貨規模、客戶認證進度</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">04/10前</div>
+      <div>
+        <div class="cal-content">昇達科、華通、燿華 3 月月營收公告</div>
+        <div class="cal-note">追蹤重點：昇達科月營收是否反映 18 億在手訂單加速出貨；華通環比趨勢</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">Q2-Q3</div>
+      <div>
+        <div class="cal-content">燿華泰國廠衛星板客戶認證（預期）</div>
+        <div class="cal-note">追蹤重點：取得認證時間節點，確認即是重大催化劑</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">2026H2</div>
+      <div>
+        <div class="cal-content">SpaceX IPO 上市（目標時程）</div>
+        <div class="cal-note">追蹤重點：估值定價、Starlink 業務分拆或整體上市、台廠供應鏈資金面效應</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ro-grid">
+    <div class="ro-card ro-opp">
+      <div class="ro-label">機會</div>
+      昇達科處置解除後爆量確認市場對 SpaceX 訂單的高度認可；華通創歷史新高突破格局；燿華泰國廠出貨啟動進入雙基地量產時代；SpaceX IPO 將為供應鏈提供估值錨點。
+    </div>
+    <div class="ro-card ro-risk">
+      <div class="ro-label">風險</div>
+      昇達科在歷史天價區（NT$1,550），處置解除後籌碼極度混亂，短線暴漲暴跌風險極高；SpaceX IPO 若延後或估值低於預期，概念股修正幅度劇烈；華通漲停未鎖住顯示主力邊拉邊出。
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 三｜矽光子 ===================== -->
+<div class="section">
+  <div class="section-title">三｜矽光子 <span class="signal signal-opp">機會</span></div>
+
+  <div class="card">
+    <div class="card-title">今日重點新聞</div>
+    <div class="news-item">
+      <div class="news-title">Coherent (COHR) 單日暴漲 +9.14%，矽光子美股龍頭效應持續放大</div>
+      <div class="news-meta">多家媒體 — 2026/03/25</div>
+      <div class="news-summary">COHR 收盤 $280.00，單日暴漲 +9.14%；S&P 500 納入後買盤持續湧入，OFC 2026 客戶加單消息加持。LITE 盤中振幅 $763-$830，持續在歷史高位區劇烈震盪。矽光子美股雙龍頭效應正在加速外溢至台廠。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">2026 CPO 商轉元年：台積電 COUPE 平台量產，NVIDIA/Broadcom 同步重兵部署</div>
+      <div class="news-meta">豐雲學堂 / 北美智權報 — 2026/03/</div>
+      <div class="news-summary">台積電 COUPE 平台結合 SoIC-X 技術實現高密度光電整合架構，800G 以上光收發模組 2026 年預估達 6,300 萬組（年增 2.6 倍），「光進銅退」正式從概念進入量產。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">矽光子族群全面噴發，波若威、華星光連袂上攻</div>
+      <div class="news-meta">鉅亨網 / 財報狗 — 2026/03/近期</div>
+      <div class="news-summary">矽光子與 CPO 概念股全面噴出，波若威獲 NVIDIA 生態系認證，CPO 光纖被動元件卡位明確；華星光 CW Laser 出貨倍增，月產能目標 Q4 達 300-400 萬顆。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">美國矽光子獨角獸 Lightmatter 落地台灣，CPO 供應鏈加速成形</div>
+      <div class="news-meta">科技新報 — 2026/03/</div>
+      <div class="news-summary">Lightmatter 宣布與台灣 CPO 供應鏈廠商合作，進軍「外部光源模組」(ELS) 市場，預計產品最快 2027 年放量，進一步驗證台廠在全球矽光子供應鏈中的不可替代性。</div>
+    </div>
+  </div>
+
+  <div class="analysis">
+    <strong>產業趨勢解讀：</strong>COHR 昨日 +9.14% 是本輪矽光子行情的第二波引爆點。如果說 LITE 的 S&P 500 納入是「被動資金驅動」，COHR 的暴漲則是「主動資金追價」——代表市場不只是在買指數權重，而是在押注矽光子產業的長期成長。Lightmatter 落地台灣合作是一個重要信號：全球矽光子新創已經從「技術研發」進入「找供應鏈量產」的階段，而台灣就是那個量產基地。波若威在 NVIDIA 生態系中的光纖被動元件卡位已確認，華星光 CW Laser 產能擴充有明確時間表（Q4 月產 300-400 萬顆），這些都是實際產能數字。但估值端的風險不能迴避：波若威 P/E 已超過 60 倍，COHR 的 +9% 會進一步推高台廠矽光子股的估值預期，若 Q2 量產進度稍有延遲，修正幅度將很劇烈。今日台廠矽光子概念股預期受 COHR 帶動強勢開盤。
+  </div>
+
+  <div class="stock-grid">
+    <div class="stock-card">
+      <div class="stock-name">波若威 3163</div>
+      <div class="stock-price up">NT$898</div>
+      <div class="stock-detail">漲跌：<span class="up">+7.03%</span>（昨收 3/25）</div>
+      <div class="stock-detail">月營收 YoY：CPO 光纖被動元件出貨加速中</div>
+      <div class="stock-signal">▶ NVIDIA 生態系認證+CPO 元年題材持強；P/E 60x+ 估值風險需警惕，COHR +9% 將催化今日再攻高。</div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-name">華星光 4979</div>
+      <div class="stock-price up">NT$425.50</div>
+      <div class="stock-detail">漲跌：<span class="up">+9.95%</span>（昨收 3/25）</div>
+      <div class="stock-detail">月營收 YoY：CW Laser 出貨倍增，Q4 月產能目標 300-400 萬顆</div>
+      <div class="stock-signal">▶ 800G 正式成為主流規格，CPO 五傑中產能擴充最積極；COHR 暴漲將帶動估值重評。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">本週行事曆</div>
+    <div class="cal-item">
+      <div class="cal-date">03/26</div>
+      <div>
+        <div class="cal-content">觀察波若威、華星光開盤反應 COHR +9.14% 的龍頭效應</div>
+        <div class="cal-note">追蹤重點：是否出現跳空漲停或高檔震盪信號</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">04/10前</div>
+      <div>
+        <div class="cal-content">波若威、華星光 3 月月營收公告</div>
+        <div class="cal-note">追蹤重點：月營收是否出現量能突破，確認 CPO 商轉帶動訂單實質貢獻</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">2026Q2</div>
+      <div>
+        <div class="cal-content">台積電 COUPE 平台客戶認證進度更新</div>
+        <div class="cal-note">追蹤重點：波若威、華星光是否進入 COUPE 平台供應鏈</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">05/20</div>
+      <div>
+        <div class="cal-content">NVIDIA Q1 FY2027 法說會</div>
+        <div class="cal-note">追蹤重點：CPO 採購指引、矽光子技術佈局最新進展</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ro-grid">
+    <div class="ro-card ro-opp">
+      <div class="ro-label">機會</div>
+      COHR +9.14% 驗證矽光子不只是 LITE 一個人的行情；Lightmatter 落地台灣加速 CPO 供應鏈成形；台積電 COUPE 量產使台廠具不可替代性；800G 模組年增 2.6 倍的量體正在兌現。
+    </div>
+    <div class="ro-card ro-risk">
+      <div class="ro-label">風險</div>
+      波若威 P/E 60x+、華星光創歷史新高，估值已大幅超前財報；LITE 盤中振幅 $763-$830 顯示高位籌碼極不穩定；CPO 量產貢獻需數季驗證，若認證延遲修正幅度劇烈。
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 四｜重電 ===================== -->
+<div class="section">
+  <div class="section-title">四｜重電 <span class="signal signal-opp">機會</span></div>
+
+  <div class="card">
+    <div class="card-title">今日重點新聞</div>
+    <div class="news-item">
+      <div class="news-title">ETN +4.52%、GEV +4.82% 齊創新高，AI 電力基建題材全面點火</div>
+      <div class="news-meta">TradingKey / CNBC — 2026/03/25</div>
+      <div class="news-summary">Eaton 獲 BNP Paribas 重申 2026 年首選股，GE Vernova 收盤 $923.69 創歷史新高。AI 資料中心電力需求加速，美國電力基建資本支出長周期確認，直接連動台廠重電海外訂單。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">NVIDIA 攜手 Emerald AI 與能源巨頭打造「彈性 AI 工廠」電網資產</div>
+      <div class="news-meta">NVIDIA Newsroom — 2026/03/25</div>
+      <div class="news-summary">NVIDIA 聯合 AES、Constellation、NextEra 等六大能源公司，開創「AI 工廠即電網資產」新模式，電力設備需求將從資料中心擴展至分散式 AI 工廠，變壓器需求持續擴大。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">台電近百億標案開榜，重電五虎全數入列</div>
+      <div class="news-meta">豐雲學堂 — 2026/03/</div>
+      <div class="news-summary">台電釋出約 94 億元電力設備大單，鎖定變壓器與 GIS 開關設備；中興電 GIS 獨得，華城、士電、亞力均有斬獲。三年強韌電網計畫 500 億商機逐年放量。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">華城 Q4 新增 120 億訂單，其中 AI 資料中心佔 60 億</div>
+      <div class="news-meta">旺得富理財網 — 2026/02/26</div>
+      <div class="news-summary">華城去年 Q4 新增 120 億元訂單，其中 60 億來自 AI 資料中心（含美國星際之門計畫第一期電力級變壓器 20 億元）；海外訂單佔營收近 40%，已質變為 AI 基建供應商。</div>
+    </div>
+  </div>
+
+  <div class="analysis">
+    <strong>產業趨勢解讀：</strong>NVIDIA 昨日發布的「彈性 AI 工廠」電網資產計畫是重電板塊的新催化劑——這不只是資料中心用電，而是 AI 算力設施與電網的深度整合，意味著變壓器需求將從「集中式資料中心」擴展到「分散式 AI 工廠」，需求曲線更陡。ETN +4.52% 和 GEV +4.82% 齊創新高不是偶然，而是市場對 AI 電力基建長周期的加碼定價。回到台廠：華城已不是傳統重電股，而是「AI 基建供應商」——Q4 新增 120 億訂單中 AI 資料中心佔 60 億（50%），美國星際之門計畫 20 億元是實打實的海外大單。中興電 440 億在手訂單到 2030 年的能見度，是四大板塊中「最不需要擔心需求」的標的。3 月售價調漲已生效，Q1 毛利率改善即將在法說會上驗證。
+  </div>
+
+  <div class="stock-grid">
+    <div class="stock-card">
+      <div class="stock-name">華城 1519</div>
+      <div class="stock-price up">NT$926</div>
+      <div class="stock-detail">漲跌：<span class="up">+5.11%</span>（昨收 3/25）</div>
+      <div class="stock-detail">月營收 YoY：Q4 新增 120 億訂單，AI 資料中心佔 60 億</div>
+      <div class="stock-signal">▶ 台積電 AI 廠供電+美國星際之門計畫雙引擎；ETN/GEV 齊創新高帶動估值比照 AI 基建供應商。千金股在望。</div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-name">士電 1503</div>
+      <div class="stock-price up">NT$195.50</div>
+      <div class="stock-detail">漲跌：<span class="up">+1.01%</span></div>
+      <div class="stock-detail">月營收 YoY：3 月調漲售價已生效；T3 新廠量產中</div>
+      <div class="stock-signal">▶ 3 月售價調漲+台電標案雙催化；T4 工廠明年底完工後總產能增 50%，中期成長可期。</div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-name">中興電 1513</div>
+      <div class="stock-price up">NT$155.50</div>
+      <div class="stock-detail">漲跌：<span class="down">-0.64%</span>（小幅回調）</div>
+      <div class="stock-detail">月營收 YoY：積壓訂單 440 億，能見度至 2030 年</div>
+      <div class="stock-signal">▶ GIS 高壓開關獨佔地位，台電標案最大份額；確定性最高但彈性最小，穩健資金首選。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">本週行事曆</div>
+    <div class="cal-item">
+      <div class="cal-date">03月</div>
+      <div>
+        <div class="cal-content">華城、士電、中興電 3 月調漲售價持續生效中</div>
+        <div class="cal-note">追蹤重點：客戶接受度、Q2 報價是否進一步調漲</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">04/10前</div>
+      <div>
+        <div class="cal-content">三雄 3 月月營收公告</div>
+        <div class="cal-note">追蹤重點：華城單月是否再創新高；士電是否反映調漲效果；中興電認列進度</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">04/下旬</div>
+      <div>
+        <div class="cal-content">台電 Q2 採購標案公告（預期）</div>
+        <div class="cal-note">追蹤重點：強韌電網計畫後段釋單規模（2027 年預估 187 億元）</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">05/05</div>
+      <div>
+        <div class="cal-content">Eaton (ETN) Q1 FY2026 法說會</div>
+        <div class="cal-note">追蹤重點：AI 資料中心電力配置指引，直接影響台廠重電海外訂單預期</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">05/20</div>
+      <div>
+        <div class="cal-content">NVIDIA Q1 FY2027 法說會</div>
+        <div class="cal-note">追蹤重點：「彈性 AI 工廠」計畫電力需求指引，連動台廠變壓器訂單</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ro-grid">
+    <div class="ro-card ro-opp">
+      <div class="ro-label">機會</div>
+      ETN/GEV 齊創新高驗證 AI 電力基建長周期；NVIDIA「彈性 AI 工廠」計畫擴大變壓器需求場景；華城 AI 資料中心訂單佔比 50%，估值重估空間大；台電 500 億強韌電網計畫逐年放量。
+    </div>
+    <div class="ro-card ro-risk">
+      <div class="ro-label">風險</div>
+      華城接近千金股關卡，短線獲利了結壓力加大；原物料（矽鋼片、銅）持續漲價若超過調漲幅度，實際毛利改善有限；美國資料中心建設若因利率政策延遲，華城海外訂單受影響。
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 今日總結 ===================== -->
+<div class="section">
+  <div class="section-title">📌 今日總結</div>
+
+  <div class="card">
+    <div class="card-title">值得特別注意（優先順序）</div>
+    <ul class="priority-list">
+      <li>
+        <strong>COHR 單日暴漲 +9.14%，矽光子行情從 LITE 獨秀擴散至全面噴發</strong>
+        <span class="impact-tag tag-high">高度影響</span>
+        COHR 的 +9% 不是 S&P 500 被動買盤能解釋的——這是主動資金在追價矽光子。台廠波若威、華星光今日預期強勢開盤，但需注意高位追漲風險。
+      </li>
+      <li>
+        <strong>AMD/INTC 雙雙暴漲 7%，CPU 全線漲價 10-15% 確認半導體漲價週期</strong>
+        <span class="impact-tag tag-high">高度影響</span>
+        CPU 漲價驗證供應鏈定價權回歸上游，ABF 載板漲價邏輯再獲強化。這不是短期事件，而是整個半導體產業鏈進入漲價週期的信號。
+      </li>
+      <li>
+        <strong>昇達科處置解除首日暴漲 +9.93%，低軌衛星族群全面點火</strong>
+        <span class="impact-tag tag-high">高度影響</span>
+        18 億在手訂單（+80%）是硬數據，SpaceX 直接點名是硬關係。但歷史天價區+處置解除首日=籌碼面極度不穩定，短線暴漲暴跌風險並存。
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">今日無重大變化的板塊</div>
+    <p class="no-data">四大板塊今日全部有顯著催化事件，無板塊處於靜默狀態。美股 risk-on 交易日的連動效應全面擴散。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">明日追蹤清單</div>
+    <div class="cal-item">
+      <div class="cal-date">追蹤 1</div>
+      <div class="cal-content">波若威、華星光今日收盤表現——COHR +9.14% 的龍頭效應兌現程度，是漲停鎖住還是高開低走</div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">追蹤 2</div>
+      <div class="cal-content">昇達科處置解除第二日走勢——觀察量能是否萎縮、主力是否趁機出貨，NT$1,550 能否守住</div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">追蹤 3</div>
+      <div class="cal-content">ABF 三雄反彈修復第三日——欣興 530 是否站穩成為新支撐，南電能否挑戰 580 前高</div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">追蹤 4</div>
+      <div class="cal-content">華城是否突破 950 元邁向千金股——ETN/GEV 雙雙創歷史新高後台廠重電股估值重評程度</div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">追蹤 5</div>
+      <div class="cal-content">NVDA 反彈持續性——$179.45 是否為 GTC 後修正的底部確認，影響台廠 AI 概念股整體信心</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div style="text-align:center; color: var(--muted); font-size: 12px; padding: 16px 0;">
+  每日產業晨報 2026/03/26 ｜ 資料來源：Yahoo Finance、Investing.com、Motley Fool、24/7 Wall St、Invezz、TradingKey、經濟日報、科技新報、Digitimes、豐雲學堂、鉅亨網、CMoney、NVIDIA Newsroom<br>
+  ⚠️ 本報告供資訊參考，不構成投資建議。籌碼數據標「—」者為當日無法取得。股價數據來源：Yahoo Finance 歷史收盤（3/25）。
+</div>
+
+</div><!-- /container -->
+</body>
+</html>
