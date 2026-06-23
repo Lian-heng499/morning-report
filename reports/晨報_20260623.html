@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日產業晨報 2026/06/23</title>
+<style>
+  :root {
+    --bg: #0f1117; --card: #161b27; --card2: #1c2333; --border: #2a3448;
+    --blue: #4d7cfe; --blue-dim: #2a4099; --green: #22c55e; --red: #ef4444;
+    --yellow: #eab308; --text: #e2e8f0; --muted: #8492a6; --accent: #60a5fa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system,'Helvetica Neue',Arial,sans-serif; font-size: 14px; line-height: 1.6; }
+  .header { background: linear-gradient(135deg,#0f1117 0%,#1a2540 100%); border-bottom: 2px solid var(--blue); padding: 24px 32px; }
+  .header h1 { font-size: 24px; color: var(--blue); font-weight: 700; letter-spacing: 1px; }
+  .header .meta { color: var(--muted); font-size: 12px; margin-top: 4px; line-height: 1.8; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px 20px; }
+  .section { margin-bottom: 32px; }
+  .section-title { font-size: 16px; font-weight: 700; color: var(--blue); border-left: 4px solid var(--blue); padding-left: 10px; margin-bottom: 16px; }
+  .signal { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; margin-left: 10px; }
+  .signal-opp { background: #14532d; color: #4ade80; border: 1px solid #22c55e; }
+  .signal-watch { background: #422006; color: #fbbf24; border: 1px solid #eab308; }
+  .signal-risk { background: #450a0a; color: #f87171; border: 1px solid #ef4444; }
+  .signal-neutral { background: #1e293b; color: #94a3b8; border: 1px solid #475569; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  th { background: var(--card2); color: var(--muted); font-size: 12px; font-weight: 600; text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:hover td { background: rgba(77,124,254,0.05); }
+  .up { color: var(--green); font-weight: 600; }
+  .down { color: var(--red); font-weight: 600; }
+  .neutral { color: var(--muted); }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+  .card-title { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+  .news-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .news-item:last-child { border-bottom: none; }
+  .news-title { font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .news-meta { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  .news-summary { font-size: 13px; color: #b0bcd0; padding-left: 8px; border-left: 2px solid var(--blue-dim); }
+  .stock-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 12px; }
+  .stock-card { background: var(--card2); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; }
+  .stock-name { font-weight: 700; font-size: 14px; color: var(--accent); }
+  .stock-price { font-size: 18px; font-weight: 700; margin: 4px 0; }
+  .stock-detail { font-size: 12px; color: var(--muted); }
+  .analysis { background: rgba(77,124,254,0.06); border: 1px solid var(--blue-dim); border-radius: 6px; padding: 14px 16px; font-size: 13px; line-height: 1.75; color: #c8d5e8; margin: 12px 0; }
+  .cal-item { display: flex; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+  .cal-date { color: var(--blue); font-weight: 700; min-width: 80px; font-size: 12px; }
+  .cal-content { font-size: 13px; }
+  .cal-note { font-size: 12px; color: var(--muted); }
+  .four-dim { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0; }
+  .dim-card { background: var(--card2); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; font-size: 12px; }
+  .dim-label { font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .dim-badge { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: 700; }
+  .badge-bull { background: #14532d; color: #4ade80; }
+  .badge-bear { background: #450a0a; color: #f87171; }
+  .badge-neutral { background: #1e293b; color: #94a3b8; }
+  .badge-watch { background: #422006; color: #fbbf24; }
+  .alert-note { background: #1a1f2e; border: 1px solid #3a4060; border-radius: 4px; padding: 6px 12px; font-size: 12px; color: #7a8aa0; margin-bottom: 10px; }
+  .alert-warn { background: #1e1408; border: 1px solid #6b4a00; border-radius: 4px; padding: 6px 12px; font-size: 12px; color: #c08030; margin-bottom: 10px; }
+  .alert-pos { background: #0f1e14; border: 1px solid #1a5a2a; border-radius: 4px; padding: 6px 12px; font-size: 12px; color: #4ade80; margin-bottom: 10px; }
+  .alert-hot { background: #1e0a0a; border: 1px solid #7f1d1d; border-radius: 4px; padding: 6px 12px; font-size: 12px; color: #f87171; margin-bottom: 10px; }
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+  details summary { cursor: pointer; font-size: 12px; color: var(--accent); margin-top: 6px; }
+  details[open] summary { color: var(--muted); }
+  details .detail-body { font-size: 12px; color: #b0bcd0; padding: 8px 0 4px 8px; line-height: 1.7; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 每日產業晨報</h1>
+  <div class="meta">
+    日期：2026/06/23（星期二）　|　產出時間：07:00　|　資料基準日：美股 2026/06/22（NVDA/AMD/INTC/AVGO/LITE/GEV 確認）；COHR/ETN 最新確認 6/18；台股 2026/06/18（確認）<br>
+    🔴 <strong>【AVGO 6/22 暴跌 -4.13% 至 $393.74——Google 考慮內製 ASIC 傳聞震驚市場，J.P. Morgan「Ignore the Noise」力挺，ABF + 矽光子板塊今日面臨關鍵測試：</strong> Broadcom（AVGO）6/22 大跌 -4.13% 至 $393.74，相較 6/18 收盤 $411.35 大幅回落，市場傳出 Google 正評估自行開發 ASIC 以減少對 Broadcom 依賴。J.P. Morgan 立即回應「Ignore the Noise」，維持積極立場，但市場短期反應劇烈。AVGO 是 ABF 載板（AI networking 需求）與矽光子 CPO（AVGO PowerPC 拉貨）兩個板塊的核心美股先行指標，今日台股開盤反應是最重要的觀察焦點。<br>
+    🔥 <strong>【INTC 6/22 繼續 +4.07% 至 $139.45——Apple-Intel Foundry 合作連日強勢，Intel 任命 SK Hynix 前高管領軍 Foundry 封裝：</strong> Intel（INTC）6/22 繼續上漲 +4.07% 至 $139.45（台灣時間今晨確認），延續 6/18 川普宣布 Apple-Intel 合作（+10.64%）後的強勢。Intel 6/18 宣布任命 SK Hynix 前高管 Seok-Hee Lee 為 Intel Foundry 執行副總裁，主導先進封裝發展。Mizuho 同步調升 INTC 目標價至 $135（前 $128），半導體股信心持續提升。<br>
+    ✅ <strong>【AMD 6/22 +2.65% 至 $551.63——$550 整固多頭格局確認，景碩 ASIC 雙客戶邏輯不動搖：</strong> AMD 6/22 上漲 +2.65% 至 $551.63，站穩 $550 整固，AI 加速器（MI300X）與 ASIC 定製晶片業務邏輯完整，年初至今漲幅超 150%。景碩（3189）ASIC 雙客戶（NVIDIA+AMD）中，AMD 的持續強勢是對景碩 ABF+ASIC 雙題材最直接的正面美股信號。<br>
+    🚀 <strong>【GEV 6/22 +0.49% 至 $1,115.20——穩步向 Bernstein $1,206 目標推進，重電是今日四板塊中最不受 AVGO 拖累的方向：</strong> GE Vernova 6/22 繼續小幅上漲 +0.49% 至 $1,115.20，距 Bernstein $1,206 目標 +8.1%，AI 電力需求基本面不受 AVGO/Google ASIC 傳聞影響，重電是今日四大板塊中基本面最確定、且不受半導體傳聞拖累的板塊。台廠三雄（華城/士電/中興電）6/18 全面上漲，今日最值得期待反彈的板塊。
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ===== 美股動態 ===== -->
+<div class="section">
+  <div class="section-title">🇺🇸 美股頭部動態（6/22 確認 | 最新交易日）</div>
+
+  <div class="alert-hot">🔴 <strong>AVGO 6/22 暴跌 -4.13% 至 $393.74——Google 自製 ASIC 傳聞震驚市場，J.P. Morgan「Ignore the Noise」力挺，ABF + 矽光子雙板塊短期承壓：</strong> Broadcom（AVGO）6/22 重挫 -4.13% 至 $393.74，盤中最低觸 $392.83。市場傳出 Google 正評估在 ASIC 晶片上減少對 Broadcom 的依賴，轉向自行設計，觸發空頭砸盤。J.P. Morgan 分析師立即回應「Ignore the Noise」（"忽略雜音"），維持 AVGO 積極評級，認為即便 Google 部分轉向，Broadcom 的 AI networking 整體需求不會受到結構性衝擊。核心衝擊：AVGO 是 ABF 載板板塊（AI networking→ABF 需求）與矽光子板塊（AVGO PowerPC CPO 拉貨）的核心美股先行指標，$393.74 的大跌代表市場對 AI networking 需求出現短期定價分歧，需密切追蹤後續發展。短線支撐 $390，若守不住看 $380。</div>
+
+  <div class="alert-pos">✅ <strong>INTC 6/22 +4.07% 至 $139.45——連日強勢確認 Apple-Intel Foundry 合作進入深化期，Seok-Hee Lee 任命 + Mizuho 調升目標 $135 雙重利多：</strong> Intel 6/22 繼續上漲 +4.07% 至 $139.45，6/18（+10.64%）→6/22（+4.07%）連兩個交易日大漲，創近年罕見強勢格局。催化劑：①Intel 任命 SK Hynix 前高管 Seok-Hee Lee 領軍 Intel Foundry 先進封裝，顯示 Intel 18A 製程商轉準備加速；②Mizuho 調升目標至 $135（前 $128）；③川普-Apple-Intel 合作的政治護盾持續發酵。Intel Foundry 若打入 Apple A 系列晶片供應鏈，是過去 20 年最重要的商業事件之一。</div>
+
+  <div class="alert-pos">✅ <strong>AMD 6/22 +2.65% 至 $551.63——$550 整固確認年初 +150% 多頭格局，景碩 ASIC 雙客戶邏輯不動搖：</strong> AMD 6/22 上漲 +2.65% 至 $551.63，繼 6/18 +4.86% 後再度走強，站穩 $550 整固。年初至今漲幅超 150%，是四大美股追蹤標的中今年表現最亮眼的。ASIC 定製晶片 + MI300X AI 加速器雙引擎維持強勢，直接支撐景碩（3189）ASIC+ABF 雙題材邏輯。</div>
+
+  <div class="alert-warn">⚠️ <strong>AVGO Google 傳聞影響評估：ABF 台廠短線偏空、中線不變；矽光子板塊影響有限——核心問題是 Google ASIC 是否真的轉離 AVGO：</strong> 若 Google 部分轉向內製 ASIC，直接受衝擊的是 AVGO ASIC 收入（約佔其 AI 收入 30%+）。ABF 台廠的邏輯是：ABF 需求來自 AI networking（switches/ASICs/CPOs），若 Google 減少向 AVGO 採購→AVGO 減少向台廠採購 ABF 載板→台廠需求下降。但 J.P. Morgan 指出：①Google 完全轉向需要 3-5 年；②AVGO 尚有 Meta、Microsoft、Apple 等多個 ASIC 客戶；③AMD/NVDA 的 GPU 訂單增加可以部分彌補。短線今日台股 ABF 板塊面臨美股 -4.13% 的拖累測試。</div>
+
+  <table>
+    <thead>
+      <tr><th>公司</th><th>6/22 收盤（確認）</th><th>漲跌幅</th><th>重點</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>NVIDIA (NVDA)</strong></td>
+        <td><span class="down">$208.65</span></td>
+        <td><span class="down">-0.97%</span></td>
+        <td>小幅回落；$207-210 整固區；Vera Rubin / Blackwell 量產邏輯不變；Super Micro 發布 NVL4 DCBBS 藍圖確認 NVDA AI DC 生態系完整</td>
+      </tr>
+      <tr>
+        <td><strong>AMD</strong></td>
+        <td><span class="up">$551.63</span></td>
+        <td><span class="up">+2.65%</span></td>
+        <td>✅ 繼 6/18 +4.86% 後再度走強，$550 整固確認；景碩 ASIC 雙客戶（NVDA+AMD）邏輯最直接的美股支撐</td>
+      </tr>
+      <tr>
+        <td><strong>Intel (INTC)</strong></td>
+        <td><span class="up">$139.45</span></td>
+        <td><span class="up">+4.07%</span></td>
+        <td>🔥 連兩日強勢（6/18 +10.64%→6/22 +4.07%）；Seok-Hee Lee（前 SK Hynix）任命；Mizuho 目標調升至 $135；Apple-Intel Foundry 進入深化期</td>
+      </tr>
+      <tr>
+        <td><strong>Broadcom (AVGO)</strong></td>
+        <td><span class="down">$393.74</span></td>
+        <td><span class="down">-4.13%</span></td>
+        <td>🔴 Google 自製 ASIC 傳聞重挫；J.P. Morgan「Ignore the Noise」力挺；ABF + 矽光子板塊短期美股負面信號；$390 是關鍵支撐</td>
+      </tr>
+      <tr>
+        <td><strong>Lumentum (LITE)</strong></td>
+        <td><span class="down">$838.70</span></td>
+        <td><span class="down">-1.33%</span></td>
+        <td>小幅回落，受 AVGO 拖累；CPO 長線邏輯不變；COHR 財報（6/30 前）仍是矽光子板塊主催化劑</td>
+      </tr>
+      <tr>
+        <td><strong>Coherent (COHR)</strong></td>
+        <td><span class="neutral">$389.57†</span></td>
+        <td><span class="up">+2.83%（6/18）</span></td>
+        <td>† 最新確認 6/18；CHIPS $50M 政府補助簽署 LOI（6/16 公告），確認美國 AI 基礎設施製造地位；財報前多頭布局視窗繼續</td>
+      </tr>
+      <tr>
+        <td><strong>Eaton (ETN)</strong></td>
+        <td><span class="neutral">$421.77†</span></td>
+        <td><span class="up">+2.96%（6/18）</span></td>
+        <td>† 最新確認 6/18；Dana 合併 Eaton Mobility 部門 $51 億美元交易（6/11 宣布），聚焦電力設備核心；GEV 帶動重電板塊持續強勢</td>
+      </tr>
+      <tr>
+        <td><strong>GE Vernova (GEV)</strong></td>
+        <td><span class="up">$1,115.20</span></td>
+        <td><span class="up">+0.49%</span></td>
+        <td>🚀 繼 6/18 +5.80% 後繼續穩步上攻；距 Bernstein $1,206 目標 +8.1%；AI 電力需求基本面不受 Google ASIC 傳聞影響；重電板塊今日四大板塊中最確定多頭</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="analysis">
+    <strong>美股對台廠今日（6/23）開盤影響評估：</strong>今日最重要的美股事件是 AVGO -4.13%，這是本週的核心風險事件。四大板塊中，ABF 載板與矽光子是直接受衝擊的方向——前者依賴 AI networking 需求（AVGO 是最大的 ASIC/networking 需求方），後者依賴 AVGO CPO 量產拉貨。但三個緩衝因素需要注意：①J.P. Morgan「Ignore the Noise」立即背書，遏制恐慌擴散；②AMD +2.65% 至 $551 繼續走強，景碩 ASIC+ABF 雙題材中 AMD 邏輯不受 Google 傳聞影響；③GEV +0.49% 繼續走高，重電板塊是今日四大板塊中最不受影響的安全港。INTC +4.07% 是額外正面信號，確認半導體大趨勢不變，市場對 AI 需求的信心整體健全。低軌衛星板塊無直接美股催化劑，等待昇達科 V3 換代後 6 月月收公告（7 月上旬）。
+  </div>
+</div>
+
+<!-- ===== ABF 載板 ===== -->
+<div class="section">
+  <div class="section-title">一｜ABF 載板
+    <span class="signal signal-watch">觀察（AVGO -4.13% Google 傳聞短線偏空；AMD +2.65% 景碩邏輯護盾；5月三雄月收全創歷史新高——基本面最強 vs 美股短線最大壓力板塊）</span>
+  </div>
+
+  <div class="alert-hot">🔴 <strong>今日最大風險：AVGO -4.13% Google 自製 ASIC 傳聞——對 ABF 台廠的邏輯衝擊評估與反應策略：</strong> AVGO 暴跌 -4.13% 是 ABF 板塊今日最重要的美股信號。傳聞邏輯：若 Google 自製 ASIC→AVGO ASIC 收入下滑→AVGO 向 ABF 台廠採購 AI networking 高階 ABF 載板需求減少→欣興/景碩/南電短線壓力。但需要分清短線雜音與中線邏輯：①Google 自製 ASIC 若確認，需要 3-5 年量產爬坡，ABF 台廠當前訂單不受影響；②AVGO 其他 ASIC 客戶（Meta、Microsoft、Apple、Amazon）訂單未受影響；③AMD ASIC 訂單（景碩是直接受益者）完全不受 Google 影響，且 AMD 6/22 持續上漲 +2.65%；④ABF 的 2028 年 35% 供需缺口來自整個 AI 生態系，不僅僅是 AVGO。J.P. Morgan「Ignore the Noise」的判斷是目前最重要的機構聲音。</div>
+
+  <div class="alert-pos">✅ <strong>AMD 6/22 +2.65% 至 $551.63——景碩 ASIC 雙客戶中的 AMD 腿完全不受 Google 傳聞影響，ABF 板塊護盾完整：</strong> AMD 6/22 繼續上漲 +2.65% 至 $551.63，站穩 $550 整固區，ASIC 定製晶片業務邏輯不受 Google-AVGO 傳聞任何波及。景碩（3189）的核心競爭力是同時擁有 NVIDIA ASIC + AMD ASIC 雙客戶訂單，AMD 的持續強勢代表景碩訂單中有至少一半不受今日利空影響，且 AMD MI300X 在超算/AI 加速器市場繼續搶佔 NVIDIA 市場份額。欣興（3037）的 AI networking ABF 需求邏輯中，AMD GPU/ASIC 對 ABF 的需求亦持續增加，不完全依賴 AVGO。</div>
+
+  <div class="alert-warn">⚠️ <strong>欣興（3037）6/18 收 NT$968（-2.02%）——5 月月收 140.60 億（+32.37%）基本面護盾完整，但 AVGO -4.13% 今日帶來短線測試，NT$960 是關鍵支撐：</strong> 欣興（3037）6/18 收 NT$968，千元心理關卡長假前再度失守。今日面臨 AVGO -4.13% 的美股拖累測試，NT$960 是短線最重要支撐。但基本面護盾完整：5 月月收 NT$140.60 億（+32.37% YoY），外資目標 NT$1,060-1,350（野村最高）。Q2 ABF 報價繼續上漲，IBIDEN Capex +228% 至 ¥210B 確認供給端超級週期，任何因 AVGO 傳聞導致的拉回都是基本面打折的短線機會。關注今日外資是否趁回落買超。</div>
+
+  <div class="alert-warn">⚠️ <strong>景碩（3189）6/18 收 NT$724（+2.55%）——ABF+ASIC 雙題材中 AMD 腿護盾完整，AVGO 短線壓力有限，NT$700 是關鍵支撐：</strong> 景碩（3189）6/18 連日強勢收 NT$724（+2.55%），是 ABF 三雄中 6/17-18 表現最強的。今日面對 AVGO -4.13%，但景碩的 AMD ASIC 邏輯不受 Google 傳聞影響，這是三雄中景碩今日相對抗跌的核心理由。5 月月收 NT$42.00 億（+33.02% YoY，歷史新高），NT$700-710 是新支撐，回測此區後若外資持續買超，中線目標維持 NT$750-780。</div>
+
+  <div class="alert-warn">⚠️ <strong>南電（8046）6/18 收 NT$874（-1.24%）——5 月月收 44.40 億（+35.82%）三雄中 YoY 最強，但籌碼賣壓（南亞轉讓）+ AVGO 拖累雙重壓力，NT$860-870 是重要支撐：</strong> 南電（8046）6/18 連跌至 NT$874，南亞轉讓籌碼賣壓尚未完全消化。今日再面對 AVGO -4.13% 的美股拖累，是三雄中短線壓力最大的。但基本面最強：5 月月收 NT$44.40 億（+35.82% YoY），外資目標 NT$1,050-1,275（瑞銀）。NT$860-870 是短線關鍵支撐，籌碼消化（縮量橫盤）+ 外資重新介入是反彈訊號。</div>
+
+  <div class="card">
+    <div class="card-title">📰 板塊重點新聞（6/21-22 新聞 + 背景更新）</div>
+    <div class="news-item">
+      <div class="news-title">AVGO 6/22 暴跌 -4.13%——Google 評估自製 ASIC 以減少 Broadcom 依賴，J.P. Morgan：「Ignore the Noise」</div>
+      <div class="news-meta">TipRanks / J.P. Morgan　2026/06/22</div>
+      <div class="news-summary">Google 正評估開發自有 ASIC 晶片以減少對 Broadcom 的採購依賴，觸發 AVGO 6/22 重挫 -4.13% 至 $393.74。J.P. Morgan 立即回應「Ignore the Noise」，維持 AVGO 積極評級，指出 Google 轉向需要 3-5 年時間，且 AVGO 其他大型 ASIC 客戶（Meta、Microsoft、Apple）的訂單不受影響。ABF 台廠應聚焦：欣興、景碩、南電的訂單能見度至 2027-2028 年，短線雜音不改變中線邏輯。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">AMD 6/22 +2.65% 至 $551.63——ASIC + MI300X 雙引擎持續，景碩 ABF+ASIC 雙客戶護盾再確認</div>
+      <div class="news-meta">StockAnalysis / Invezz　2026/06/22</div>
+      <div class="news-summary">AMD 6/22 繼 6/18 +4.86% 後再漲 +2.65%，$550 整固確認年初 +150% 的多頭格局。AMD ASIC 定製晶片業務完全不受 Google-AVGO 傳聞影響，且 AMD MI300X 在超算/AI 加速器市場的市占持續提升。景碩（3189）ASIC 雙客戶（NVIDIA+AMD）中的 AMD 腿護盾完整，是今日 ABF 板塊中景碩相對抗跌的核心邏輯。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">ABF 載板 2028 年供需缺口 35%——IBIDEN Capex +228%、外資全面調升目標價，超級週期至 2030</div>
+      <div class="news-meta">豐雲學堂（新光證券）/ 旺得富　2026年6月</div>
+      <div class="news-summary">外資研究確認 ABF 2026/2027/2028 供需缺口分別 8%/27%/35%，IBIDEN FY26 Capex +228% 至 ¥210B，FY30 目標 ¥1 兆，供給端確認 ABF 超級週期至少延續至 2030 年。外資目標：欣興 NT$1,350（野村）、南電 NT$1,275（瑞銀）、景碩 NT$620-643。Google ASIC 傳聞是短線干擾，不改變此結構性多頭邏輯。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">ABF 三雄 5 月月收全創歷史同期新高——欣興 +32.37%、景碩 +33.02%（歷史新高）、南電 +35.82%，Q2 報價繼續上漲</div>
+      <div class="news-meta">鉅亨網 / MoneyDJ　2026年6月</div>
+      <div class="news-summary">三雄 5 月月收全創歷史同期新高：欣興 NT$140.60 億（+32.37%）、景碩 NT$42.00 億（+33.02%，歷史新高）、南電 NT$44.40 億（+35.82%）。Q2 ABF 報價持續上漲，台廠 ASP 提升趨勢確認。月收三雄全面加速確認，AVGO 短線傳聞不影響已執行訂單。</div>
+    </div>
+  </div>
+
+  <div class="four-dim">
+    <div class="dim-card">
+      <div class="dim-label">基本面 <span class="dim-badge badge-bull">超強護盾（5 月三雄月收全新高；IBIDEN Capex +228%；2028 缺口 35%；Q2 報價漲）</span></div>
+      <div>欣興 5 月 +32.37%（140.60 億）；景碩 5 月 +33.02%（42.00 億，歷史新高）；南電 5 月 +35.82%（44.40 億）；IBIDEN FY26 Capex +228% 至 ¥210B；ABF 供需缺口 2026/2027/2028 = 8%/27%/35%；Q2 ABF 報價持續上漲。AVGO Google 傳聞是短線干擾，中線需求確定性由整個 AI 生態系（NVDA/AMD/AVGO/Intel）共同支撐。</div>
+      <details><summary>展開詳細</summary><div class="detail-body">ABF 超級週期三支柱：①IBIDEN FY26 Capex +228%→FY30 目標 ¥1 兆，代表全球 ABF 最大材料商確認超長線需求；②Q2 ABF 高階報價持續上漲，台廠 ASP 全面提升，訂單能見度至 2027-2028 年；③外資目標欣興 NT$1,060-1,350、南電 NT$1,050-1,275，代表 PE 重估正在進行中。景碩 ASIC+ABF 雙題材在三雄中最有獨特性：NVIDIA ASIC + AMD ASIC 雙客戶，不完全依賴 AVGO 系 AI networking，是今日 AVGO 利空中相對抗跌邏輯最完整的個股。</div></details>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">消息面 <span class="dim-badge badge-watch">短線偏空（AVGO -4.13% Google 傳聞）、中線多頭（AMD +2.65% 護盾；J.P. Morgan「Ignore the Noise」；月收三雄新高）</span></div>
+      <div>負面：AVGO -4.13% Google 自製 ASIC 傳聞，是今日最大利空，直接衝擊 AI networking ABF 需求定價。正面：AMD +2.65% 景碩護盾完整；J.P. Morgan 立即背書「Ignore the Noise」；5 月月收三雄新高；INTC +4.07% 確認半導體大趨勢不變；GEV +0.49% 間接確認 AI 基建需求不變。今日關鍵：外資是否趁 AVGO 利空回落時逆勢買超 ABF 三雄。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">技術面 <span class="dim-badge badge-watch">欣興 NT$968 面臨 AVGO 拖累測試；景碩 NT$724 相對抗跌；南電 NT$874 雙重壓力最大</span></div>
+      <div>欣興 6/18 收 NT$968，NT$960 是今日最重要短線支撐，若守住看 NT$985→NT$1,000 再挑戰；若失守 NT$960，下看 NT$940-950。景碩 NT$724，NT$700-710 是新支撐，AMD 護盾使其相對抗跌，守 NT$710 後中線 NT$750-780。南電 NT$874，今日雙重壓力（AVGO+籌碼），NT$860-870 是關鍵支撐，外資介入是止穩信號。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">籌碼面 <span class="dim-badge badge-watch">今日外資動向是最重要觀察指標；景碩法人連日買超最健康；南電籌碼壓力尚未消化</span></div>
+      <div>景碩連日法人大幅買超，籌碼面三雄中最健康，AMD 護盾使其今日面對 AVGO 利空相對抗跌。欣興從千元失守後需觀察是否有法人護盤，NT$960 關鍵。南電雙重壓力（南亞轉讓+AVGO），需等縮量橫盤信號確認賣壓消化。今日最重要觀察指標：外資是否在 AVGO 利空中逆勢買超（若買超→轉為短線止跌信號）。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 本週行事曆</div>
+    <div class="cal-item">
+      <div class="cal-date">07/10 前</div>
+      <div>
+        <div class="cal-content">三雄 6 月月收公告 — 追蹤重點：欣興是否保持 NT$140 億+、景碩是否突破 NT$45 億、南電是否持續 +35%</div>
+        <div class="cal-note">月收是 Q2 ABF 漲價邏輯最直接的確認，與 AVGO 傳聞形成對比數據</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">持續追蹤</div>
+      <div>
+        <div class="cal-content">AVGO Google ASIC 傳聞後續進展 — 追蹤重點：Google 是否正式確認、AVGO 官方回應、機構是否下調 AVGO 目標</div>
+        <div class="cal-note">若 J.P. Morgan 以外的機構也維持積極，傳聞的殺傷力大幅降低</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">NVIDIA Q2 法說</div>
+      <div>
+        <div class="cal-content">NVIDIA Q2 FY2027 法說（預計 8 月，具體日期未公告）— 追蹤重點：GB300/Blackwell 出貨進度、ABF 採購量預估</div>
+        <div class="cal-note">NVDA 法說是 ABF 超級週期中最重要的下游需求確認</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ 風險與機會</div>
+    <div style="font-size:13px;line-height:1.75;">
+      <p><strong style="color:#4ade80;">機會：</strong>AVGO Google 傳聞若被 J.P. Morgan 等多家機構確認為「雜音」，ABF 三雄因短線拉回而出現的折價就是基本面機會。景碩因 AMD 護盾在三雄中折價最小，是今日最優先的觀察標的。外資逆勢買超信號是進場確認。</p>
+      <p style="margin-top:8px;"><strong style="color:#f87171;">風險：</strong>若 Google 自製 ASIC 計畫得到更多機構確認或 Google 官方表態，AVGO 的拋售可能從短線延伸為中線修正，ABF 台廠面臨更大壓力。南電的籌碼賣壓 + AVGO 利空是雙重疊加風險，需特別注意。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 低軌衛星 ===== -->
+<div class="section">
+  <div class="section-title">二｜低軌衛星
+    <span class="signal signal-neutral">中性（昇達科 NT$1,560 止穩；華通 NT$259.5；燿華 NT$61.3；無重大新美股催化劑；V3 換代後 6 月月收是方向確認的主線）</span>
+  </div>
+
+  <div class="alert-note">📌 <strong>低軌衛星板塊數據說明：</strong>台股最新確認為 6/18，昇達科 +0.65%（NT$1,560）、華通 -1.70%（NT$259.5）、燿華 -1.92%（NT$61.3）。美股無直接對應衛星追蹤標的，SpaceX（SPCX）6/12 掛牌後蜜月期消化中。本板塊主驅動力是 V3 換代完成後昇達科 6 月月收的恢復（7 月上旬公告），以及 SpaceX 密訪台廠擴大下單的後續確認。AVGO -4.13% 對低軌衛星板塊無直接影響。</div>
+
+  <div class="alert-pos">✅ <strong>昇達科（3491）6/18 +0.65% 至 NT$1,560——V3 換代過渡確認非需求問題，6 月月收反彈是最重要催化劑；零紅鏈 $730 億大單護城河完整：</strong> 昇達科（3491）6/18 小幅止穩 +0.65% 至 NT$1,560，連跌後初步築底。基本面：5 月月收 NT$2.96 億（+57.24% YoY），月減 15.13% 係 Starlink V3 客戶端品項臨時調整（非需求問題），法說會確認 6 月恢復正常出貨並反彈。低軌衛星訂單能見度 NT$18 億，2026 年高成長元年。外資目標 NT$2,513（距現價 +60%+）。7 月上旬 6 月月收公告是昇達科方向確認最重要催化劑，預期 6 月月收大幅反彈（月增 +30%+ 可能）。</div>
+
+  <div class="alert-warn">⚠️ <strong>華通（2313）6/18 回落 -1.70% 至 NT$259.5——SPCX 蜜月效應消化中，PCB 市占 90% 護城河 + 5 月月收 67.62 億（+13.02%）基本面不變：</strong> 華通（2313）6/18 回落 -1.70% 至 NT$259.5，SPCX 蜜月期後資金部分回流。但護城河清晰：Starlink PCB 市占 ~90%，5 月月收 NT$67.62 億（+13.02% YoY），SpaceX $730 億美元國防大單「零紅鏈」確認台廠是唯一合規選項。短線 NT$255-260 是支撐區，V3 換代完成（昇達科 6 月月收確認）是整個低軌衛星板塊方向訊號，屆時華通有望同步反彈。</div>
+
+  <div class="card">
+    <div class="card-title">📰 板塊重點新聞（近期核心動態）</div>
+    <div class="news-item">
+      <div class="news-title">SpaceX 低調訪台擴大下單——昇達科、華通是重點對象，台廠太空供應鏈地位確認</div>
+      <div class="news-meta">豐雲學堂（新光證券）　2026年6月</div>
+      <div class="news-summary">SpaceX 近期低調組團來台，密訪昇達科（射頻元件/衛星間雷射通訊）和華通（衛星 PCB），目的在擴大對台廠下單，並因應 Starlink V3 升級趨勢尋求供應量提升。昇達科低軌衛星占比 Q1 達 80%，是 SpaceX 最核心的台廠射頻元件供應商。SpaceX 密訪的直接意義是 V3 換代後訂單量進一步提升，預估 H2 出貨加速。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">SpaceX 斬獲美國防 $730 億大單「零紅鏈」要求——華通、昇達科、燿華是最直接受益者</div>
+      <div class="news-meta">經濟日報　2026年6月</div>
+      <div class="news-summary">SpaceX 獲得美國國防部 $730 億美元級衛星通訊大合約，「零紅鏈」要求全面啟動，台廠成為唯一合規選項。華通（衛星通訊 PCB）、昇達科（射頻/毫米波元件）、燿華（LCP 材料）是最直接受益者。國防大單護城河是中長線最確定的結構性優勢，不受短期 V3 換代過渡影響。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">昇達科法說 4 大亮點：低軌衛星訂單能見度 NT$18 億，2026 年高成長元年確認</div>
+      <div class="news-meta">豐雲學堂　2026年5月</div>
+      <div class="news-summary">昇達科法說確認：低軌衛星訂單能見度 NT$18 億，Q1 低軌衛星占比接近 80%，5 月月減係 V3 客戶端品項臨時調整（非需求問題），6 月預計恢復正常出貨並反彈。2026 年全年低軌衛星營收估年增 50%+，外資目標 NT$2,513（距現價 +60%+）。燿華 5 月月收 NT$15.33 億（+15.91% YoY），LCP 材料需求跟隨 V3 升級逐步回升。</div>
+    </div>
+  </div>
+
+  <div class="four-dim">
+    <div class="dim-card">
+      <div class="dim-label">基本面 <span class="dim-badge badge-bull">中線多頭（V3 換代過渡期；SpaceX 護城河；零紅鏈大單；昇達科 5 月 +57.24%）</span></div>
+      <div>昇達科 5 月 NT$2.96 億（+57.24% YoY，月減 15% 為 V3 品項調整）；低軌衛星訂單能見度 NT$18 億；華通 5 月 NT$67.62 億（+13.02%，星鏈 PCB 市占 90%）；燿華 5 月 NT$15.33 億（+15.91%）；SpaceX 密訪台廠擴單；$730 億國防大單零紅鏈護城河；2026 全球衛星發射突破 5,000 顆（年增 50%）。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">消息面 <span class="dim-badge badge-neutral">等待（SpaceX 密訪正面；AVGO 利空無直接影響；主催化劑是 6 月月收公告）</span></div>
+      <div>正面：SpaceX 密訪台廠擴單；零紅鏈護城河確認；昇達科 6 月預計恢復出貨；AVGO -4.13% 對低軌衛星板塊無直接影響（負相關性極低）。負面：SPCX 蜜月期消化中，華通/燿華短線整理；V3 換代疑慮持續至 6 月月收公告。主催化劑：7 月上旬昇達科 6 月月收大幅反彈預期。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">技術面 <span class="dim-badge badge-neutral">昇達科 NT$1,560 止穩；華通 NT$259 支撐待守；燿華流動性低謹慎</span></div>
+      <div>昇達科 6/18 NT$1,560（+0.65%），NT$1,500-1,550 是短線支撐，6 月月收大幅反彈後中線看 NT$1,800+，外資目標 NT$2,513。華通 NT$259.5，NT$255-260 支撐，若守住 V3 確認後看 NT$280-300。燿華 NT$61.3，流動性低，建議低倉位操作。低軌衛星板塊與今日 AVGO 利空相關性最低，是四大板塊中今日最「免疫」於半導體傳聞的方向。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">籌碼面 <span class="dim-badge badge-neutral">SPCX 後機構建倉進度待觀察；7 月月收公告是籌碼催化劑</span></div>
+      <div>SPCX 6/12 掛牌後，台廠供應商機構覆蓋預期增加，但實際建倉進度需等昇達科 6 月月收（V3 換代確認）才能明確。華通 6/18 -1.70% 顯示 SPCX 蜜月資金部分回流。昇達科 6/18 小幅反彈初步止穩，但確認需更多連日反彈信號。今日低軌衛星板塊最不受 AVGO 利空影響，若半導體板塊大跌，資金有可能輪動進入低軌衛星板塊。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 矽光子 ===== -->
+<div class="section">
+  <div class="section-title">三｜矽光子
+    <span class="signal signal-watch">觀察（AVGO -4.13% 短線負面；COHR $50M CHIPS 補助正面；LITE -1.33%；COHR 財報 6/30 前是板塊最重要催化劑；5 月月收雙雄加速不變）</span>
+  </div>
+
+  <div class="alert-warn">⚠️ <strong>AVGO -4.13% 對矽光子板塊的衝擊評估——影響有限但不可忽視：AVGO PowerPC CPO 是台廠重要需求方，但 COHR/NVDA CPO 訂單比重更高：</strong> AVGO 暴跌 -4.13% 對矽光子台廠（波若威、華星光）的影響評估：①波若威（3163）的 NVIDIA Spectrum-X CPO 訂單是主要驅動力，AVGO PowerPC 僅是次要需求方，Google ASIC 傳聞對波若威的直接衝擊有限；②華星光（4979）的主要客戶是 Meta（800G/1.6T 光收發模組），與 AVGO 無直接關係；③LITE -1.33%（$838.70）受 AVGO 拖累，但 CPO 長線邏輯不變。結論：AVGO -4.13% 對矽光子板塊是短線情緒面負面，非基本面衝擊，COHR 財報（6/30 前）才是板塊真正的方向催化劑。</div>
+
+  <div class="alert-pos">✅ <strong>COHR CHIPS $50M 政府補助 LOI（6/16 公告）——美國 AI 基礎設施製造政策護盾確認，財報前多頭籌碼更健康：</strong> Coherent Corp.（COHR）6/16 宣布簽署 $50M CHIPS 計畫補助意向書（LOI），擴建 AI 基礎設施相關世界領先製造設施。這是矽光子台廠的間接正面信號：COHR 作為波若威/華星光的上游 CPO 技術夥伴，獲得美國政府政策支持確認其 AI 基礎設施製造地位，長線 CPO 量產邏輯進一步強化。COHR 財報（6/30 前）是矽光子板塊最重要催化劑，$50M CHIPS 補助顯示 COHR 的指引應審慎樂觀。</div>
+
+  <div class="alert-pos">✅ <strong>波若威（3163）6/18 收 NT$893（-1.11%）——5 月月收 +29.97%（NT$2.12 億）加速確認；NT$900 整理中，COHR 財報是板塊下一個方向催化劑：</strong> 波若威（3163）6/18 收 NT$893（-1.11%），前一日 +3.08% 後技術整理，NT$900 心理關卡附近。5 月月收 NT$2.12 億（+29.97% YoY，月增 6.22%），加速態勢確認（4 月 +16.5% → 5 月 +29.97%）。Q1 EPS 年增 +396.72% 是矽光子台廠中最強獲利成長。NVIDIA Spectrum-X CPO 是主需求來源，不受 AVGO/Google 傳聞影響。COHR 財報（6/30 前）若 CPO 指引強勁，波若威快速看 NT$1,000+。</div>
+
+  <div class="alert-pos">✅ <strong>華星光（4979）6/18 +3.85% 至 NT$567——5 月月收 +21.08%（NT$4.21 億）大幅加速；Meta 800G/1.6T 量產拉貨確認；垂直整合優勢護城河：</strong> 華星光（4979）6/18 強勢反彈 +3.85% 至 NT$567，5 月月收 NT$4.21 億（+21.08% YoY），大幅加速（vs 4 月 +7.73%），Meta 800G/1.6T 光收發模組量產拉貨加速確認。CW Laser 出貨量倍增，垂直整合（晶片設計→封裝）優勢明確。主要客戶是 Meta，不受 AVGO/Google 傳聞影響。COHR 財報前是最後布局視窗，今日因 AVGO 拖累若有整理，是短線介入機會。</div>
+
+  <div class="card">
+    <div class="card-title">📰 板塊重點新聞（6/21-22 新聞 + 背景更新）</div>
+    <div class="news-item">
+      <div class="news-title">COHR 6/16 簽署 $50M CHIPS 補助 LOI——擴建 AI 基礎設施製造設施，政策護盾確認</div>
+      <div class="news-meta">GlobeNewsWire / TipRanks　2026/06/16</div>
+      <div class="news-summary">Coherent Corp. 6/16 宣布簽署 CHIPS 計畫 $50M 政府補助意向書，擴建世界領先 AI 基礎設施製造設施。這是矽光子/CPO 板塊獲得美國聯邦政府政策支持的直接確認，長線 CPO 量產商轉的政策護盾進一步強化。COHR 財報（6/30 前）的 CPO 指引在政策支持背景下更具可信度，波若威/華星光是 COHR 台廠供應鏈中最直接的受益者。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">AVGO -4.13% Google 傳聞——矽光子台廠評估：影響有限，NVDA/Meta 客戶邏輯不受影響</div>
+      <div class="news-meta">TipRanks / J.P. Morgan　2026/06/22</div>
+      <div class="news-summary">AVGO 6/22 -4.13% Google ASIC 傳聞對矽光子台廠影響評估：波若威核心需求來自 NVIDIA Spectrum-X CPO（非 AVGO PowerPC），不受 Google 傳聞影響；華星光核心客戶是 Meta 800G/1.6T，與 AVGO 無直接關係。J.P. Morgan 對 AVGO 維持積極（「Ignore the Noise」），且 LITE/COHR CPO 業務主要依附 NVIDIA/Meta 生態系，短線情緒面偏空但基本面邏輯不受影響。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">2026 年 CPO 矽光子商轉元年——台積電 COUPE 技術領軍，波若威、華星光台廠前兩大受益者</div>
+      <div class="news-meta">豐雲學堂（新光證券）　2026年6月</div>
+      <div class="news-summary">台積電 COUPE（Co-packaged Optics Ultra-Performance Engine）平台 2026 年正式商轉，NVIDIA Spectrum-X 採用 CPO 技術，Broadcom PowerPC 同步跟進。波若威（光學濾波器/光纖套件）、華星光（垂直整合，Meta 800G/1.6T）是台廠前兩大受益者。CPO 市場 2023-2030 CAGR 172%（$800萬 → $93 億），2026 是商轉分水嶺，CHIPS $50M 補助確認政策支持。</div>
+    </div>
+  </div>
+
+  <div class="four-dim">
+    <div class="dim-card">
+      <div class="dim-label">基本面 <span class="dim-badge badge-bull">多頭（5 月月收雙雄加速；COHR CHIPS $50M；COUPE 商轉元年）</span></div>
+      <div>波若威 5 月 +29.97%（NT$2.12 億，月增 6.22%，加速）；Q1 EPS +396.72%；NVIDIA Spectrum-X CPO 量產拉貨；台積電 COUPE 2026 商轉；華星光 5 月 +21.08%（NT$4.21 億，大幅加速 vs 4 月 +7.73%）；Meta 800G/1.6T 訂單穩健；COHR $50M CHIPS 補助；CPO 市場 CAGR 172%（$800 萬 → $93 億）。AVGO 傳聞是短線干擾，非 CPO 商轉的結構性挑戰。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">消息面 <span class="dim-badge badge-watch">偏謹慎（AVGO -4.13% 短線情緒面負面；LITE -1.33%；但 COHR CHIPS 補助正面；COHR 財報 6/30 前是主催化劑）</span></div>
+      <div>負面：AVGO -4.13% Google 傳聞，情緒面衝擊矽光子板塊；LITE -1.33% 受拖累。正面：COHR $50M CHIPS 補助（6/16）政策護盾確認；5 月月收波若威 +29.97%/華星光 +21.08% 雙加速；COHR 財報（6/30 前）CPO 指引是板塊下一個最重要催化劑。今日關鍵：波若威/華星光是否因 AVGO 情緒面而超跌（反而是短線機會）。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">技術面 <span class="dim-badge badge-watch">波若威 NT$893 整理中；華星光 NT$567 高位；COHR 財報前布局視窗進入最後倒數</span></div>
+      <div>波若威 NT$893（-1.11%），NT$880-900 整理區，AVGO 利空若再殺，NT$860-870 是機會區，COHR 財報若 CPO 指引強，波若威快速看 NT$1,000+。華星光 NT$567（+3.85%），NT$550 是新支撐，今日因 AVGO 若有回落看 NT$540-550 機會區。COHR 6/18 收 $389.57（最新確認），財報（6/30 前）進入最後 8 天倒數。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">籌碼面 <span class="dim-badge badge-watch">COHR 財報前 8 天倒數；AVGO 利空若導致超跌是建倉機會；波若威持倉最健康</span></div>
+      <div>波若威持倉最健康：5 月月收 +29.97% 基本面確認，NVIDIA Spectrum-X 需求不受 AVGO 傳聞影響，NT$893 整理是正常。華星光 Meta 客戶邏輯完整，AVGO 傳聞若導致超跌是短線機會。COHR 財報（6/30 前）是板塊籌碼催化劑：$50M CHIPS 補助 + 財報 CPO 指引若強，波若威/華星光外資加速買超，板塊全面重新定價。今日最重要：是否有超跌後的反彈機會。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 重電 ===== -->
+<div class="section">
+  <div class="section-title">四｜重電（台灣）
+    <span class="signal signal-opp">機會（GEV +0.49% 至 $1,115.20 穩步創高；台廠三雄 6/18 全面上漲；訂單至 2030 能見度確定；今日四大板塊中最不受 AVGO 拖累的方向）</span>
+  </div>
+
+  <div class="alert-hot">🚀 <strong>今日重電是四大板塊中最確定的多頭方向——GEV 繼續 +0.49% 至 $1,115.20，AVGO 利空不影響重電，AI 電力需求基本面最確定：</strong> 今日 AVGO -4.13% 的 Google ASIC 傳聞讓 ABF + 矽光子板塊短線承壓，但重電板塊與 AVGO 相關性接近零——AI 資料中心的電力需求不會因 Google 是否向 AVGO 採購 ASIC 而改變。GEV 6/22 繼續 +0.49% 至 $1,115.20，穩步向 Bernstein $1,206 目標靠攏，距目標 +8.1%。台廠重電三雄（華城/士電/中興電）6/18 全面上漲，是三日連假後最確定的多頭方向，今日也是四大板塊中最值得關注的正面催化劑。</div>
+
+  <div class="alert-pos">✅ <strong>華城（1519）6/18 +3.74% 至 NT$833——三雄中漲幅最強，Stargate NT$20 億大單 + 5 月月收 16.28 億（+29.9%）+ GEV 美股持續正面：</strong> 華城（1519）6/18 大漲 +3.74% 至 NT$833，是重電三雄今日最強個股。5 月月收 NT$16.28 億（+29.9% YoY），Stargate 供應鏈 NT$20 億確認，北美 AI DC 出貨占比 50%+，大型電力變壓器交期 2.5 年定價主導權持續強化。GEV +0.49% 繼續走高是對華城最直接的美股催化劑。NT$833 守住後，中線目標 NT$1,100（外資）。今日重電板塊不受 AVGO 利空影響，是 ABF 板塊回調時的資金輪動目的地。</div>
+
+  <div class="alert-pos">✅ <strong>士電（1503）6/18 +2.11% 至 NT$241.5——5 月月收 30.50 億（+8.35% YoY）穩健；T3 廠已投產 T4 廠 2027 加入（+50% 產能）；台電標案穩定釋單：</strong> 士電（1503）6/18 上漲 +2.11% 至 NT$241.5，5 月月收 NT$30.50 億（+8.35% YoY），月增雖略有回落但年增率仍正。T3 廠已投產，T4 廠 2027 年加入可將產能提升 50%，北美 AI DC 訂單貢獻占比持續提升。台電標案穩定釋單確認政府端需求確定性。NT$241 支撐，中線目標 NT$300+（AI DC + 台電雙引擎）。</div>
+
+  <div class="alert-pos">✅ <strong>中興電（1513）6/18 +2.62% 至 NT$176.5——在手訂單 440 億能見度至 2030；台積電供應商貢獻 6 億 → 12 億（明年）；5 月月收 +3.62%：</strong> 中興電（1513）6/18 上漲 +2.62% 至 NT$176.5，在手訂單 440 億元能見度至 2030 年，是三雄中訂單確定性最高的個股。台積電供應商確認：今年貢獻約 6 億元，明年預計 12 億元（翻倍）。5 月月收 NT$23.92 億（+3.62% YoY），月收成長率三雄中最低但訂單能見度最長。台電近百億標案開榜，中興電全數入列，穩定政府端釋單確認。</div>
+
+  <div class="card">
+    <div class="card-title">📰 板塊重點新聞（6/21-22 + 背景更新）</div>
+    <div class="news-item">
+      <div class="news-title">GEV 6/22 +0.49% 至 $1,115.20——穩步向 Bernstein $1,206 目標靠攏，Eaton Dana $51 億合併強化電力設備聚焦</div>
+      <div class="news-meta">StockAnalysis / Reuters　2026/06/22</div>
+      <div class="news-summary">GE Vernova 6/22 繼續小幅上漲 +0.49% 至 $1,115.20，距 Bernstein $1,206 目標 +8.1%。同期 Eaton（ETN）宣布將旗下 Mobility 部門與 Dana 合併（$51 億交易，6/11），此舉讓 Eaton 進一步聚焦電力設備核心業務，清除非核心業務，是重電長線投資邏輯的正面整固。台廠三雄（華城/士電/中興電）與 GEV 正相關，GEV 持續走高是最直接的正面美股先行指標。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">台電近百億標案開榜——重電五虎全數入列，強韌電網計畫穩定釋單再確認</div>
+      <div class="news-meta">豐雲學堂（新光證券）　2026年6月</div>
+      <div class="news-summary">台電最新電力設備採購標案（含變壓器、GIS 等，合計近百億元）重電五虎全數入列，包含中興電（在手訂單 440 億，能見度至 2030）、華城（Stargate NT$20 億確認）、士電（T3 廠已投產）等。繼 2 月 94 億大單、193 億電纜超大標案後，台電強韌電網計畫穩定釋單再確認。台電 2026-2028 年重電設備金額分別估 120 億、187 億、205 億，三年商機達 500 億元。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">AI 資料中心接單火熱——華城、士電、中興電訂單能見度 2027-2030；大型變壓器交期 2.5 年</div>
+      <div class="news-meta">豐雲學堂（新光證券）　2026年6月</div>
+      <div class="news-summary">AI DC 建設爆發帶動重電需求，大型電力變壓器交期延長至 2.5 年，台廠定價主導權持續強化。華城 AI DC 訂單超 NT$120 億（北美 50%+，Stargate/微軟/OpenAI 確認）；士電 T3 廠已投產，T4 廠 2027 年加入（產能 +50%）；中興電在手 440 億能見度至 2030 年。今日 AVGO 利空不影響重電，AI 用電需求反而是 AI 算力增加的直接衍生，與 AVGO 是否得到 Google ASIC 訂單完全無關。</div>
+    </div>
+  </div>
+
+  <div class="four-dim">
+    <div class="dim-card">
+      <div class="dim-label">基本面 <span class="dim-badge badge-bull">最確定（GEV 持續創高；台電 500 億三年商機；AI DC 接單至 2030；5 月三雄月收全正）</span></div>
+      <div>GEV 6/22 +0.49% 至 $1,115.20，距 $1,206 目標 +8.1%；華城 5 月 +29.9%（NT$16.28 億）；士電 5 月 +8.35%（NT$30.50 億）；中興電 5 月 +3.62%（NT$23.92 億）；台電強韌電網 2026-2028 三年商機 500 億；AI DC 大型變壓器交期 2.5 年；Eaton Dana 合併強化電力設備聚焦。重電是今日四大板塊中基本面最確定、且最不受 AVGO 利空影響的方向。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">消息面 <span class="dim-badge badge-bull">全面正面（GEV 持續走高；台電標案穩定；AVGO 利空不影響；今日最強方向）</span></div>
+      <div>正面：GEV +0.49% 繼續走高；台電標案五虎全入；AI DC 接單火熱，訂單能見度至 2030；Eaton Dana 合併清除非核心業務，強化電力設備聚焦；AVGO -4.13% 不影響重電（AI 電力需求 = AI 算力增加的直接衍生）。負面：無重大負面消息。今日四大板塊中，重電是最不受 AVGO 傳聞影響的，也是資金在半導體板塊避險時的輪動目的地。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">技術面 <span class="dim-badge badge-bull">三雄 6/18 全面上漲；華城 NT$833 最強；GEV 穩步向 $1,206 靠攏</span></div>
+      <div>華城 6/18 收 NT$833（+3.74%），三雄最強，NT$800-810 是支撐，中線目標 NT$1,100（外資）。士電 NT$241.5（+2.11%），NT$235-240 是支撐，中線目標 NT$300+。中興電 NT$176.5（+2.62%），NT$170 是支撐，在手訂單 440 億支撐估值。GEV $1,115.20（+0.49%），$1,100 是支撐，Bernstein $1,206 目標代表 +8.1% 空間。今日是 AVGO 利空中最確定的避險板塊。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">籌碼面 <span class="dim-badge badge-bull">三雄 6/18 全面上漲籌碼最乾淨；今日可能受益 AVGO 利空資金輪動</span></div>
+      <div>重電三雄 6/18 全面上漲，籌碼面相對 ABF 板塊更健康。今日 AVGO -4.13% 若引發 ABF/矽光子板塊回調，資金輪動進入重電板塊的可能性是四大板塊中最高的——AI 算力需求確認→AI 電力需求確認，重電是最直接的邏輯延伸。GEV 持續創高對外資資金的磁吸效應，是台廠三雄外資介入最重要的美股催化劑。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 本週行事曆</div>
+    <div class="cal-item">
+      <div class="cal-date">07/10 前</div>
+      <div>
+        <div class="cal-content">三雄 6 月月收公告 — 追蹤重點：華城是否維持 +25%+ 成長、士電 T3 廠效應是否顯現、中興電台積電貢獻是否反映</div>
+        <div class="cal-note">6 月月收是最直接的 AI DC 需求確認，預期繼續加速</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">持續追蹤</div>
+      <div>
+        <div class="cal-content">台電強韌電網採購公告 — 追蹤重點：7 月前是否有新標案開榜</div>
+        <div class="cal-note">台電 2026-2028 三年商機 500 億，穩定釋單是中線最確定驅動力</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 總結 ===== -->
+<div class="section">
+  <div class="section-title">📌 今日總結</div>
+
+  <div class="card">
+    <div class="card-title">⚡ 值得特別注意（優先順序）</div>
+    <div class="news-item">
+      <div class="news-title">1. AVGO -4.13% Google ASIC 傳聞——ABF + 矽光子板塊今日面臨最大測試</div>
+      <div class="news-summary">這是今日最重要的事件。ABF 三雄（欣興、景碩、南電）與矽光子（波若威、華星光）均面臨 AVGO -4.13% 的美股拖累。關鍵觀察：①外資是否逆勢買超；②景碩因 AMD 護盾是否相對抗跌；③J.P. Morgan「Ignore the Noise」是否獲得其他機構背書。若今日台股相關個股超跌（跌幅 > AVGO 的 -4.13%），反而是基本面不變下的逢低機會。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">2. 重電板塊是今日四大板塊中最確定的多頭方向——GEV 持續走高 + AVGO 傳聞不影響</div>
+      <div class="news-summary">GEV 6/22 繼續 +0.49% 至 $1,115.20，重電台廠三雄（華城/士電/中興電）6/18 全面上漲，且今日 AVGO -4.13% 的 Google ASIC 傳聞與重電需求（AI 電力）完全無關。今日若 ABF/矽光子板塊回調，重電是最自然的資金輪動目標。華城在三雄中漲幅最強且外銷護城河最明確，是首選。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">3. INTC +4.07% 連兩日強勢——Apple-Intel Foundry 合作進入深化期，Seok-Hee Lee 任命是重要里程碑</div>
+      <div class="news-summary">INTC 6/22 繼續 +4.07% 至 $139.45，6/18（+10.64%）→ 6/22（+4.07%）連兩日大漲。Intel 任命前 SK Hynix 高管領軍 Intel Foundry 先進封裝，是 Intel Foundry 商業化的重要人事訊號，確認 Apple-Intel 合作不是川普的即興宣布，而是有業務實質的合作。雖對四大板塊無直接影響，但半導體整體信心支撐板塊底部。</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <p style="font-size:13px;color:var(--muted);"><strong>今日無重大變化的板塊：</strong>低軌衛星板塊（昇達科 V3 換代過渡期，主催化劑是 7 月上旬 6 月月收公告；今日 AVGO 利空對低軌衛星無直接影響，板塊中性待觀察）。</p>
+
+    <div class="divider"></div>
+
+    <div class="card-title" style="margin-top:12px;">🔭 明日追蹤清單</div>
+    <div style="font-size:13px;line-height:2;margin-top:8px;">
+      • <strong>AVGO 後續</strong>：Google ASIC 傳聞是否得到更多機構確認或 Google 官方表態；J.P. Morgan 以外的機構是否跟進「Ignore the Noise」<br>
+      • <strong>台股 ABF 開盤反應</strong>：欣興是否守住 NT$960；景碩是否守住 NT$710；外資是否逆勢買超（最重要籌碼信號）<br>
+      • <strong>COHR 財報倒數 8 天</strong>：COHR 6/22 是否跟隨 AVGO 下跌或維持強勢（財報前多頭籌碼的壓力測試）<br>
+      • <strong>重電資金輪動確認</strong>：華城/士電/中興電今日是否相對 ABF 板塊更強，驗證輪動邏輯<br>
+      • <strong>昇達科 V3 確認</strong>：SpaceX 密訪台廠後是否有新訂單消息（任何正式公告都是強力催化劑）
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;padding:20px;font-size:11px;color:#3a4060;">
+  每日產業晨報 2026/06/23 | 資料來源：StockAnalysis、鉅亨網、MoneyDJ、豐雲學堂、TipRanks、Reuters、Yahoo Finance | 台股資料基準日 6/18
+</div>
+
+</div><!-- /container -->
+</body>
+</html>
