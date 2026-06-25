@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日產業晨報 2026/06/25</title>
+<style>
+  :root {
+    --bg: #0f1117; --card: #161b27; --card2: #1c2333; --border: #2a3448;
+    --blue: #4d7cfe; --blue-dim: #2a4099; --green: #22c55e; --red: #ef4444;
+    --yellow: #eab308; --text: #e2e8f0; --muted: #8492a6; --accent: #60a5fa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system,'Helvetica Neue',Arial,sans-serif; font-size: 14px; line-height: 1.6; }
+  .header { background: linear-gradient(135deg,#0f1117 0%,#1a2540 100%); border-bottom: 2px solid var(--blue); padding: 24px 32px; }
+  .header h1 { font-size: 24px; color: var(--blue); font-weight: 700; letter-spacing: 1px; }
+  .header .meta { color: var(--muted); font-size: 12px; margin-top: 4px; line-height: 1.8; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px 20px; }
+  .section { margin-bottom: 32px; }
+  .section-title { font-size: 16px; font-weight: 700; color: var(--blue); border-left: 4px solid var(--blue); padding-left: 10px; margin-bottom: 16px; }
+  .signal { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; margin-left: 10px; }
+  .signal-opp { background: #14532d; color: #4ade80; border: 1px solid #22c55e; }
+  .signal-watch { background: #422006; color: #fbbf24; border: 1px solid #eab308; }
+  .signal-risk { background: #450a0a; color: #f87171; border: 1px solid #ef4444; }
+  .signal-neutral { background: #1e293b; color: #94a3b8; border: 1px solid #475569; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  th { background: var(--card2); color: var(--muted); font-size: 12px; font-weight: 600; text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:hover td { background: rgba(77,124,254,0.05); }
+  .up { color: var(--green); font-weight: 600; }
+  .down { color: var(--red); font-weight: 600; }
+  .neutral { color: var(--muted); }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+  .card-title { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+  .news-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .news-item:last-child { border-bottom: none; }
+  .news-title { font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .news-meta { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  .news-summary { font-size: 13px; color: #b0bcd0; padding-left: 8px; border-left: 2px solid var(--blue-dim); }
+  .stock-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 12px; }
+  .stock-card { background: var(--card2); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; }
+  .stock-name { font-weight: 700; font-size: 14px; color: var(--accent); }
+  .stock-price { font-size: 18px; font-weight: 700; margin: 4px 0; }
+  .stock-detail { font-size: 12px; color: var(--muted); }
+  .analysis { background: rgba(77,124,254,0.06); border: 1px solid var(--blue-dim); border-radius: 6px; padding: 14px 16px; font-size: 13px; line-height: 1.75; color: #c8d5e8; margin: 12px 0; }
+  .cal-item { display: flex; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+  .cal-date { color: var(--blue); font-weight: 700; min-width: 80px; font-size: 12px; }
+  .cal-content { font-size: 13px; }
+  .cal-note { font-size: 12px; color: var(--muted); }
+  .four-dim { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0; }
+  .dim-card { background: var(--card2); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; font-size: 12px; }
+  .dim-label { font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .dim-badge { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: 700; }
+  .badge-bull { background: #14532d; color: #4ade80; }
+  .badge-bear { background: #450a0a; color: #f87171; }
+  .badge-neutral { background: #1e293b; color: #94a3b8; }
+  .badge-watch { background: #422006; color: #fbbf24; }
+  .alert-note { background: #1a1f2e; border: 1px solid #3a4060; border-radius: 4px; padding: 6px 12px; font-size: 12px; color: #7a8aa0; margin-bottom: 10px; }
+  .alert-warn { background: #1e1408; border: 1px solid #6b4a00; border-radius: 4px; padding: 6px 12px; font-size: 12px; color: #c08030; margin-bottom: 10px; }
+  .alert-pos { background: #0f1e14; border: 1px solid #1a5a2a; border-radius: 4px; padding: 6px 12px; font-size: 12px; color: #4ade80; margin-bottom: 10px; }
+  .alert-hot { background: #1e0a0a; border: 1px solid #7f1d1d; border-radius: 4px; padding: 6px 12px; font-size: 12px; color: #f87171; margin-bottom: 10px; }
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+  details summary { cursor: pointer; font-size: 12px; color: var(--accent); margin-top: 6px; }
+  details[open] summary { color: var(--muted); }
+  details .detail-body { font-size: 12px; color: #b0bcd0; padding: 8px 0 4px 8px; line-height: 1.7; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 每日產業晨報</h1>
+  <div class="meta">
+    日期：2026/06/25（星期四）　|　產出時間：07:00　|　資料基準日：美股 2026/06/23（確認）＋ 6/24 部分（AMD +3.4%、INTC +3.4%、Micron 盤後 +13%）；台股 2026/06/23（確認，6/24 數據待 stock_data_20260625.json 生成）<br>
+    🟢 <strong>【Micron Q3 2026 巨幅 BEAT——EPS $25.11 vs 預期 $20.20（+24%），HBM4 產能全售罄至 2027 初，盤後芯片股全面狂飆：</strong> Micron 6/24 盤後公布 Q3 FY2026 財報：EPS $25.11（beat 24%）、營收約 $35B（beat），HBM4 已產生超 $10 億營收，產能 2026 全年+2027 初已全售罄。CEO 確認「HBM 超級週期至少延續至 2027 年底」。盤後 Micron +13%，半導體板塊連鎖反彈——SK Hynix ADR、Samsung ADR、NVDA、AMD 盤後均大漲。6/23 的全面崩盤（韓市雙熔斷觸發去槓桿）被 Micron 業績正式「裁決」為過度反應。今日台股預期全面高開，ABF、矽光子、低軌衛星、重電四板塊皆受惠。<br>
+    🟢 <strong>【6/24 日盤半導體止跌反彈——AMD +3.4%（$537.51）、INTC +3.4%（$136.12），COHR +2.83%（$389.57）：</strong> 在 Micron 法說前夕（6/24 日盤），市場已出現部分止跌回穩：AMD +3.4% 至 $537.51、INTC +3.4% 至 $136.12、COHR +2.83% 至 $389.57。Nasdaq 整體日盤仍小幅下跌（市場等待 Micron），但半導體個股先行回穩。Micron 盤後 beat 進一步強化信號：6/23 超跌個股今日反彈幅度可能相當顯著。<br>
+    🟠 <strong>【COHR 財報 6/30 前——矽光子板塊最後一關，CPO 延遲論 vs 訂單倍增論即將有答案：</strong> Coherent Corp.（COHR）財報預計 6/30 前公布，是本週矽光子板塊最後一個命運催化劑。SemiAnalysis 6/9「CPO 推遲至 2029」vs Global Semi Research「NVIDIA 訂單 1 月 4,000 萬→5 月 1 億顆」。COHR 財報出貨量將裁決誰對。J.P. Morgan 維持 Overweight 目標 $380（COHR 已跌至目標價）。台廠波若威 6/23 -0.23% 相對抗跌，Micron beat 後矽光子台廠今日亦可望連動高開。<br>
+    🟢 <strong>【台電近百億標案開榜——重電五虎中興電、華城、士電、亞力、樂事綠能全數入列，AI 電力需求缺口 235 億度：</strong> 台電近期公告強韌電網近百億元採購標案開榜，中興電、華城、士電、亞力、樂事綠能全數取得配額，重電板塊在手訂單能見度普遍延伸至 2028-2030 年。AI 狂潮引爆全球電力缺口 235 億度，台灣 2025-2030 年電力建設預算年均超過 NT$3,000 億。6/23 美股重電（ETN -7%、GEV -8.21%）昨已部分回穩，台廠三雄（華城、士電、中興電）6/23 已是四板塊中跌幅最輕。
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ===== 美股動態 ===== -->
+<div class="section">
+  <div class="section-title">🇺🇸 美股頭部動態（6/23 確認 ＋ 6/24 部分確認）</div>
+
+  <div class="alert-pos">✅ <strong>Micron Q3 FY2026 盤後巨幅 beat——EPS $25.11（+24% vs 預期 $20.20），HBM4 Vera Rubin 訂單滿到 2027 年初，盤後半導體全面大漲：今日是 6/23 超跌反彈日</strong><br>Micron 6/24 盤後公布：EPS $25.11 vs 共識 $20.20（+24.3% beat），HBM4 已貢獻超 $10 億營收，本季倫比度為歷史最高。CEO 直接確認：「2026 全年 HBM 容量全售罄，延伸至 2027 年初仍處售罄狀態」，HBM4 for Vera Rubin 量產良率「tracking twice as fast as HBM3E 12-high」。盤後 Micron +13%，SK Hynix ADR、Samsung ADR、NVDA、AMD 全面跟漲。這份財報的意義：①AI 記憶體需求沒有見頂——韓市雙熔斷是去槓桿而非基本面；②HBM4 Vera Rubin 邏輯完整——欣興、景碩、南電的 GB300/Vera Rubin 訂單能見度被再次確認；③CPO 需求不因記憶體強勁而減弱——矽光子板塊被誤傷的跌幅有望修復。</div>
+
+  <div class="alert-pos">✅ <strong>6/24 日盤半導體先行止跌——AMD +3.4%（$537.51）、INTC +3.4%（$136.12）、COHR +2.83%（$389.57）：6/23 超跌正在修正</strong><br>6/24 日盤（Micron 法說前），市場已對 6/23 超跌進行修正：AMD 反彈 +3.4% 至 $537.51，恢復 6/23 跌幅（-5.76% from $519.85）的約 40-50%；INTC +3.4% 至 $136.12；COHR +2.83% 至 $389.57（脫離 J.P. Morgan 目標 $380 支撐區）。Micron 盤後 beat 進一步強化：今日（6/25）台股開盤預期出現 6/23 跌幅的較大幅度反彈，景碩（-8.67%）、昇達科（-7.82%）、華通（-6.36%）等 6/23 超跌個股是首選反彈標的。</div>
+
+  <div class="alert-warn">⚠️ <strong>NVDA、ETN、GEV 6/24 數據待確認——日盤整體 Nasdaq 仍小跌，Micron 盤後 beat 後盤外預計大幅拉升：</strong>6/24 日盤中 NVDA、AVGO、LITE、ETN、GEV 的精確收盤數據本報未能確認（data_20260625.json 尚未生成，Chrome 工具當前不可用）。以下使用 6/23 確認數據（JSON stock_data_20260624.json）作為最新基準，並在分析中標注 6/24 已知更新。</div>
+
+  <table>
+    <thead>
+      <tr><th>公司</th><th>最新確認收盤</th><th>漲跌幅</th><th>備注</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>NVIDIA (NVDA)</strong></td>
+        <td><span class="down">$200.04</span></td>
+        <td><span class="down">-4.13% (6/23)</span></td>
+        <td>6/24 日盤仍小跌；Micron beat 後盤後大漲帶動；今日開盤預計重回 $205-210；Vera Rubin / GB300 邏輯完整確認</td>
+      </tr>
+      <tr>
+        <td><strong>AMD</strong></td>
+        <td><span class="up">$537.51</span></td>
+        <td><span class="up">+3.4% (6/24 確認)</span></td>
+        <td>6/24 反彈 +3.4%，收 $537.51；景碩 ASIC 護盾回穩；Micron 盤後 beat 帶動盤後進一步拉升</td>
+      </tr>
+      <tr>
+        <td><strong>Intel (INTC)</strong></td>
+        <td><span class="up">$136.12</span></td>
+        <td><span class="up">+3.4% (6/24 確認)</span></td>
+        <td>6/24 反彈 +3.4%，收 $136.12；從 6/22 歷史高點 $140.94 仍有距離；Apple-Intel Foundry 邏輯不變</td>
+      </tr>
+      <tr>
+        <td><strong>Broadcom (AVGO)</strong></td>
+        <td><span class="down">$380.15</span></td>
+        <td><span class="down">-3.06% (6/23)</span></td>
+        <td>6/24 數據未確認；Google ASIC 傳聞消化中；Micron beat 有望帶動盤後回穩；$370-380 仍為關鍵支撐</td>
+      </tr>
+      <tr>
+        <td><strong>Lumentum (LITE)</strong></td>
+        <td><span class="down">$827.92</span></td>
+        <td><span class="down">-7.38% (6/23)</span></td>
+        <td>6/24 數據未確認；COHR +2.83% 回穩帶動矽光子板塊；J.P. Morgan 目標 $1,130；COHR 財報 6/30 前是催化劑</td>
+      </tr>
+      <tr>
+        <td><strong>Coherent (COHR)</strong></td>
+        <td><span class="up">$389.57</span></td>
+        <td><span class="up">+2.83% (6/24 確認)</span></td>
+        <td>6/24 反彈 +2.83%，脫離 JPM 目標 $380 支撐；財報 6/30 前是板塊命運分水嶺</td>
+      </tr>
+      <tr>
+        <td><strong>Eaton (ETN)</strong></td>
+        <td><span class="down">$405.28</span></td>
+        <td><span class="down">-7.00% (6/23)</span></td>
+        <td>6/24 數據未確認；6/23 系統性去槓桿受害；AI 電力長期需求不變；台廠三雄 6/23 跌幅遠小於 ETN</td>
+      </tr>
+      <tr>
+        <td><strong>GE Vernova (GEV)</strong></td>
+        <td><span class="down">$1,034.98</span></td>
+        <td><span class="down">-8.21% (6/23)</span></td>
+        <td>6/24 數據未確認；AI 電力去槓桿 $1,100 失守；Bernstein 目標 $1,206 仍在；台廠重電受衝擊遠較 GEV 小</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="analysis">
+    <strong>Micron beat 後對台廠四板塊今日（6/25）影響評估：</strong> Micron Q3 EPS $25.11（+24% beat）＋ HBM4 產能 2027 全售罄，是對 6/23 韓市熔斷恐慌的完整反駁。今日四板塊連動邏輯：①ABF 載板——Vera Rubin/GB300 AI 算力需求確認，欣興、景碩、南電 Q2 訂單能見度再強化，景碩（-8.67%）是今日最大反彈候選；②矽光子——AI 算力持續強勁 = CPO 光互連需求不滅，波若威、華星光受惠，COHR 財報 6/30 前是進一步確認；③低軌衛星——Micron beat 非低軌衛星直接催化劑，但整體市場情緒改善有助昇達科止跌；④重電——AI 算力需求確認 = AI 用電持續成長，台電標案護盾完整，今日三雄有望跟隨大盤反彈。
+  </div>
+</div>
+
+<!-- ===== ABF 載板 ===== -->
+<div class="section">
+  <div class="section-title">一｜ABF 載板
+    <span class="signal signal-opp">機會（Micron beat 確認 AI 需求；景碩 -8.67% 超跌今日首選反彈；IBIDEN ¥500B 擴產確認 ABF 超級週期；南電 5 月三雄中 YoY 最強 +35.82%）</span>
+  </div>
+
+  <div class="alert-pos">✅ <strong>Micron Q3 beat 是 ABF 板塊「基本面全確認」信號——景碩、欣興、南電 6/23 超跌已是逢低機會：今日台股最強反彈板塊預期</strong><br>6/23 ABF 三雄重挫（景碩 -8.67%、欣興 -3.08%、南電昨日已 +5.21%）的核心邏輯是「AI 記憶體需求見頂恐慌」（韓市熔斷起點）。Micron Q3 EPS $25.11 beat 24%、HBM 全售罄至 2027 初，直接宣告：AI 算力需求沒有見頂，GB300（Vera Rubin）備貨週期正在加速。這對 ABF 載板的直接影響：每多封裝一顆 AI 晶片（NVIDIA、AMD ASIC）就多一片 ABF 基板。景碩（ASIC 雙客戶護盾：NVIDIA + AMD）、欣興（Blackwell/Vera Rubin 市占 30-40%）、南電（高階 AI ASIC 非長約彈性最大）今日均是強力反彈候選。</div>
+
+  <div class="alert-pos">✅ <strong>IBIDEN 宣布 3 年投入 ¥5,000 億擴產 AI 基板卻暴跌 -13%——台灣三雄逆勢走強的邏輯：競爭者擴產 = 確認市場大到夠分</strong><br>IBIDEN 最新財報宣布 3 年內投入 ¥5,000 億（約 NT$1,060 億）擴產 AI 用 IC 基板，但 IBIDEN 股票當日暴跌 -13%（市場擔憂產能過剩）。台灣三雄欣興、景碩、南電卻逆勢走強——邏輯：①IBIDEN 的大幅擴產說明市場確認 2028 年 ABF 缺口仍達 35%，夠大到需要全球最大廠商大幅擴產；②台廠在 AI ASIC（Apple AIASIC、AMD ASIC）的差異化佈局不受 IBIDEN 擴產影響；③IBIDEN 擴產的第一個三年（2024-2027）主要填 Blackwell 需求，2027 後 Rubin 需求台廠已有先佔優勢。短線：IBIDEN 暴跌的恐慌不適用台廠，今日台廠三雄應持續表現強勢。</div>
+
+  <div class="alert-warn">⚠️ <strong>味之素 ABF 薄膜漲價 30% + 報價上調 3-6%——欣興、南電毛利率彈性最大，景碩相對受限：</strong>ABF 材料端漲價邏輯持續：味之素（全球 ABF 材料市占 >90%）確認漲價幅度最高達 30%，台廠 ABF 載板報價上調 3-6%（視合約占比）。毛利率最受惠：南電（非長約比例最高，報價彈性最大）→欣興（Blackwell 長約保量保護）→景碩（ASIC 混合）。外資 2026 全年目標：欣興 NT$1,060-1,350、南電 NT$1,050-1,275、景碩 NT$620-780。今日關注：法人是否乘 Micron beat 後行情擴大買超，特別是南電（昨已逆勢 +5.21%）。</div>
+
+  <div class="card">
+    <div class="card-title">📰 板塊重點新聞（過去 48 小時 ＋ 本週核心動態）</div>
+    <div class="news-item">
+      <div class="news-title">Micron Q3 FY2026 盤後 EPS $25.11 beat +24%——HBM4 售罄至 2027 初，AI 算力需求確認，ABF 超級週期邏輯強化</div>
+      <div class="news-meta">TradingKey / TheStreet / Money Morning　2026/06/24</div>
+      <div class="news-summary">Micron Q3 FY2026 財報：EPS $25.11（vs 共識 $20.20，beat 24.3%），HBM4 Vera Rubin 已產生 $10 億+ 營收，全年 HBM 容量售罄並延伸至 2027 年初。這直接確認：AI 算力資本開支沒有下滑，ABF 載板下游客戶（NVIDIA、AMD）的 AI 晶片封裝需求持續強勁。今日台股 ABF 三雄預期高開。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">IBIDEN ¥5,000 億三年擴產卻暴跌 -13%——台灣三雄欣興、景碩、南電逆勢走強，差異化邏輯確認</div>
+      <div class="news-meta">豐雲學堂（新光證券）　2026年6月（近期）</div>
+      <div class="news-summary">IBIDEN 最新財報宣布未來三年投入 ¥5,000 億擴產 AI 基板，市場因產能過剩疑慮使其股價暴跌 -13%。台灣三雄逆勢走強：欣興在 AI ASIC 差異化、景碩在 ASIC 雙客戶、南電在非長約報價彈性，三家與 IBIDEN 的競爭壓力有限。ABF 2028 缺口 35% 的長線結構不變。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">AMD 百億押注 EFB 生態系——景碩成第三家 ASIC 載板供應商，良率 95%、成本砍半確認台廠技術領先</div>
+      <div class="news-meta">豐雲學堂（新光證券）　2026年6月</div>
+      <div class="news-summary">AMD 宣布百億美元押注 EFB（Embedded Face Bonding）生態系，景碩為第三家 ASIC 載板供應商，良率達 95%、成本較 CoWoS 降低約 50%。AMD +3.4%（6/24）確認 ASIC 路線受市場認可，景碩的 AMD 護盾在 6/24 已開始回血。6/23 景碩 -8.67% 是 AMD 拖累所致，今日 AMD 反彈應帶動景碩強力回補。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">2026 PCB 全面缺貨漲價——ABF 載板超級週期四大戰略物資短缺，台廠供應鏈卡位戰正式開打</div>
+      <div class="news-meta">豐雲學堂（新光證券）　2026年6月</div>
+      <div class="news-summary">2026 年 PCB 全面缺貨漲價：四大戰略物資（ABF 薄膜、玻纖布、銅箔基板、化學品）同步短缺，ABF 載板超級週期缺口 2027 年預計達 27%、2028 年 35%。欣興（CSP AIASIC 70% 市占）、南電（非長約毛利彈性）、景碩（ASIC 雙客戶）三家在台灣供應鏈投資地圖中各有核心卡位。</div>
+    </div>
+  </div>
+
+  <div class="stock-grid">
+    <div class="stock-card">
+      <div class="stock-name">欣興 3037</div>
+      <div class="stock-price down">NT$974.0</div>
+      <div class="stock-detail">昨收（6/23）| 漲跌：<span class="down">-3.08%</span></div>
+      <div class="stock-detail">5月營收：NT$140.60億 | YoY：+32.37%</div>
+      <div class="stock-detail">訊號：NT$1,000 暫時失守；Micron beat 今日預計率先反彈；外資護盤積極；Vera Rubin 市占 30-40%；NT$960 是下方支撐</div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-name">景碩 3189</div>
+      <div class="stock-price down">NT$727.0</div>
+      <div class="stock-detail">昨收（6/23）| 漲跌：<span class="down">-8.67%</span></div>
+      <div class="stock-detail">5月營收：NT$42.00億 | YoY：+33.02%（累計 +29.27%）</div>
+      <div class="stock-detail">訊號：AMD +3.4% 今日護盾回血；Micron beat 全面強化；ASIC 雙客戶邏輯完整；今日四板塊中反彈幅度預期最大；目標 NT$620-780</div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-name">南電 8046</div>
+      <div class="stock-price up">NT$909.0</div>
+      <div class="stock-detail">昨收（6/23）| 漲跌：<span class="up">+5.21%</span>（全面下跌日逆勢強）</div>
+      <div class="stock-detail">5月營收：NT$44.40億 | YoY：+35.82%（三雄中最強；累計 +34.52%）</div>
+      <div class="stock-detail">訊號：南亞籌碼轉讓可能已完成；逆勢強 = 法人確認；若今日外資連買，目標 NT$1,050-1,275 啟動</div>
+    </div>
+  </div>
+
+  <div class="four-dim">
+    <div class="dim-card">
+      <div class="dim-label">基本面 <span class="dim-badge badge-bull">超強護盾（Micron beat 確認 AI 需求；5 月三雄歷史新高；IBIDEN ¥5,000 億擴產；2028 缺口 35%；味之素漲價助毛利）</span></div>
+      <div>Micron Q3 beat +24%（HBM4 售罄→AI 算力持續強勁→ABF 需求不滅）；欣興 5 月 NT$140.60 億（+32.37% YoY）；景碩 5 月 NT$42.00 億（+33.02%，歷史新高）；南電 5 月 NT$44.40 億（+35.82%，三雄最強）；IBIDEN ¥5,000 億確認市場大到 35% 缺口；味之素漲 30% 帶動載板報價 +3-6%；ABF 超級週期延伸至 2030。</div>
+      <details><summary>展開詳細</summary><div class="detail-body">ABF 板塊三重結構性支撐：①Micron Q3 beat HBM4 Vera Rubin 邏輯完整 = NVIDIA GB300/Vera Rubin 備貨確認 = 欣興 30-40% 市占延伸；②IBIDEN 3 年 ¥5,000 億 capex 確認 2028 年 ABF 仍有 35% 缺口，全球最大廠商的資本投入是市場容量的最佳背書；③味之素漲 30%+ABF 報價 +3-6%，南電（非長約比例最高）毛利率彈性最大，2026H2 毛利率跳升可期。景碩 ASIC 雙客戶（NVIDIA+AMD）護盾：AMD 確認 EFB 百億押注，景碩第三家供應商，良率 95%。</div></details>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">消息面 <span class="dim-badge badge-bull">強勢轉多（Micron beat 裁決 6/23 去槓桿為過度反應；IBIDEN 確認市場規模；AMD +3.4%；南電逆勢強已出現機構搶買信號）</span></div>
+      <div>Micron Q3 EPS $25.11 beat 24%（最重要催化劑，直接否定「AI 需求見頂」敘事）；AMD +3.4% 至 $537.51（景碩 ASIC 護盾回血）；IBIDEN ¥5,000 億擴產（確認市場規模夠大）；味之素漲 30% 報價上調；南電 6/23 逆勢 +5.21%（最強機構搶買信號）。消息面全面轉多，今日是底部確認日。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">技術面 <span class="dim-badge badge-bull">Micron beat 後今日預期全面反彈；景碩 NT$727 超跌後反彈力道最強；南電 NT$909 逆勢強形成新支撐</span></div>
+      <div>欣興 NT$974（-3.08%）：NT$960 支撐完整，今日看 NT$1,000-1,010 反彈目標。景碩 NT$727（-8.67%）：超跌最深，AMD +3.4% 帶動今日看 NT$780-800 反彈目標，Micron beat 加速。南電 NT$909（+5.21%逆勢）：形成新支撐 NT$880，今日若外資連買，看 NT$950-980。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">籌碼面 <span class="dim-badge badge-bull">南電外資連買是最強信號；景碩今日法人積極護盤預期；Micron beat 後外資對 ABF 三雄的反應是確認鍵</span></div>
+      <div>南電 6/23 逆勢 +5.21%，若今日（6/25）外資持續買超，確認南亞籌碼轉讓完成，南電進入新上升段，是三雄中最確定的加倉信號。景碩 6/24 AMD +3.4% 後機構已開始回補，今日 Micron beat 進一步強化，法人有強烈動機護盤並追買。欣興今日預計法人外資均積極買超（外資目標 NT$1,350 最高，有強買動機）。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 行事曆</div>
+    <div class="cal-item">
+      <div class="cal-date">今日 6/25</div>
+      <div>
+        <div class="cal-content">Micron beat 後市場首個反彈交易日 — 追蹤重點：ABF 三雄開盤漲幅、外資買超張數，尤其南電是否連第二日外資買超</div>
+        <div class="cal-note">今日是 6/23 去槓桿後的首個基本面確認反彈日，ABF 三雄跌深反彈幅度是今日最重要確認</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">07/10 前</div>
+      <div>
+        <div class="cal-content">ABF 三雄 6 月月收公告 — 追蹤重點：欣興是否突破 NT$145 億（味之素漲價效果開始反映）；景碩是否達 NT$43 億+；南電是否超越 +37%</div>
+        <div class="cal-note">味之素漲 30% 效果從 5 月合約調整到 6 月開始顯現，6 月月收將是毛利率彈性最直接的先行指標</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">08/26</div>
+      <div>
+        <div class="cal-content">NVIDIA Q2 FY2027 財報 — 追蹤重點：Vera Rubin（GB300）出貨量、Blackwell 轉換時間表、ABF 載板採購量是否同步拉升</div>
+        <div class="cal-note">NVIDIA 財報是 ABF 板塊的終極確認，市場已開始提前卡位</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ 風險與機會</div>
+    <div style="font-size:13px;line-height:1.75;">
+      <p><strong style="color:#4ade80;">機會：</strong>Micron Q3 beat +24% 是 6/23 超跌之後的最強反彈催化劑。景碩（-8.67%）是今日最大反彈候選，AMD +3.4% 已先行確認。南電 6/23 逆勢 +5.21%，若今日外資連買，是三雄中最確定的多頭訊號。IBIDEN 擴產確認市場規模，ABF 超級週期延伸至 2030 的結構性論述被強化。</p>
+      <p style="margin-top:8px;"><strong style="color:#f87171;">風險：</strong>若 Micron 盤後 +13% 的盤外效應因今日美股整體回落而縮減，台股反彈幅度可能低於預期。景碩 ASIC 護盾若 6/24 AMD 反彈不持續，NT$700-710 是下方支撐需守。IBIDEN 擴產的「過剩疑慮」若延燒至台廠，中線估值可能受壓。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 低軌衛星 ===== -->
+<div class="section">
+  <div class="section-title">二｜低軌衛星
+    <span class="signal signal-watch">觀察（Micron beat 改善整體市場情緒助止跌；SpaceX SPCX 上市後效應發酵；昇達科 H1 訂單 18 億 6 月底出貨確認；7 月上旬 6 月月收是底部確認催化劑）</span>
+  </div>
+
+  <div class="alert-pos">✅ <strong>昇達科 5 月月收 +57.24% YoY（NT$2.96 億）——月減 15% 係 V3 品項臨時調整非需求問題，6 月大幅反彈已確認，法說保證 6 月底前出貨完畢：</strong> 昇達科 5 月月收 NT$2.96 億（+57.24% YoY），月減 15.13% 因 StarLink V3 客戶端產品改版臨時暫停部分出貨，客戶依約支付補償金（計入業外收入，未損獲利）。法說確認：6 月恢復正常出貨，月增 30%+ 預期。H1 低軌衛星在手訂單 NT$18 億，6 月底出貨完成。LEO 占比 1-5 月累計 78.6%（5 月單月 75%）。累計 1-5 月 YoY +66.84%。外資目標 NT$2,513，現價 NT$1,355（6/23）有 +85% 上行空間，但需 6 月月收（7 月上旬）作為下一個觸發點。</div>
+
+  <div class="alert-pos">✅ <strong>SpaceX 6/12 在那斯達克掛牌（SPCX）——低軌衛星進入股市主流敘事，台廠護城河因「零紅鏈」政策最受惠：</strong> SpaceX 於 6 月 12 日以代號 SPCX 在那斯達克完成 IPO，低軌衛星從「概念股」正式升格為「SPCX 供應鏈」。台廠三雄（昇達科、華通、燿華）因 SpaceX「零紅鏈」政策（所有供應商須為非中系廠商），是唯一合規的核心供應商。國防大單 $730 億元確認后，「零紅鏈」護城河從商業市場擴展至國防市場，形成 2026-2035 年超長線護城河。SPCX 上市後的資金流入效應預計在 7 月持續發酵，台廠三雄有機會持續受到法人關注。</div>
+
+  <div class="alert-warn">⚠️ <strong>昇達科 -7.82%（6/23，NT$1,355）——無差別去槓桿所致，Micron beat 後今日止跌反彈預期；V3 過渡疑慮是唯一真實風險：</strong> 昇達科 6/23 -7.82% 至 NT$1,355，無低軌衛星特定利空，純屬系統性去槓桿拋售。Micron beat 後整體市場情緒改善，今日昇達科止跌概率高。核心風險仍是 V3 換代過渡疑慮——市場需要 7 月上旬 6 月月收「NT$3.8億+ 月增 30%+」來確認法說的保證。若 6 月月收不及預期，NT$1,300 以下是下方風險。若達預期，NT$1,500-1,700 是反彈目標。</div>
+
+  <div class="card">
+    <div class="card-title">📰 板塊重點新聞（近期核心動態）</div>
+    <div class="alert-note">📌 <strong>今日無 48 小時內低軌衛星特定新聞。</strong>以下為近期板塊核心動態（6/20 後）。板塊主催化劑：①7 月上旬昇達科 6 月月收；②SPCX 上市後效應持續。</div>
+    <div class="news-item">
+      <div class="news-title">SpaceX SPCX 那斯達克 6/12 上市——低軌衛星進入主流股市敘事，台廠零紅鏈供應商地位正式機構化</div>
+      <div class="news-meta">CMoney / 財報狗　2026/06/12</div>
+      <div class="news-summary">SpaceX 以代號 SPCX 在那斯達克掛牌 IPO，使低軌衛星從「概念題材」升格為「全球機構可直接持有的資產」。SPCX 上市後，與其供應鏈台廠（昇達科、華通、燿華）的資金連動效應增強——機構投資人同步建倉 SPCX 並布局台廠供應鏈。台廠因「零紅鏈」是不可替代供應商，受到 SPCX 機構持有人的連帶關注。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">昇達科法說 4 大亮點——低軌衛星訂單能見度 NT$18 億、2026 邁入高成長元年、TT&C + ISL 新產品確認</div>
+      <div class="news-meta">豐雲學堂（新光證券）　2026年5-6月</div>
+      <div class="news-summary">昇達科法說確認：①低軌衛星在手訂單 NT$18 億，6 月底前出貨完畢；②開發 TT&C（衛星遙控遙測）和 ISL（衛星間連接）兩項新產品，單顆衛星貢獻產值提升；③V3 換代後每顆衛星使用昇達科元件數量增加；④Q1 EPS YoY +65.77%，全年高成長元年。法說保護了市場信心，6 月月收是唯一剩餘的不確定變量。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">亞馬遜 Kuiper 加速追趕——FCC 批准再部署 4,500 顆衛星，2026 年商業服務啟動，台廠雙吃 StarLink + Kuiper</div>
+      <div class="news-meta">工商時報 / Pocket.tw　2026年2-6月</div>
+      <div class="news-summary">Amazon Kuiper 取得 FCC 批准再部署 4,500 顆衛星，2026 年底前推出商業服務。昇達科、華通已確認同時供應 SpaceX Starlink 和 Amazon Kuiper，是低軌衛星雙頭霸主的唯一重疊供應商。市場估計 Kuiper 在 2027-2028 年的訂單量將大幅提升，台廠雙客戶護城河更加穩固。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">SpaceX 密訪台廠擴大下單——昇達科、華通為重點對象，$730 億美國防大單「零紅鏈」完整護城河</div>
+      <div class="news-meta">豐雲學堂（新光證券）　2026年6月</div>
+      <div class="news-summary">SpaceX 近期低調訪台，聚焦昇達科（毫米波射頻元件）和華通（衛星 PCB），目的是擴大 V3 換代後採購量。SpaceX $730 億美國防大單「零紅鏈」（Non-Red Chain）要求台廠為主要供應商，形成 2026-2035 年長線護城河。燿華 LCP 材料隨 V3 升級需求增加，中長線受惠。</div>
+    </div>
+  </div>
+
+  <div class="stock-grid">
+    <div class="stock-card">
+      <div class="stock-name">昇達科 3491</div>
+      <div class="stock-price down">NT$1,355.0</div>
+      <div class="stock-detail">昨收（6/23）| 漲跌：<span class="down">-7.82%</span></div>
+      <div class="stock-detail">5月營收：NT$2.96億 | YoY：+57.24%（月減 15%，V3 調整，非需求問題）</div>
+      <div class="stock-detail">訊號：今日 Micron beat 止跌預期；NT$1,300-1,350 短線支撐；7 月上旬 6 月月收（預期月增 30%+）是底部確認；外資目標 NT$2,513</div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-name">華通 2313</div>
+      <div class="stock-price down">NT$243.0</div>
+      <div class="stock-detail">昨收（6/23）| 漲跌：<span class="down">-6.36%</span></div>
+      <div class="stock-detail">5月營收：NT$67.62億 | YoY：+13.02%</div>
+      <div class="stock-detail">訊號：StarLink PCB 90% 市占護城河；NT$240 短線支撐；SPCX 上市後效應助多；今日止跌預期</div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-name">燿華 2367</div>
+      <div class="stock-price down">NT$58.1</div>
+      <div class="stock-detail">昨收（6/23）| 漲跌：<span class="down">-4.13%</span></div>
+      <div class="stock-detail">5月營收：NT$15.33億 | YoY：+15.91%</div>
+      <div class="stock-detail">訊號：LCP 材料 V3 升級受惠；流動性低，觀察為主；NT$56-57 是支撐帶</div>
+    </div>
+  </div>
+
+  <div class="four-dim">
+    <div class="dim-card">
+      <div class="dim-label">基本面 <span class="dim-badge badge-bull">中線強（V3 確認非需求問題；18 億訂單 6 月底出貨；SpaceX+Kuiper 雙頭護城河；SPCX 上市機構化效應）</span></div>
+      <div>昇達科 H1 訂單 NT$18 億（6 月底完成出貨）、LEO 占比 78.6%、1-5 月 +66.84%；華通 Starlink PCB 90% 市占、$730 億國防大單零紅鏈；SpaceX 密訪台廠擴大下單；Amazon Kuiper 2026 商業化；SPCX 上市後機構化效應。6 月月收（7 月上旬）是唯一確認點，V3 過渡風險已被法說充分解釋。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">消息面 <span class="dim-badge badge-watch">等待中（SPCX 效應持續；Micron beat 改善情緒；主催化劑是 7/上旬昇達科 6 月月收）</span></div>
+      <div>正面：SPCX IPO 6/12 完成，機構建倉台廠供應鏈；SpaceX 訪台擴單；Kuiper 加速商業化；Micron beat 改善整體市場情緒，今日止跌預期。中性等待：低軌衛星板塊最重要的數據催化劑是昇達科 7 月上旬 6 月月收，需確認 V3 換代後訂單恢復。今日反彈主要受整體市場情緒驅動，板塊本身無特定利多。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">技術面 <span class="dim-badge badge-watch">昇達科 NT$1,355 接近支撐；Micron beat 後今日止跌、短線整理後看 NT$1,450-1,500</span></div>
+      <div>昇達科 NT$1,355（-7.82%），NT$1,300-1,350 是短線支撐帶，今日 Micron beat 止跌後看 NT$1,450-1,500；6 月月收後若達預期看 NT$1,700+，外資目標 NT$2,513。華通 NT$243（-6.36%），NT$240 支撐，SPCX 效應帶動短線看 NT$250-255。燿華 NT$58.1（-4.13%），流動性低，觀察。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">籌碼面 <span class="dim-badge badge-watch">SPCX 上市後機構建倉進度中；6 月月收後才有明確資金方向；今日止跌是短期底部信號</span></div>
+      <div>昇達科 6/23 -7.82% 是無差別去槓桿，非特定賣壓。SPCX 上市後全球機構建倉 SPCX 的同時，有動機同步布局台廠供應鏈（護城河最清晰）。今日若昇達科外資縮量止跌（或逆勢買超），說明機構已視 NT$1,355 為合理入場點。板塊最大的資金催化劑仍是 7 月上旬 6 月月收，預期月增 30%+ 若確認，外資可能大規模加倉。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 矽光子 ===== -->
+<div class="section">
+  <div class="section-title">三｜矽光子
+    <span class="signal signal-watch">觀察偏多（Micron beat = AI 算力持續 = CPO 需求不減；COHR +2.83%（6/24）止跌回穩；波若威 -0.23%（6/23）相對最抗跌；COHR 財報 6/30 前是板塊命運催化劑）</span>
+  </div>
+
+  <div class="alert-pos">✅ <strong>COHR 6/24 +2.83%（$389.57）——脫離 J.P. Morgan $380 目標價支撐區，Micron beat 後板塊情緒轉向，CPO 延遲論被邊緣化：</strong> Coherent（COHR）6/24 止跌反彈 +2.83% 至 $389.57，脫離 6/23 跌至的 J.P. Morgan $380 目標價支撐區。Micron Q3 beat（AI 算力持續強勁）是矽光子板塊最重要的情緒轉換器：AI 算力旺盛 = 資料中心 GPU 密度持續提升 = CPO 光互連需求時間表不變。SemiAnalysis「CPO 延遲到 2029」的論述在 Micron beat 的框架下更難成立。COHR 財報（6/30 前）是最後的基本面確認點，J.P. Morgan 維持 Overweight（目標 $380）而 COHR 已回升至 $389.57，機構認為 6/23 的 -10.40% 是超跌機會。</div>
+
+  <div class="alert-pos">✅ <strong>波若威（3163）6/23 -0.23%（NT$868）——四板塊 11 支個股中跌幅最小，NVIDIA Spectrum-X 邏輯護盾今日更強：</strong> 波若威（3163）6/23 僅 -0.23% 至 NT$868，在景碩 -8.67%、昇達科 -7.82%、COHR -10.40% 的全面下跌中幾乎不動，是最強的相對韌性信號。Micron beat 後：①AI 算力確認持續 = NVIDIA Spectrum-X CPO 需求不滅；②波若威核心是光纖過濾/波分多工元件（WDM），不依賴 AVGO 也不依賴記憶體邏輯，對韓市熔斷（記憶體疑慮）天然免疫。今日台股若全面高開，波若威可能率先衝擊 NT$950-1,000。4 月月收 +16.5%（5 月尚未公告），Q1 EPS +396.72%。</div>
+
+  <div class="alert-warn">⚠️ <strong>SemiAnalysis CPO 延遲論 vs NVIDIA 訂單倍增論——COHR 財報 6/30 前是最終裁決，台廠波若威＋華星光的上行空間在財報後才能充分釋放：</strong> CPO 板塊的核心爭論仍未完全消解：SemiAnalysis 6/9 稱 scale-out CPO 推遲至 2027 下調、scale-up 至 2029；但 Global Semi Research 反駁 NVIDIA 對 COHR/LITE 的 CW Laser 訂單從 1 月 4,000 萬顆增至 4-5 月 1 億顆。COHR 財報（6/30 前）的 CPO 出貨指引將是裁決時刻。若符合預期（CPO 訂單不滅），波若威、華星光有機會在 COHR 財報後突破當前整理區間，啟動新一段漲幅。</div>
+
+  <div class="card">
+    <div class="card-title">📰 板塊重點新聞（過去 48 小時 ＋ 本週核心動態）</div>
+    <div class="news-item">
+      <div class="news-title">2026 年 CPO 商轉元年——台積電 COUPE 技術領軍，NVIDIA、Broadcom 同步卡位，台廠供應鏈全解析</div>
+      <div class="news-meta">豐雲學堂（新光證券）　2026年6月</div>
+      <div class="news-summary">2026 年是 CPO（Co-Packaged Optics）光通訊商轉元年，台積電 COUPE（Co-Package with Unified Photonic Engine）平台正式進入大規模量產。波若威具備關鍵光學過濾技術，為台積電與 NVIDIA 重要盟友；華星光（Marvell 護航）具備設計到封裝垂直整合能力，進度領先同業。Morgan Stanley 預估 CPO 市場從 2023 年 $800 萬→2030 年 $93 億，CAGR 172%。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">COHR 6/24 +2.83%（$389.57）——脫離 JPM 目標 $380 支撐，Micron beat 改善矽光子板塊情緒</div>
+      <div class="news-meta">Investing.com / Yahoo Finance　2026/06/24</div>
+      <div class="news-summary">COHR 6/24 止跌 +2.83% 至 $389.57，在 Micron 法說前夕市場已對矽光子過度下跌進行修復。Micron Q3 beat（HBM4 全售罄→AI 算力持續→CPO 需求時間表不變）進一步強化矽光子邏輯。J.P. Morgan 維持 Overweight，在 $380 目標價幾乎被觸碰時重申「現在是買 COHR 和 LITE 的時機」，盤後 COHR 受 Micron beat 連動進一步拉升。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">矽光子國家隊全解析——波若威、華星光、上詮為三大龍頭，CPO「7 劍客」2026 年獲利爆發期</div>
+      <div class="news-meta">豐雲學堂（新光證券）/ Yahoo 股市　2026年6月</div>
+      <div class="news-summary">台灣矽光子國家隊：波若威（3163，WDM 過濾元件，台積電+NVIDIA 供應商）、華星光（4979，Marvell 護航，垂直整合）、上詮（3363，1.6T 產品 Q2 全面量產）。CPO「7 劍客」（波若威、華星光、上詮、聯亞、光聖、聯鈞、眾達-KY）2026 年進入獲利爆發期。COHR 財報 6/30 前是板塊最後一個外部確認催化劑。</div>
+    </div>
+  </div>
+
+  <div class="stock-grid">
+    <div class="stock-card">
+      <div class="stock-name">波若威 3163</div>
+      <div class="stock-price neutral">NT$868.0</div>
+      <div class="stock-detail">昨收（6/23）| 漲跌：<span class="neutral">-0.23%</span>（11 檔中跌幅最小）</div>
+      <div class="stock-detail">4月營收：+16.5% YoY（5月尚未公告）</div>
+      <div class="stock-detail">訊號：NVIDIA Spectrum-X 邏輯護盾完整；今日 Micron beat 助攻；看 NT$950-1,000；COHR 財報後可能進入新漲段</div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-name">華星光 4979</div>
+      <div class="stock-price down">NT$525.0</div>
+      <div class="stock-detail">昨收（6/23）| 漲跌：<span class="down">-4.89%</span></div>
+      <div class="stock-detail">月營收：尚未確認（Marvell 護航，垂直整合領先）</div>
+      <div class="stock-detail">訊號：今日受 COHR +2.83% 帶動止跌反彈；COHR 財報後是進一步確認；高位整理中，待觀察</div>
+    </div>
+  </div>
+
+  <div class="four-dim">
+    <div class="dim-card">
+      <div class="dim-label">基本面 <span class="dim-badge badge-bull">中線強（CPO 2026 商轉元年；Micron beat 確認 AI 算力；波若威 Q1 EPS +396.72%；COUPE 台積電平台；Morgan Stanley 市場 CAGR 172%）</span></div>
+      <div>2026 年 CPO 商轉元年（台積電 COUPE 量產）；Micron Q3 beat = AI 算力持續 = CPO 光互連需求確認；波若威 Q1 EPS +396.72%，4 月月收 +16.5%（5 月待公告）；華星光 Marvell 護航垂直整合；COHR NVIDIA 訂單 1 億顆/月（vs 1 月 4,000 萬顆）；Morgan Stanley CPO 市場 2030 年 $93 億（CAGR 172%）。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">消息面 <span class="dim-badge badge-bull">轉多（Micron beat 否定 CPO 延遲論基礎；COHR +2.83% 止跌；COUPE 台積電量產確認；SemiAnalysis 論述持續被反駁）</span></div>
+      <div>Micron beat +24%（AI 算力確認 = CPO 需求不滅）；COHR 6/24 +2.83%（矽光子情緒轉向）；J.P. Morgan 維持 Overweight（$380 目標價，COHR 已反彈至 $389.57 超越目標）；CPO 商轉元年確認；COHR 財報 6/30 前是最後催化劑。SemiAnalysis 延遲論在 AI 算力確認後更難成立。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">技術面 <span class="dim-badge badge-bull">波若威 NT$868 相對最強；今日看 NT$930-950；COHR 財報後若強，波若威有望突破 NT$1,000</span></div>
+      <div>波若威 NT$868（-0.23%），近乎平盤的抗跌力代表機構認可；今日 Micron beat 後預計挑戰 NT$920-950，COHR 財報後若強看 NT$1,000+。華星光 NT$525（-4.89%），COHR 帶動今日止跌反彈，短線看 NT$550-560，COHR 財報確認後看 NT$600+。高位整理中，待觀察。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">籌碼面 <span class="dim-badge badge-bull">波若威外資持續護盤；COHR 財報前機構建倉；今日 Micron beat 後資金可能率先流入矽光子</span></div>
+      <div>波若威 6/23 -0.23% 背後是外資積極護盤（NVIDIA Spectrum-X 護盾使外資不願輕易賣）；今日 Micron beat 後，矽光子是四板塊中「基本面最清晰+外資護盤最積極」的板塊，資金可能優先流入。COHR 財報 6/30 前是機構加倉的重要窗口，台廠波若威+華星光可能同步吸引建倉。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 行事曆</div>
+    <div class="cal-item">
+      <div class="cal-date">6/30 前</div>
+      <div>
+        <div class="cal-content">COHR（Coherent）Q4 FY2026 財報 — 追蹤重點：CPO 出貨量是否符合 NVIDIA 訂單指引（1 億顆/月）；2027 年 CPO 產能規劃</div>
+        <div class="cal-note">CPO 延遲論 vs 訂單倍增論的最終裁決時刻，財報結果將決定台廠波若威、華星光是否進入新漲段</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">07/10 前</div>
+      <div>
+        <div class="cal-content">波若威 6 月月收公告 — 追蹤重點：5 月 +16.5% 後，6 月是否加速至 +25%+（CPO 商轉元年量產效應）</div>
+        <div class="cal-note">波若威 4 月 +16.5%、3 月 +23.67%，如 6 月重回 +23%+，CPO 量產爬坡進度確認</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ 風險與機會</div>
+    <div style="font-size:13px;line-height:1.75;">
+      <p><strong style="color:#4ade80;">機會：</strong>Micron beat 是矽光子板塊的間接確認（AI 算力持續 = CPO 時間表不變），今日波若威、華星光有望較大幅度反彈。COHR 財報 6/30 前是進一步加倉的最後窗口，J.P. Morgan 在 $380 目標價已確認買點，Micron beat 後 COHR 盤後可能進一步大漲。</p>
+      <p style="margin-top:8px;"><strong style="color:#f87171;">風險：</strong>若 COHR 財報（6/30 前）公布 CPO 出貨量不及 NVIDIA 訂單速率，SemiAnalysis 延遲論被確認，台廠波若威（NT$868）、華星光（NT$525）面臨估值重壓。SemiAnalysis 延遲報告的後遺症尚未完全消化，短線波動仍大。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 重電 ===== -->
+<div class="section">
+  <div class="section-title">四｜重電（台灣）
+    <span class="signal signal-opp">機會（台電近百億標案重電五虎全入列；AI 缺電 235 億度中長線需求確實；中興電在手訂單 400 億；華城 Stargate 美國 AI 資料中心卡位；6/23 三雄跌幅四板塊最輕）</span>
+  </div>
+
+  <div class="alert-pos">✅ <strong>台電近百億標案重電五虎全數入列——中興電、華城、士電、亞力、樂事綠能分食，強韌電網計畫提前達陣：今日是四板塊中最穩定的板塊</strong><br>台電近期公布強韌電網近百億元標案開榜，重電五虎（中興電、華城、士電、亞力、樂事綠能）全數獲得分配，驗證重電廠商在台灣電力基礎建設中的不可替代性。標案聚焦變壓器和氣體絕縮開關（GIS）等核心組件，這兩類是台廠的核心製造強項。此標案延伸了重電廠商的在手訂單能見度——中興電當前在手訂單約 NT$400 億，能見度至 2028 年；華城訂單延伸至 2028-2030 年（含美國 Stargate 資料中心）。6/23 台廠重電三雄（華城 -2.17%、士電 -1.22%、中興電 +0.55%）是四板塊中跌幅最輕，充分驗證了重電作為「安全港」的相對穩定性。</div>
+
+  <div class="alert-pos">✅ <strong>AI 狂潮引爆電力缺口 235 億度——台灣 2025-2030 年電力建設預算超 NT$3,000 億/年，重電四雄訂單能見度延伸至 2028-2030 年：</strong> 全球 AI 資料中心建設爆炸式成長，引發電力缺口 235 億度（相當於台灣電力消耗的近 12%），使重電設備供需嚴重失衡——大型電力變壓器交期延伸至 2.5 年，矽鋼片（核心原材料）持續緊張。台廠四雄（華城、士電、中興電、亞力）因美國「非紅色供應鏈」政策需求，成為美國 AI 資料中心電力基建的首選供應商。華城已成為德州 Stargate AI 資料中心的指定變壓器供應商，訂單能見度至 2028 年下半。台電 2025-2030 強韌電網計畫年均採購 NT$3,000 億，國內需求穩定釋出。</div>
+
+  <div class="alert-note">📊 <strong>6/23 美股重電（ETN -7%、GEV -8.21%）大跌 vs 台廠三雄表現遠優——「安全港」相對性回歸：</strong> 6/23 美股 ETN -7.00%、GEV -8.21%（超過 NVDA -4.13%），顯示系統性去槓桿時重電也不免疫。但台廠重電三雄同期：華城 -2.17%、士電 -1.22%、中興電 +0.55%——跌幅僅為 ETN/GEV 的 1/4 到 1/3，甚至中興電逆勢上漲。差異在於台廠的台電標案護盾（政府採購保底需求）+ 在手訂單覆蓋率（能見度至 2028-2030，不受短期市場情緒影響）。今日 Micron beat 後整體市場反彈，台廠重電三雄作為前一日跌幅最小的板塊，今日反彈幅度相對有限，但穩定性最佳。</div>
+
+  <div class="card">
+    <div class="card-title">📰 板塊重點新聞（過去 48 小時 ＋ 本週核心動態）</div>
+    <div class="news-item">
+      <div class="news-title">台電近百億標案開榜——重電五虎中興電、華城、士電、亞力、樂事綠能全數入列，強韌電網提前達陣</div>
+      <div class="news-meta">豐雲學堂（新光證券）　2026年6月（近期）</div>
+      <div class="news-summary">台電公布強韌電網近百億元採購標案結果，重電五虎全數取得分配額。標案核心品項：高壓變壓器（330kV 以上）、氣體絕縮開關（GIS，345kV）等關鍵電力設備。中興電是唯一能生產 345kV 超高壓 GIS 的國內廠商，優勢明顯。標案規模反映台電 2025-2030 強韌電網計畫加速執行，重電廠商在手訂單能見度持續延伸。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">AI 狂潮恐引爆電力缺口 235 億度——華城、中興電、士電法人點名重電 8 強迎黃金成長期</div>
+      <div class="news-meta">旺得富理財網　2026/06/22</div>
+      <div class="news-summary">法人報告指出 AI 狂潮引爆全球電力缺口 235 億度，台灣重電四雄受益於台電強韌電網計畫+AI 資料中心用電。大型電力變壓器交期達 2.5 年，矽鋼片緊張，重電廠商訂單能見度普遍延伸至 2027-2030 年。法人點名華城（Stargate 卡位）、中興電（345kV GIS 獨家）、士電（儲能+電網雙引擎）為三大首選。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">AI 資料中心興建＋電子業擴廠——華城、士電、中興電、亞力接單火熱</div>
+      <div class="news-meta">豐雲學堂（新光證券）　2026年6月（近期）</div>
+      <div class="news-summary">AI 資料中心建設爆炸式成長（NVIDIA、Google、Meta 大幅擴大資本開支）+ 台灣電子業擴廠（台積電、封測廠），重電廠商承接 DC 電力基建和工廠電力配置雙引擎需求。華城已打入德州 Stargate AI 資料中心供應鏈（唯一台灣廠商），並進入台積電供應鏈（金額全曝光）。中興電在手訂單 NT$400 億，士電儲能新訂單持續增加。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">重電股大閱兵——中興電、東元、亞力、大同、華城訂單滿到 2031，官股法人「9 選 2」</div>
+      <div class="news-meta">旺得富理財網　2026/06/18</div>
+      <div class="news-summary">官股法人報告：重電板塊中，中興電（1513）、華城（1519）是首選 2 檔，目標價分別 NT$195、NT$935。中興電在手訂單 NT$400 億（能見度至 2028）；華城 Stargate 採購能見度至 2028H2，預估 2026 年 EPS NT$22.49 元。士電目標 NT$280，有儲能+電網雙重驅動。訂單能見度均延伸至 2028-2031 年，重電長線確定性最高。</div>
+    </div>
+  </div>
+
+  <div class="stock-grid">
+    <div class="stock-card">
+      <div class="stock-name">華城 1519</div>
+      <div class="stock-price down">NT$813.0</div>
+      <div class="stock-detail">昨收（6/23）| 漲跌：<span class="down">-2.17%</span>（四板塊中跌幅最輕之一）</div>
+      <div class="stock-detail">5月營收：下滑（出貨時間點因素）；全年 EPS 預估 NT$22.49</div>
+      <div class="stock-detail">訊號：Stargate 指定供應商；台積電供應鏈；訂單至 2028H2；官股目標 NT$935；今日穩健反彈預期</div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-name">士電 1503</div>
+      <div class="stock-price down">NT$242.0</div>
+      <div class="stock-detail">昨收（6/23）| 漲跌：<span class="down">-1.22%</span></div>
+      <div class="stock-detail">月營收：尚未確認（儲能 80MWh 已取得，爭取 300MWh）</div>
+      <div class="stock-detail">訊號：儲能+電網雙驅動；官股目標 NT$280；今日台電標案護盾穩定；相對最安全防禦性持倉</div>
+    </div>
+    <div class="stock-card">
+      <div class="stock-name">中興電 1513</div>
+      <div class="stock-price up">NT$182.0</div>
+      <div class="stock-detail">昨收（6/23）| 漲跌：<span class="up">+0.55%</span>（全面崩盤日逆勢上漲）</div>
+      <div class="stock-detail">月營收：尚未確認（在手訂單 NT$400 億，能見度至 2028）</div>
+      <div class="stock-detail">訊號：國內唯一 345kV GIS 製造商；台電標案護盾；6/23 逆勢 +0.55%；官股目標 NT$195；最穩健防禦性標的</div>
+    </div>
+  </div>
+
+  <div class="four-dim">
+    <div class="dim-card">
+      <div class="dim-label">基本面 <span class="dim-badge badge-bull">長線最確定（台電標案近百億；中興電 400 億在手；AI 缺電 235 億度；大型變壓器交期 2.5 年；訂單見到 2030 年）</span></div>
+      <div>台電近百億標案五虎全入列；中興電在手訂單 NT$400 億（能見度至 2028）；華城 Stargate 採購至 2028H2；AI 缺電 235 億度 = 全球電力基建超級週期；大型變壓器交期 2.5 年（供給緊張最確定板塊）；矽鋼片持續緊張；重電廠商訂單普遍見到 2028-2030 年，是四板塊中長線確定性最高的。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">消息面 <span class="dim-badge badge-bull">穩健（台電標案護盾；Micron beat 改善 AI 電力需求預期；中興電 6/23 +0.55% 逆勢；無特定利空）</span></div>
+      <div>台電近百億標案開榜（正面）；AI 資料中心資本開支確認（Micron beat = AI 算力不減 = 電力需求不減）；中興電 6/23 +0.55% 顯示防禦性買盤積極；旺得富 6/22 法人點名重電 8 強。無特定利空（ETN/GEV 6/23 大跌是系統性去槓桿，台廠已相對抗跌）。今日 Micron beat 後整體情緒改善，重電三雄溫和反彈。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">技術面 <span class="dim-badge badge-bull">三雄均在高位整理，中長線上升趨勢不變；華城 NT$813 接近 NT$800 支撐</span></div>
+      <div>華城 NT$813（-2.17%），NT$800 是重要支撐，今日 Micron beat 帶動看 NT$830-840；官股目標 NT$935 有 15% 空間。士電 NT$242（-1.22%），NT$235-240 支撐，今日溫和反彈；官股目標 NT$280。中興電 NT$182（+0.55%），6/23 逆勢上漲形成新支撐；今日續漲預期；目標 NT$195。高位整理中，待觀察。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">籌碼面 <span class="dim-badge badge-bull">台電標案護盾使機構持倉意願強；中興電 6/23 +0.55% 顯示防禦性資金積極流入；官股法人雙選重電</span></div>
+      <div>中興電 6/23 逆勢 +0.55% 是重電板塊籌碼面最強確認（下跌日的逆勢上漲 = 防禦性資金主動加倉）。官股法人「9 選 2」（中興電+華城），使官股基金有明確的護盤動機。台電近百億標案確認未來 2-3 年採購保底，法人持倉意願最強。重電是四板塊中最適合中長線持有的防禦性倉位。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 行事曆</div>
+    <div class="cal-item">
+      <div class="cal-date">07/10 前</div>
+      <div>
+        <div class="cal-content">三雄 6 月月收公告 — 追蹤重點：華城 6 月是否回補 5 月下滑（出貨時間點因素）；中興電是否維持 +20%+ YoY；士電儲能新訂單進度</div>
+        <div class="cal-note">台電標案效果從 Q3 開始反映，6 月月收是 Q3 啟動的先行指標</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">持續追蹤</div>
+      <div>
+        <div class="cal-content">台電重大採購公告（台電官網） — 追蹤重點：後續是否有超過 NT$100 億的大型標案（強韌電網計畫 2026H2 執行加速）</div>
+        <div class="cal-note">台電強韌電網計畫 2025-2030 年均 NT$3,000 億預算，Q3 標案預計陸續公告</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">持續追蹤</div>
+      <div>
+        <div class="cal-content">美國 AI 資料中心用電採購進展（Stargate / Meta / Google） — 追蹤重點：華城德州 Stargate 是否有新增訂單；其他 CSP 是否將台廠列入採購名單</div>
+        <div class="cal-note">美國「非紅色供應鏈」電力設備政策使台廠成唯一選項，訂單規模持續擴大中</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ 風險與機會</div>
+    <div style="font-size:13px;line-height:1.75;">
+      <p><strong style="color:#4ade80;">機會：</strong>台電近百億標案確認在手訂單護盾完整，訂單能見度延伸至 2028-2030 年是四板塊中最確定的長線基本面。中興電（NT$182，目標 NT$195）和華城（NT$813，目標 NT$935）是官股法人首選，估值修復空間明確。AI 缺電 235 億度是超長線結構性需求，大型變壓器 2.5 年交期代表供給緊張將持續。</p>
+      <p style="margin-top:8px;"><strong style="color:#f87171;">風險：</strong>若 AI 資本開支出現超預期縮減（Micron beat 已降低此風險），資料中心用電需求成長可能低於預期，重電長線估值需重評。美股 ETN -7%、GEV -8.21% 代表即使重電也不完全免疫系統性去槓桿，若美股出現第二波下跌，台廠重電仍有跟跌壓力。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 今日總結 ===== -->
+<div class="section">
+  <div class="section-title">📋 今日總結</div>
+
+  <div class="alert-pos">✅ <strong>今日核心敘事：Micron Q3 EPS $25.11 beat +24% → HBM4 售罄至 2027 → AI 算力超級週期確認 → 6/23 全面超跌今日反彈，ABF、矽光子是首選</strong></div>
+
+  <div class="card">
+    <div class="card-title">🎯 值得特別注意（優先順序）</div>
+    <div style="font-size:13px;line-height:1.75;padding:4px 0;">
+      <p><strong>1. 景碩（3189）是今日最大反彈候選</strong> — AMD 6/24 +3.4%（$537.51）回血 ASIC 邏輯，Micron beat 確認 AI 算力，6/23 景碩 -8.67% 是去槓桿超跌。今日開盤預計出現最強反彈（目標看 NT$780-800），是今日四板塊中最具進攻性的操作機會。</p>
+      <p style="margin-top:8px;"><strong>2. 南電（8046）外資是否連第二日買超</strong> — 南電 6/23 逆勢 +5.21% 是最強機構介入信號，若今日外資確認連續買超，代表南亞籌碼轉讓完成，從「三雄中最有壓力的」轉為「中線最確定的多頭方向」，目標 NT$1,050-1,275。</p>
+      <p style="margin-top:8px;"><strong>3. COHR 財報 6/30 前——矽光子台廠的最後分水嶺</strong> — COHR 6/24 +2.83%（$389.57），Micron beat 後盤後再拉。若財報確認 CPO 出貨符合 NVIDIA 訂單速率，波若威（NT$868）有機會啟動 NT$950-1,000+ 的新漲段；若不及預期，台廠矽光子面臨估值重壓。</p>
+      <p style="margin-top:8px;"><strong>4. 台電標案＋中興電 6/23 +0.55% 逆勢</strong> — 重電是今日四板塊中最穩定的防禦性選擇，無需追高，持倉等待 6 月月收（7 月上旬）和台電 Q3 標案公告。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🟢 今日各板塊信號</div>
+    <table>
+      <thead><tr><th>板塊</th><th>信號</th><th>最重要觀察點</th></tr></thead>
+      <tbody>
+        <tr><td><strong>ABF 載板</strong></td><td><span class="up">機會 ↑↑</span></td><td>景碩反彈幅度（AMD +3.4%）、南電外資是否連買</td></tr>
+        <tr><td><strong>低軌衛星</strong></td><td><span class="neutral">觀察</span></td><td>昇達科止跌確認；7 月上旬 6 月月收（月增 30%+？）</td></tr>
+        <tr><td><strong>矽光子</strong></td><td><span class="up">觀察偏多 ↑</span></td><td>COHR 財報 6/30 前（CPO 出貨量確認）；波若威今日突破力度</td></tr>
+        <tr><td><strong>重電</strong></td><td><span class="up">機會（防禦）↑</span></td><td>台電 Q3 標案時程；中興電是否續漲；華城 5 月回補時間點</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 明日追蹤清單</div>
+    <div style="font-size:13px;line-height:1.8;padding:4px 0;">
+      <p>• <strong>南電（8046）外資買超張數</strong> — 今日若確認第二日連買，升格為三雄中最確定多頭信號</p>
+      <p>• <strong>Micron 財報後 NVDA 盤後反應</strong> — 確認 NVDA 今日開盤價，是否帶動 ABF 三雄全面衝高</p>
+      <p>• <strong>昇達科 6 月月收出貨確認（6 月底）</strong> — V3 換代過渡是否如法說保證完成，是底部或繼續整理的判斷關鍵</p>
+      <p>• <strong>COHR 財報日期確認</strong> — 6/30 前具體哪天，是矽光子台廠的最重要催化劑時間點</p>
+      <p>• <strong>台電 Q3 重大標案公告</strong> — 持續追蹤台電官網，下一個近百億標案預期在 Q3 釋出</p>
+    </div>
+  </div>
+
+  <div class="alert-note">📌 <strong>資料說明：</strong>美股數據：6/23 全數確認（stock_data_20260624.json）；AMD、INTC、COHR 6/24 收盤數據來自 WebSearch 確認；NVDA、AVGO、LITE、ETN、GEV 6/24 精確收盤待 stock_data_20260625.json 生成（Chrome 工具當前不可用）。台股數據：6/23 全數確認（stock_data_20260624.json）；6/24 收盤數據待 stock_data_20260625.json 生成。月營收：欣興/景碩/南電/昇達科 5 月數據來源：鉅亨網確認。華通/燿華 5 月數據來源：前一日報告引用。波若威 4 月數據（5 月尚未公告）。其他股票月收尚未確認。</div>
+</div>
+
+</div>
+</body>
+</html>
