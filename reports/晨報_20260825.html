@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日產業晨報 2026/08/25</title>
+<style>
+  :root {
+    --bg: #0f1117; --card: #161b27; --card2: #1c2333; --border: #2a3448;
+    --blue: #4d7cfe; --blue-dim: #2a4099; --green: #22c55e; --red: #ef4444;
+    --yellow: #eab308; --text: #e2e8f0; --muted: #8492a6; --accent: #60a5fa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system,'Helvetica Neue',Arial,sans-serif; font-size: 14px; line-height: 1.6; }
+  .header { background: linear-gradient(135deg,#0f1117 0%,#1a2540 100%); border-bottom: 2px solid var(--blue); padding: 24px 32px; }
+  .header h1 { font-size: 24px; color: var(--blue); font-weight: 700; letter-spacing: 1px; }
+  .header .meta { color: var(--muted); font-size: 12px; margin-top: 4px; line-height: 1.8; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px 20px; }
+  .section { margin-bottom: 32px; }
+  .section-title { font-size: 16px; font-weight: 700; color: var(--blue); border-left: 4px solid var(--blue); padding-left: 10px; margin-bottom: 16px; }
+  .signal { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; margin-left: 10px; }
+  .signal-opp { background: #14532d; color: #4ade80; border: 1px solid #22c55e; }
+  .signal-watch { background: #422006; color: #fbbf24; border: 1px solid #eab308; }
+  .signal-risk { background: #450a0a; color: #f87171; border: 1px solid #ef4444; }
+  .signal-neutral { background: #1e293b; color: #94a3b8; border: 1px solid #475569; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  th { background: var(--card2); color: var(--muted); font-size: 12px; font-weight: 600; text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:hover td { background: rgba(77,124,254,0.05); }
+  .up { color: var(--green); font-weight: 600; }
+  .down { color: var(--red); font-weight: 600; }
+  .neutral { color: var(--muted); }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+  .card-title { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+  .news-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .news-item:last-child { border-bottom: none; }
+  .news-title { font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .news-meta { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  .news-summary { font-size: 13px; color: #b0bcd0; padding-left: 8px; border-left: 2px solid var(--blue-dim); }
+  .stock-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 12px; }
+  .stock-card { background: var(--card2); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; }
+  .stock-name { font-weight: 700; font-size: 14px; color: var(--accent); }
+  .stock-price { font-size: 18px; font-weight: 700; margin: 4px 0; }
+  .stock-price.na { font-size: 13px; color: var(--muted); font-weight: 600; }
+  .stock-detail { font-size: 12px; color: var(--muted); }
+  .analysis { background: rgba(77,124,254,0.06); border: 1px solid var(--blue-dim); border-radius: 6px; padding: 14px 16px; font-size: 13px; line-height: 1.75; color: #c8d5e8; margin: 12px 0; }
+  .cal-item { display: flex; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+  .cal-date { color: var(--blue); font-weight: 700; min-width: 80px; font-size: 12px; }
+  .cal-content { font-size: 13px; }
+  .cal-note { font-size: 12px; color: var(--muted); }
+  .four-dim { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0; }
+  .dim-card { background: var(--card2); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; font-size: 12px; }
+  .dim-label { font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .dim-badge { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: 700; }
+  .badge-bull { background: #14532d; color: #4ade80; }
+  .badge-bear { background: #450a0a; color: #f87171; }
+  .badge-neutral { background: #1e293b; color: #94a3b8; }
+  .badge-watch { background: #422006; color: #fbbf24; }
+  .alert-note { background: #1a1f2e; border: 1px solid #3a4060; border-radius: 4px; padding: 6px 12px; font-size: 12px; color: #7a8aa0; margin-bottom: 10px; }
+  .alert-warn { background: #1e1408; border: 1px solid #6b4a00; border-radius: 4px; padding: 6px 12px; font-size: 12px; color: #c08030; margin-bottom: 10px; }
+  .alert-pos { background: #0f1e14; border: 1px solid #1a5a2a; border-radius: 4px; padding: 6px 12px; font-size: 12px; color: #4ade80; margin-bottom: 10px; }
+  .alert-hot { background: #1e0a0a; border: 1px solid #7f1d1d; border-radius: 4px; padding: 6px 12px; font-size: 12px; color: #f87171; margin-bottom: 10px; }
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+  details summary { cursor: pointer; font-size: 12px; color: var(--accent); margin-top: 6px; }
+  details[open] summary { color: var(--muted); }
+  details .detail-body { font-size: 12px; color: #b0bcd0; padding: 8px 0 4px 8px; line-height: 1.7; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 每日產業晨報</h1>
+  <div class="meta">
+    日期：2026/08/25（星期二）　|　產出時間：自動排程執行（開盤前）<br>
+    資料基準日：美股8檔、台股11檔均取自 2026/08/24（一）收盤（來源：StockAnalysis.com／Yahoo Finance歷史價格，逐檔比對8/21與8/24收盤計算漲跌幅，8/22、8/23為週末無交易）。台股大盤8/24在美、韓半導體族群重挫拖累下開低走低，加權指數終場收46,043.60點，重挫1,057.05點、跌幅2.24%，為史上第8大單日跌點，成交量達1兆4,536.18億元；台積電終場重摔100元收2,390元（-4.02%），為該股史上最大單日下跌金額，外資單日賣超1,774億元創歷史新高，三大法人合計賣超2,102.38億元（來源：ETtoday財經雲、Yahoo奇摩股市）。四大板塊中，矽光子族群同步重挫逾5%，主因CPO技術路線圖論文與輝達CPO量產消息引發資金獲利了結；ABF載板三雄在大盤重挫下相對抗跌，且美銀證券當日調升三檔目標價，與矽光子的重挫形成鮮明對比，是本次執行區間內台廠層面最值得留意的變化。
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ===== 美股動態 ===== -->
+<div class="section">
+  <div class="section-title">🇺🇸 美股頭部動態</div>
+
+  <div class="alert-warn">⚠️ NVIDIA FY27 Q2財報法說會確認於8/26美股盤後召開（台灣時間約8/27清晨），分析師預期單季營收上看創紀錄920億美元；財報前晶片股全面回檔，是本週牽動台廠四大板塊評價最大的單一變數。</div>
+
+  <table>
+    <thead>
+      <tr><th>公司</th><th>昨收</th><th>漲跌幅</th><th>重點</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>NVIDIA (NVDA)</strong></td>
+        <td>$208.48（8/24）</td>
+        <td><span class="down">-2.91%</span></td>
+        <td>財報前連續第七個交易日走跌，8/26財報法說會前市場觀望氣氛濃厚，聚焦Blackwell/Rubin訂單能見度與資本支出指引</td>
+      </tr>
+      <tr>
+        <td><strong>AMD</strong></td>
+        <td>$456.75（8/24）</td>
+        <td><span class="down">-3.49%</span></td>
+        <td>與Intel同步遭晶片股拋售潮拖累重挫，8檔中跌幅第二深</td>
+      </tr>
+      <tr>
+        <td><strong>Intel (INTC)</strong></td>
+        <td>$87.26（8/24）</td>
+        <td><span class="down">-3.12%</span></td>
+        <td>受晶片股全面賣壓拖累，Invezz等外媒點名AMD、Intel同步走跌</td>
+      </tr>
+      <tr>
+        <td><strong>Broadcom (AVGO)</strong></td>
+        <td>$358.76（8/24）</td>
+        <td><span class="down">-2.63%</span></td>
+        <td>CDS利差擴大28個基點引發市場關注，Q3 FY26財報將於9/2美東盤後公布</td>
+      </tr>
+      <tr>
+        <td><strong>Lumentum (LITE)</strong></td>
+        <td>$830.17（8/24）</td>
+        <td><span class="down">-4.22%</span></td>
+        <td>8檔中跌幅最深，AI資料中心光連結股全面回檔，前兩日累計漲幅遭大幅回吐</td>
+      </tr>
+      <tr>
+        <td><strong>Coherent (COHR)</strong></td>
+        <td>$275.49（8/24）</td>
+        <td><span class="down">-4.85%</span></td>
+        <td>光通訊族群同步重挫，波動度為8檔次深</td>
+      </tr>
+      <tr>
+        <td><strong>Eaton (ETN)</strong></td>
+        <td>$408.67（8/24）</td>
+        <td><span class="down">-2.51%</span></td>
+        <td>電力設備股同步回檔，下次財報訂11/3（超出30天追蹤窗口）</td>
+      </tr>
+      <tr>
+        <td><strong>GE Vernova (GEV)</strong></td>
+        <td>$942.10（8/24）</td>
+        <td><span class="down">-1.54%</span></td>
+        <td>8檔中跌幅最淺，電力基建族群相對抗跌</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="analysis">
+    <strong>美股對台廠今日影響評估：</strong>
+    8/24美股8檔追蹤股全數收黑（-1.54%~-4.85%），為近期少見的板塊性全面回檔，核心驅動是NVIDIA財報前晶片股整體風險偏好收斂，疊加Broadcom信用違約交換（CDS）利差擴大28個基點引發市場對AI資本支出可持續性的疑慮。Lumentum、Coherent兩檔光通訊股跌幅最深（-4.22%、-4.85%），與同日台股矽光子族群（波若威-7.15%、華星光-5.20%）的重挫方向一致，顯示全球CPO／光通訊供應鏈今日同步進入獲利了結階段，而非單一市場的孤立事件。真正的關鍵變數仍是8/26 NVIDIA財報：市場關注管理層對Blackwell/Rubin訂單能見度與2027年資本支出指引是否維持，這將直接影響ABF載板（欣興、景碩、南電）長約評價與矽光子CPO放量預期。值得注意的是，台股大盤8/24重挫2.24%、創史上第8大跌點，主因是美、韓半導體族群拖累台積電暴跌4.02%，與美股當日走勢有直接連動，顯示此次台廠盤面全面性下修是全球晶片股風險偏好收斂的系統性事件，而非個股籌碼面問題。
+  </div>
+</div>
+
+<!-- ===== ABF 載板 ===== -->
+<div class="section">
+  <div class="section-title">一｜ABF 載板
+    <span class="signal signal-opp">機會（三雄在大盤重挫2.24%、台積電暴跌4.02%的背景下相對抗跌，美銀證券8/24同步調升三檔目標價至歷史高位，AI伺服器ABF需求敘事未變）</span>
+  </div>
+
+  <div class="alert-note">ℹ️ 本次執行區間（8/21收盤-8/25開盤前）經WebSearch查證，8/24當日美銀證券發布最新報告，將欣興、南電、景碩合理股價目標分別調升至1,400元、1,700元、1,250元，維持「買進」評等，基於AI伺服器帶動ABF載板需求持續成長的預期；查無其他8/23-8/25（48小時內）新增之個股專屬重大新聞。</div>
+
+  <div class="analysis">
+    <strong>產業趨勢解讀：</strong>
+    ABF三雄8/24走勢分歧但整體相對抗跌：欣興-0.92%、景碩-2.10%、南電持平0.00%，跌幅遠小於同日大盤的-2.24%與台積電的-4.02%，在美、韓半導體族群全面重挫、電子零組件族群普遍承壓的環境下，三雄的相對抗跌本身就是一個訊號。更關鍵的是，美銀證券選在大盤重挫當日（8/24）逆勢調升三檔目標價至歷史高位——欣興1,400元、南電1,700元、景碩1,250元，均維持買進評等，理由直指AI伺服器對ABF載板的需求持續成長，顯示外資對此板塊的長線基本面信心並未因短線大盤波動而動搖。基本面上，三雄7月營收年增率全數逾三成（南電+50.24%居冠、欣興+43.69%、景碩+35.85%），高盛此前估計2028年ABF缺貨率上看35%~51%的長線供需缺口敘事持續，輝達、超微等巨頭已將ABF載板長約延至2028年。整體而言，8/24的相對抗跌加上外資目標價調升，構成本次執行區間最明確的正向訊號，惟仍需留意8/26 NVIDIA財報是否強化或動搖這個敘事，以及8/31 MSCI指數調整生效後被動資金的實際力道。
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 個股狀況</div>
+    <div class="stock-grid">
+      <div class="stock-card">
+        <div class="stock-name">欣興 3037</div>
+        <div class="stock-price down">NT$1,075.00（-0.92%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（8/24）</span></div>
+        <div class="stock-detail">大盤重挫2.24%背景下相對抗跌，美銀證券調升目標價至1,400元、維持買進　7月營收162.54億元，月增9.11%、YoY+43.69%（8月數據尚未公告）｜累計前7月965.90億元，YoY+30.76%</div>
+      </div>
+      <div class="stock-card">
+        <div class="stock-name">景碩 3189</div>
+        <div class="stock-price down">NT$794.00（-2.10%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（8/24）</span></div>
+        <div class="stock-detail">盤中一度漲3.8%至842元，尾盤翻黑，美銀證券調升目標價至1,250元　7月營收45.49億元，YoY+35.85%（8月數據尚未公告）｜累計前7月281.50億元，YoY+30.7%｜MSCI晉升台灣標準指數（8/31生效）</div>
+      </div>
+      <div class="stock-card">
+        <div class="stock-name">南電 8046</div>
+        <div class="stock-price neutral">NT$1,135.00（0.00%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（8/24）</span></div>
+        <div class="stock-detail">盤中最高觸及1,170元、一度上漲3%，終場平盤作收，三雄中最抗跌，美銀證券調升目標價至1,700元最高　7月營收54.40億元，YoY+50.24%，三雄之冠（8月數據尚未公告）｜累計前7月301.92億元，YoY+39.38%｜MSCI晉升台灣標準指數（8/31生效）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="four-dim">
+    <div class="dim-card">
+      <div class="dim-label">基本面 <span class="dim-badge badge-bull">強：三雄7月營收YoY全數逾三成，南電+50.24%居冠</span></div>
+      <div>高盛估2028年ABF缺貨率上看35%~51%；輝達、超微長約已延至2028年，長線需求邏輯未變。8月營收將於9月10日前公告。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">消息面 <span class="dim-badge badge-bull">正向：美銀證券8/24同步調升三檔目標價至歷史高位，維持買進</span></div>
+      <div>調升理由聚焦AI伺服器帶動ABF需求持續成長，屬外資對長線基本面的正向背書。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">技術面 <span class="dim-badge badge-bull">大盤重挫2.24%、台積電暴跌4.02%背景下三雄相對抗跌</span></div>
+      <div>南電盤中一度上漲3%、終場平盤，抗跌性在電子股全面回檔中格外醒目。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">籌碼面 <span class="dim-badge badge-neutral">大盤8/24三大法人合計賣超2,102.38億元創紀錄，個股別資料因付費牆限制未列入</span></div>
+      <div>外資單日賣超1,774億元寫下歷史新高，惟三雄逆勢獲外資目標價調升，籌碼面訊號相對正向。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 本週行事曆</div>
+    <div class="cal-item">
+      <div class="cal-date">08/26</div>
+      <div>
+        <div class="cal-content">NVIDIA FY27 Q2財報法說會（台灣時間約8/27清晨） — 追蹤重點：AI資本支出指引是否延續，直接牽動載板需求預期</div>
+        <div class="cal-note">分析師預期單季營收上看920億美元創紀錄</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">08/31</div>
+      <div>
+        <div class="cal-content">MSCI台灣指數季度調整正式生效 — 景碩、南電晉升標準指數</div>
+        <div class="cal-note">追蹤重點：被動資金買盤力道能否延續三雄抗跌表現</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">09/10前</div>
+      <div>
+        <div class="cal-content">三雄8月營收陸續公告 — 追蹤重點：ABF占比與毛利率是否延續上升趨勢</div>
+        <div class="cal-note">7月營收YoY全數逾三成</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ 風險與機會</div>
+    <div style="font-size:13px;line-height:1.75;">
+      <p><strong style="color:#4ade80;">機會：</strong>大盤重挫2.24%背景下三雄相對抗跌，美銀證券8/24同步調升三檔目標價至歷史高位（欣興1,400元、南電1,700元、景碩1,250元）並維持買進，長線供需缺口敘事（2028年缺貨率上看35%~51%）未變；MSCI 8/31生效帶來被動買盤。</p>
+      <p style="margin-top:8px;"><strong style="color:#f87171;">風險：</strong>8/26 NVIDIA財報前，晶片股整體風險偏好仍脆弱，若財報不如預期，恐連動載板股評價；三大法人8/24創紀錄賣超2,102.38億元，市場整體風險偏好收斂，三雄若持續受大盤系統性賣壓拖累，短線波動度可能放大。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 低軌衛星 ===== -->
+<div class="section">
+  <div class="section-title">二｜低軌衛星
+    <span class="signal signal-neutral">中性（三檔漲跌互見+0.78%~-0.47%，波動遠小於大盤，查無48小時內個股專屬新聞）</span>
+  </div>
+
+  <div class="alert-note">ℹ️ 本次執行區間（8/21收盤-8/25開盤前）經WebSearch查證昇達科、華通、燿華及「低軌衛星」「Starlink」相關關鍵字，最新可查證的個股專屬新聞集中在4月下旬（SpaceX太空AI言論轉趨保守導致的族群重挫）與7月（SpaceX低調訪台擴大下單傳聞），均超出48小時窗口。查無8/23-8/25新增之個股專屬重大新聞。</div>
+
+  <div class="analysis">
+    <strong>產業趨勢解讀：</strong>
+    低軌衛星板塊8/24走勢分歧但波動有限：昇達科+0.78%逆勢收紅、燿華+0.95%同步收紅，僅華通小跌-0.47%，三檔波動幅度均遠小於大盤當日-2.24%的跌幅，顯示板塊未受美、韓半導體族群拖累的系統性賣壓明顯連動，走勢相對獨立。查無任何48小時內的個股專屬新聞可歸因今日表現，較可能反映的是板塊本身缺乏新催化劑、資金隨大盤情緒小幅波動的一般性表現。基本面上，昇達科上半年稅後純益年增1.61倍、EPS達8.15元，優於歷年全年獲利；華通低軌衛星專用電路板全球市占約八成，泰國廠產能持續擴大；燿華泰國新廠拚2026下半年量產，訂單能見度看至2027年。昇達科17億元收購巨頻科技逾51%股權案，原預計8月完成交割，惟截至本次執行仍未見官方正式公告，交割時程是否如期兌現，是板塊接下來最主要的驗證變數。整體而言，板塊基本面穩健但短線缺乏新催化劑，訊號維持中性，需持續觀察巨頻交割案進度與9月營收數字。
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 個股狀況</div>
+    <div class="stock-grid">
+      <div class="stock-card">
+        <div class="stock-name">昇達科 3491</div>
+        <div class="stock-price up">NT$1,290.00（+0.78%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（8/24）</span></div>
+        <div class="stock-detail">大盤重挫背景下逆勢收紅，上半年稅後純益年增1.61倍、EPS 8.15元　17億元收購巨頻科技逾51%股權，交割時程仍未見正式公告｜7月營收2.3億元，月減10.36%、YoY+82.02%（8月數據尚未公告）</div>
+      </div>
+      <div class="stock-card">
+        <div class="stock-name">華通 2313</div>
+        <div class="stock-price down">NT$212.50（-0.47%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（8/24）</span></div>
+        <div class="stock-detail">跌幅遠小於大盤，全球低軌衛星專用電路板市占約八成，泰國廠持續擴大產能｜7月營收69.55億元，月增0.6%、YoY+16.0%（8月數據尚未公告）｜累計前7月464.95億元，YoY+13.6%</div>
+      </div>
+      <div class="stock-card">
+        <div class="stock-name">燿華 2367</div>
+        <div class="stock-price up">NT$42.50（+0.95%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（8/24）</span></div>
+        <div class="stock-detail">大盤重挫背景下逆勢收紅，泰國新廠拚2026下半年量產，訂單能見度看至2027年｜7月營收16.21億元，YoY+29.1%（8月數據尚未公告）｜累計前7月109.13億元，YoY+24.73%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="four-dim">
+    <div class="dim-card">
+      <div class="dim-label">基本面 <span class="dim-badge badge-bull">強：昇達科上半年EPS 8.15元勝歷年全年；燿華訂單能見度看至2027年</span></div>
+      <div>三檔皆為7月最新公告數據，8月營收將於9月10日前陸續公告。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">消息面 <span class="dim-badge badge-neutral">中性：查無48小時內個股專屬新聞，巨頻收購案交割公告仍未兌現</span></div>
+      <div>已透過WebSearch多組關鍵字確認查無相關報導，非搜尋工具限制所致。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">技術面 <span class="dim-badge badge-neutral">三檔8/24漲跌互見+0.78%~-0.47%，波動遠小於大盤-2.24%</span></div>
+      <div>昇達科、燿華逆勢收紅，走勢相對獨立於大盤系統性賣壓之外。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">籌碼面 <span class="dim-badge badge-neutral">大盤8/24三大法人合計賣超2,102.38億元創紀錄，個股別資料因付費牆限制未列入</span></div>
+      <div>外資／投信個股別買賣超5日累計本次不列入報告。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 本週行事曆</div>
+    <div class="cal-item">
+      <div class="cal-date">08月內（時程未定）</div>
+      <div>
+        <div class="cal-content">昇達科收購巨頻科技預計完成交割 — 追蹤重點：時程若延至9月，市場觀感可能轉趨保守</div>
+        <div class="cal-note">交易總規模上限17億元，取得逾51%股權，原預計8月完成、目前尚無正式交割公告</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">09/10前</div>
+      <div>
+        <div class="cal-content">昇達科、華通、燿華8月營收公告 — 追蹤重點：昇達科能否止住7月月減10.36%的動能疑慮</div>
+        <div class="cal-note">昇達科上半年EPS已優於歷年全年，下半年動能能否延續是關鍵</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ 風險與機會</div>
+    <div style="font-size:13px;line-height:1.75;">
+      <p><strong style="color:#4ade80;">機會：</strong>昇達科、燿華在大盤重挫2.24%的背景下逆勢收紅，顯示資金對板塊基本面仍具信心；昇達科上半年獲利已勝過歷年全年；華通低軌衛星電路板市佔優勢地位未變，泰國產能持續擴大。</p>
+      <p style="margin-top:8px;"><strong style="color:#f87171;">風險：</strong>巨頻併購案公告逾一個月仍未見正式交割完成，時程不確定性是板塊最大變數；板塊短線缺乏新催化劑，若電子股氣氛延續偏弱，三檔恐難獨善其身。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 矽光子 ===== -->
+<div class="section">
+  <div class="section-title">三｜矽光子
+    <span class="signal signal-risk">風險（波若威重挫-7.15%、華星光重挫-5.20%，CPO技術路線圖論文與輝達CPO量產消息引發資金全面獲利了結，中國CPO指數同日亦重挫逾3%）</span>
+  </div>
+
+  <div class="alert-note">ℹ️ 本次執行區間（8/21收盤-8/25開盤前）經WebSearch查證，8/24當日SK海力士與維吉尼亞大學研究團隊於《自然‧電子學》（Nature Electronics）聯合發表論文，系統性闡述CPO（共同封裝光學）技術在高效能運算與AI領域的發展路線圖；同日輝達宣布CPO技術正式邁入規模化量產階段並公布合作夥伴名單，市場解讀技術路徑生變，資金全面獲利了結。中國CPO指數8/24早盤一度重挫逾3%，成分股普遍下行，台灣光通訊股同步走跌。</div>
+
+  <div class="analysis">
+    <strong>產業趨勢解讀：</strong>
+    矽光子板塊8/24在CPO技術路線圖論文與輝達CPO量產消息的雙重衝擊下重挫：波若威大跌7.15%，是11檔追蹤台廠個股中跌幅最深者；華星光同步重挫5.20%。這與8/21當日波若威因分盤處置期屆滿大漲6.39%的走勢形成劇烈反轉，顯示短線資金在處置限制解除後的buying效應消化完畢，疊加產業面新變數，觸發獲利了結賣壓。核心驅動是SK海力士與維吉尼亞大學團隊在《自然‧電子學》發表的CPO技術路線圖論文，加上輝達同日宣布CPO邁入規模化量產並公布合作夥伴名單，市場解讀為技術迭代預期生變，資金重新評估既有CPO概念股的卡位優勢，中國CPO指數同步重挫逾3%，顯示這是跨市場的板塊性重新定價，而非台廠個股的孤立事件。分析人士指出，股價重挫更多是資金、結構與情緒層面的反應，低功耗光子元件、記憶體一致性協議、系統可靠性與製造成本等實際落地的技術瓶頸仍待解決，距離大規模商轉仍有相當距離。基本面上，波若威、華星光7月營收年增分別28.65%、31.01%，是四大板塊中最扎實者，波若威已打入輝達CPO供應鏈、光纖套件產品拚下半年放量，長線基本面敘事並未因單日重挫而改變。整體而言，本次重挫屬於資金面對技術路線圖重新定價的短線衝擊，訊號維持風險，需密切觀察後續是否出現進一步的技術面利空或資金能否回流。
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 個股狀況</div>
+    <div class="stock-grid">
+      <div class="stock-card">
+        <div class="stock-name">波若威 3163</div>
+        <div class="stock-price down">NT$727.00（-7.15%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（8/24）</span></div>
+        <div class="stock-detail">11檔追蹤台廠中8/24跌幅最深，與8/21處置期屆滿當日+6.39%形成劇烈反轉　CPO技術路線圖論文與輝達CPO量產消息引發資金獲利了結　仍打入輝達CPO生態系，光纖套件產品拚下半年放量｜7月營收2.1億元，YoY+28.65%（8月數據尚未公告）｜累計前7月14.58億元，YoY+18.96%</div>
+      </div>
+      <div class="stock-card">
+        <div class="stock-name">華星光 4979</div>
+        <div class="stock-price down">NT$547.00（-5.20%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（8/24）</span></div>
+        <div class="stock-detail">與波若威同步遭CPO族群重新定價賣壓拖累｜7月營收5.09億元，月增11.8%、YoY+31.01%（8月數據尚未公告）｜累計前7月29.91億元，YoY+17.64%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="four-dim">
+    <div class="dim-card">
+      <div class="dim-label">基本面 <span class="dim-badge badge-bull">強：波若威7月YoY+28.65%，華星光YoY+31.01%，四大板塊中最扎實</span></div>
+      <div>CPO長線需求結構性成長敘事未變；波若威打入輝達CPO供應鏈，下半年放量在即，惟技術路徑落地時程需持續驗證。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">消息面 <span class="dim-badge badge-bear">負向：SK海力士/維吉尼亞大學CPO技術路線圖論文＋輝達CPO量產夥伴名單引發資金重新定價</span></div>
+      <div>中國CPO指數同日重挫逾3%，屬跨市場板塊性事件，非台廠個股孤立利空。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">技術面 <span class="dim-badge badge-bear">波若威8/24-7.15%（11檔中最深），與8/21處置期屆滿+6.39%劇烈反轉</span></div>
+      <div>華星光同步重挫5.20%，短線資金buying效應消化完畢後轉為獲利了結賣壓。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">籌碼面 <span class="dim-badge badge-bear">大盤8/24三大法人合計賣超2,102.38億元創紀錄，個股別資料因付費牆限制未列入</span></div>
+      <div>波若威處置期解除後首週即遭逢產業面利空，量價變化為後續觀察重點。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 本週行事曆</div>
+    <div class="cal-item">
+      <div class="cal-date">08/26</div>
+      <div>
+        <div class="cal-content">NVIDIA FY27 Q2財報法說會 — 追蹤重點：CPO、光通訊資本支出指引是否延續，能否扭轉當前資金情緒</div>
+        <div class="cal-note">台灣時間約8/27清晨</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">09/02</div>
+      <div>
+        <div class="cal-content">Broadcom（AVGO）Q3 FY26財報（美東盤後） — 追蹤重點：CPO、AI網通展望是否延續，CDS利差擴大是否進一步發酵</div>
+        <div class="cal-note">AVGO為CPO關鍵指標股之一，8/24 CDS利差已擴大28個基點</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ 風險與機會</div>
+    <div style="font-size:13px;line-height:1.75;">
+      <p><strong style="color:#4ade80;">機會：</strong>兩檔7月營收年增均逾28%，基本面居四大板塊之冠；波若威已打入輝達CPO供應鏈，下半年放量在即；若本次重挫屬短線資金情緒面反應，基本面未變，後續不排除出現逢低承接機會。</p>
+      <p style="margin-top:8px;"><strong style="color:#f87171;">風險：</strong>CPO技術路線圖論文與輝達合作夥伴名單公布，市場對既有台廠卡位優勢的疑慮尚未消化完畢，若後續有進一步技術面利空，恐延續賣壓；中國CPO指數同步重挫顯示這是跨市場重新定價，台廠短線恐難獨立於全球資金情緒之外；8/26 NVIDIA財報前，光通訊族群整體波動度預期居高不下。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 重電 ===== -->
+<div class="section">
+  <div class="section-title">四｜重電（台灣）
+    <span class="signal signal-neutral">中性偏強（三檔跌幅-1.20%~-1.52%，遠小於大盤-2.24%，相對抗跌，查無個股專屬壞消息）</span>
+  </div>
+
+  <div class="alert-note">ℹ️ 本次執行區間（8/21收盤-8/25開盤前）經WebSearch查證華城、士電、中興電及「重電」「變壓器」「台電」相關關鍵字，查無8/23-8/25（48小時內）個股專屬重大新聞或新增台電標案公告；現有報導多為法人對三雄全年財測與訂單能見度的例行性追蹤分析，發布日期不明確或已逾48小時，故以基本面資訊列入板塊背景參考，不計入「今日重點新聞」。</div>
+
+  <div class="analysis">
+    <strong>產業趨勢解讀：</strong>
+    重電板塊8/24三檔同步小幅收黑：華城-1.52%、士電-1.24%、中興電-1.20%，波動幅度均遠小於大盤當日-2.24%的重挫，也明顯優於同日矽光子族群逾5%的跌幅，顯示重電板塊在美、韓半導體族群拖累台積電暴跌4.02%的系統性賣壓下，走勢相對獨立、抗跌性居四大板塊之冠。查無任何48小時內的個股專屬新聞或新增標案公告可歸因今日表現，較可能反映的是傳產股在電子股全面重挫的氛圍下，仍受惠於資金避險性質而相對抗跌。基本面上，法人預估三雄2026年全年獲利動能強勁：華城EPS上看23.50元，稅後純益年增67.95%；士電EPS上看9.80元，年增56.20%，並已取得80MWh表後儲能訂單；中興電EPS約9.71元，年增22.47%，並積極切入半導體廠務市場、預計2026年下半年取得首筆半導體客戶訂單。三雄訂單能見度普遍看至2028-2031年，受惠台電強韌電網計畫與AI資料中心供電需求雙引擎。整體而言，板塊基本面穩健、股價相對抗跌，訊號維持中性偏強，需等待新標案公告或8月營收數字進一步驗證動能是否轉強。
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 個股狀況</div>
+    <div class="stock-grid">
+      <div class="stock-card">
+        <div class="stock-name">華城 1519</div>
+        <div class="stock-price down">NT$712.00（-1.52%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（8/24）</span></div>
+        <div class="stock-detail">法人估2026年EPS上看23.50元、稅後純益年增67.95%，AI資料中心訂單能見度達2028年　現金股利每股11元預計8/26發放｜7月營收20.5億元，月增18.5%、YoY-8.32%（8月數據尚未公告）｜累計前7月122.62億元，YoY-3.68%</div>
+      </div>
+      <div class="stock-card">
+        <div class="stock-name">士電 1503</div>
+        <div class="stock-price down">NT$199.50（-1.24%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（8/24）</span></div>
+        <div class="stock-detail">法人估2026年EPS上看9.80元、年增56.20%，已取得80MWh表後儲能訂單，離尖峰電價差擴大帶動儲能業務新動能｜7月營收29.71億元，YoY+15.1%，三檔中增幅最高（8月數據尚未公告）｜累計前7月240.93億元，YoY+10.8%</div>
+      </div>
+      <div class="stock-card">
+        <div class="stock-name">中興電 1513</div>
+        <div class="stock-price down">NT$164.00（-1.20%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（8/24）</span></div>
+        <div class="stock-detail">法人估2026年EPS約9.71元、年增22.47%，積極切入半導體廠務市場，估2026下半年取得首筆半導體客戶訂單；在手訂單能見度看至2031年｜7月營收24.1億元，YoY+3.83%（8月數據尚未公告）｜累計前7月164.34億元，YoY+3.53%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="four-dim">
+    <div class="dim-card">
+      <div class="dim-label">基本面 <span class="dim-badge badge-bull">強：法人估三雄2026年EPS全數年增逾20%，華城上看67.95%居冠</span></div>
+      <div>三雄訂單能見度普遍看至2028-2031年，AI資料中心供電需求為長線核心動能。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">消息面 <span class="dim-badge badge-neutral">中性：查無48小時內個股專屬新聞或新增標案公告</span></div>
+      <div>已透過WebSearch多組關鍵字確認查無相關報導，非搜尋工具限制所致。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">技術面 <span class="dim-badge badge-bull">三檔8/24跌幅-1.20%~-1.52%，遠小於大盤-2.24%，抗跌性居四大板塊之冠</span></div>
+      <div>在美、韓半導體族群拖累大盤重挫的環境下，重電板塊走勢相對獨立平穩。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">籌碼面 <span class="dim-badge badge-neutral">大盤8/24三大法人合計賣超2,102.38億元創紀錄，個股別資料因付費牆限制未列入</span></div>
+      <div>個股別外資／投信買賣超5日累計本次不列入報告。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 本週行事曆</div>
+    <div class="cal-item">
+      <div class="cal-date">08/26</div>
+      <div>
+        <div class="cal-content">華城現金股利發放（每股11元） — 追蹤重點：發放後是否有明顯賣壓</div>
+        <div class="cal-note">除權息已於8/5完成，同日並辦理1100:1000股票分割</div>
+      </div>
+    </div>
+    <div class="cal-item">
+      <div class="cal-date">09/10前</div>
+      <div>
+        <div class="cal-content">士電、中興電、華城8月營收公告 — 追蹤重點：AIDC拉貨力道能否延續上半年強勢</div>
+        <div class="cal-note">法人估三雄2026全年EPS全數年增逾20%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ 風險與機會</div>
+    <div style="font-size:13px;line-height:1.75;">
+      <p><strong style="color:#4ade80;">機會：</strong>三檔在大盤重挫2.24%背景下相對抗跌，抗跌性居四大板塊之冠；法人估三雄2026年EPS全數年增逾20%，華城上看67.95%居冠；台電強韌電網計畫與AI資料中心供電需求雙引擎長線背景未變；中興電積極切入半導體廠務市場，估下半年取得首筆半導體客戶訂單。</p>
+      <p style="margin-top:8px;"><strong style="color:#f87171;">風險：</strong>本次無新增48小時內個股專屬消息，缺乏新催化劑支撐股價進一步表現；華城7月單月營收年減8.32%，營收認列節奏波動須留意；若美股ETN、GEV跌勢延續（本次分別-2.51%、-1.54%），不排除評價修正壓力遞延傳導至台廠。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 今日總結 ===== -->
+<div class="section">
+  <div class="section-title">📋 今日總結</div>
+
+  <div class="card">
+    <div class="card-title">🎯 值得特別注意（優先順序）</div>
+    <div style="font-size:13px;line-height:1.9;padding: 4px 0;">
+      <p><strong>1. 台股8/24重挫1,057.05點（-2.24%），收46,043.60點，為史上第8大單日跌點，台積電暴跌100元（-4.02%）創該股史上最大單日跌幅：</strong>主因美、韓半導體族群重挫拖累，外資單日賣超1,774億元創歷史新高，三大法人合計賣超2,102.38億元，是本次晨報最大的總體市場變數，四大板塊個股表現均需放在這個系統性賣壓的背景下解讀。</p>
+      <p style="margin-top:6px;"><strong>2. 矽光子板塊逆勢重挫，波若威-7.15%、華星光-5.20%，與8/21處置期屆滿當日的+6.39%形成劇烈反轉：</strong>核心驅動是SK海力士／維吉尼亞大學CPO技術路線圖論文與輝達CPO量產夥伴名單公布，引發資金對既有CPO概念股卡位優勢的重新定價，中國CPO指數同步重挫逾3%，屬跨市場板塊性事件，是本次晨報唯一觸發「風險」訊號的板塊。</p>
+      <p style="margin-top:6px;"><strong>3. ABF載板三雄在大盤重挫背景下相對抗跌，美銀證券8/24同步調升三檔目標價至歷史高位（欣興1,400元、南電1,700元、景碩1,250元）：</strong>與矽光子的重挫形成鮮明對比，顯示外資對ABF載板長線基本面的信心未受短線大盤波動動搖，是本次晨報唯一觸發「機會」訊號的板塊。</p>
+      <p style="margin-top:6px;"><strong>4. NVIDIA FY27 Q2財報將於8/26美股盤後公布（台灣時間約8/27清晨），分析師預期單季營收上看創紀錄920億美元：</strong>財報前晶片股全面回檔，是本週牽動四大板塊評價的最大單一變數，尤其攸關矽光子板塊能否止穩、ABF載板抗跌行情能否延續。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 各板塊訊號總覽</div>
+    <table style="margin-bottom:0;">
+      <thead>
+        <tr><th>板塊</th><th>今日訊號</th><th>核心理由</th><th>近期最重要事件</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>ABF 載板</strong></td>
+          <td><span style="color:#4ade80;font-weight:700;">機會</span></td>
+          <td>大盤重挫背景下相對抗跌，美銀證券同步調升三檔目標價至歷史高位</td>
+          <td>NVIDIA財報8/26、MSCI指數調整8/31生效</td>
+        </tr>
+        <tr>
+          <td><strong>低軌衛星</strong></td>
+          <td><span style="color:#94a3b8;font-weight:700;">中性</span></td>
+          <td>三檔漲跌互見+0.78%~-0.47%，波動遠小於大盤，查無新聞</td>
+          <td>巨頻科技收購交割案仍未見正式公告</td>
+        </tr>
+        <tr>
+          <td><strong>矽光子</strong></td>
+          <td><span style="color:#f87171;font-weight:700;">風險</span></td>
+          <td>波若威-7.15%、華星光-5.20%，CPO技術路線圖論文引發資金重新定價</td>
+          <td>NVIDIA財報8/26、Broadcom財報9/2</td>
+        </tr>
+        <tr>
+          <td><strong>重電</strong></td>
+          <td><span style="color:#94a3b8;font-weight:700;">中性偏強</span></td>
+          <td>三檔跌幅-1.20%~-1.52%，遠小於大盤，抗跌性居四大板塊之冠</td>
+          <td>華城現金股利8/26發放，法人估三雄EPS全數年增逾20%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 明日追蹤清單</div>
+    <div style="font-size:13px;line-height:1.85;">
+      <p>① 台股8/25開盤後能否止穩，或延續8/24的系統性賣壓，特別留意台積電是否持續破底</p>
+      <p>② 矽光子族群（波若威、華星光）是否延續跌勢，或出現逢低承接的反彈訊號</p>
+      <p>③ ABF載板三雄能否延續相對抗跌走勢，美銀證券調升目標價後是否吸引更多外資報告跟進</p>
+      <p>④ NVIDIA 8/26財報前，晶片股整體風險偏好變化，牽動矽光子與ABF載板評價</p>
+      <p>⑤ 昇達科收購巨頻科技交割案是否有最新進度公告</p>
+      <p>⑥ 三大法人8/25是否延續創紀錄賣超力道，或出現逢低回補跡象</p>
+      <p>⑦ 台電、國防部是否有新增重電相關標案公告</p>
+    </div>
+  </div>
+
+  <div class="alert-note">ℹ️ <strong>本次執行資料來源與限制說明</strong>：美股8檔收盤價與漲跌幅取自StockAnalysis.com歷史價格表（逐檔比對8/21與8/24收盤），台股11檔取自Yahoo Finance歷史價格表（.TW／.TWO），data_date確認為2026/08/24（週一，前一交易日），美股、台股各8檔／11檔均已核實，未使用WebSearch查詢個股收盤（依規則禁止，僅台股大盤指數與新聞使用WebSearch）。台股大盤：加權指數8/24收46,043.60點（-1,057.05點，-2.24%），史上第8大單日跌點，台積電暴跌100元（-4.02%）創該股史上最大單日跌幅，外資單日賣超1,774億元創歷史新高，三大法人合計賣超2,102.38億元（來源：ETtoday財經雲、Yahoo奇摩股市）。四大板塊新聞經WebSearch多組關鍵字查證：ABF載板查得8/24美銀證券調升三檔目標價之明確消息面利多（來源：今周刊）；矽光子查得8/24 SK海力士／維吉尼亞大學CPO技術路線圖論文與輝達CPO量產夥伴名單之明確消息面利空（來源：新浪財經、STCN）；低軌衛星、重電兩板塊均查無48小時內個股專屬新聞。月營收年增率沿用7月最新公告數據（8月營收將於9月10日前陸續公告，本次執行期間無新增月份數據，經WebSearch交叉比對確認7月數據無誤）。外資／投信個股別買賣超5日累計因付費牆限制，本次不列入報告。NVIDIA FY27 Q2財報日期（8/26美股盤後）經多方媒體來源交叉查證確認。新聞來源：鉅亨網、Yahoo奇摩股市、今周刊、ETtoday財經雲、新浪財經、STCN、TipRanks、Invezz等財經媒體綜合報導。</div>
+</div>
+
+</div><!-- /container -->
+
+<div style="text-align:center;padding:16px;color:#4a5568;font-size:11px;border-top:1px solid #1e293b;">
+  每日產業晨報 2026/08/25 | 美股、台股資料基準日：2026/08/24（週一收盤）｜台股大盤8/24收46,043.60點（-2.24%），史上第8大跌點，台積電暴跌4.02%，外資賣超1,774億元創紀錄<br>
+  <strong>資料來源與限制說明：</strong>美股收盤數據取自StockAnalysis.com歷史價格表；台股收盤數據取自Yahoo Finance歷史價格表；月營收年增率沿用WebSearch查詢所得之7月最新數據（8月營收將於9月10日前公告）；外資／投信買賣超因付費牆限制，本次不列入報告。
+</div>
+
+</body>
+</html>
