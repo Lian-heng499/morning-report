@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日產業晨報 2026/09/24</title>
+<style>
+  :root {
+    --bg: #0f1117; --card: #161b27; --card2: #1c2333; --border: #2a3448;
+    --blue: #4d7cfe; --blue-dim: #2a4099; --green: #22c55e; --red: #ef4444;
+    --yellow: #eab308; --text: #e2e8f0; --muted: #8492a6; --accent: #60a5fa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system,'Helvetica Neue',Arial,sans-serif; font-size: 14px; line-height: 1.6; }
+  .header { background: linear-gradient(135deg,#0f1117 0%,#1a2540 100%); border-bottom: 2px solid var(--blue); padding: 24px 32px; }
+  .header h1 { font-size: 24px; color: var(--blue); font-weight: 700; letter-spacing: 1px; }
+  .header .meta { color: var(--muted); font-size: 12px; margin-top: 4px; line-height: 1.8; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px 20px; }
+  .section { margin-bottom: 32px; }
+  .section-title { font-size: 16px; font-weight: 700; color: var(--blue); border-left: 4px solid var(--blue); padding-left: 10px; margin-bottom: 16px; }
+  .signal { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; margin-left: 10px; }
+  .signal-opp { background: #14532d; color: #4ade80; border: 1px solid #22c55e; }
+  .signal-watch { background: #422006; color: #fbbf24; border: 1px solid #eab308; }
+  .signal-risk { background: #450a0a; color: #f87171; border: 1px solid #ef4444; }
+  .signal-neutral { background: #1e293b; color: #94a3b8; border: 1px solid #475569; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  th { background: var(--card2); color: var(--muted); font-size: 12px; font-weight: 600; text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:hover td { background: rgba(77,124,254,0.05); }
+  .up { color: var(--green); font-weight: 600; }
+  .down { color: var(--red); font-weight: 600; }
+  .neutral { color: var(--muted); }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+  .card-title { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+  .news-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .news-item:last-child { border-bottom: none; }
+  .news-title { font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .news-meta { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  .news-summary { font-size: 13px; color: #b0bcd0; padding-left: 8px; border-left: 2px solid var(--blue-dim); }
+  .stock-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 12px; }
+  .stock-card { background: var(--card2); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; }
+  .stock-name { font-weight: 700; font-size: 14px; color: var(--accent); }
+  .stock-price { font-size: 18px; font-weight: 700; margin: 4px 0; }
+  .stock-price.flat { color: var(--muted); }
+  .stock-detail { font-size: 12px; color: var(--muted); }
+  .analysis { background: rgba(77,124,254,0.06); border: 1px solid var(--blue-dim); border-radius: 6px; padding: 14px 16px; font-size: 13px; line-height: 1.75; color: #c8d5e8; margin: 12px 0; }
+  .cal-item { display: flex; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+  .cal-date { color: var(--blue); font-weight: 700; min-width: 80px; font-size: 12px; }
+  .cal-content { font-size: 13px; }
+  .cal-note { font-size: 12px; color: var(--muted); }
+  .four-dim { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0; }
+  .dim-card { background: var(--card2); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; font-size: 12px; }
+  .dim-label { font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .dim-badge { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: 700; }
+  .badge-bull { background: #14532d; color: #4ade80; }
+  .badge-bear { background: #450a0a; color: #f87171; }
+  .badge-neutral { background: #1e293b; color: #94a3b8; }
+  .badge-watch { background: #422006; color: #fbbf24; }
+  .alert-note { background: #1a1f2e; border: 1px solid #3a4060; border-radius: 4px; padding: 6px 12px; font-size: 12px; color: #7a8aa0; margin-bottom: 10px; }
+  .alert-warn { background: #1e1408; border: 1px solid #6b4a00; border-radius: 4px; padding: 6px 12px; font-size: 12px; color: #c08030; margin-bottom: 10px; }
+  .alert-hot { background: #1e0a0a; border: 1px solid #7f1d1d; border-radius: 4px; padding: 6px 12px; font-size: 12px; color: #f87171; margin-bottom: 10px; }
+  details summary { cursor: pointer; font-size: 12px; color: var(--accent); margin-top: 6px; }
+  details[open] summary { color: var(--muted); }
+  details .detail-body { font-size: 12px; color: #b0bcd0; padding: 8px 0 4px 8px; line-height: 1.7; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 每日產業晨報</h1>
+  <div class="meta">
+    日期：2026/09/24（星期四）　|　產出時間：08:50（盤前）<br>
+    資料基準：台股11檔為9/23（三）收盤（`_系統/stock_data_20260924.json`，已與9/23晨報之9/22收盤交叉驗算漲跌幅一致）；美股8檔為9/23（三）收盤（JSON美股仍停留在9/21–9/22，改由 Chrome 讀 Yahoo Finance 行情自行計算）。<br>
+    <strong>今日主軸：</strong>美債5年期殖利率自2007年來首度觸及5%、10年期升至5.106%，強勁PMI重燃Fed續升息疑慮，那指−1.13%、費半−1.23%。台股9/23指數再創收盤新高48,157點但櫃買收黑、下跌家數多於上漲；今天是中秋／教師節四天連假前最後交易日，川習會今晚（美東）登場。
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ===== 美股動態 ===== -->
+<div class="section">
+  <div class="section-title">🇺🇸 美股頭部動態</div>
+  <table>
+    <thead><tr><th>公司</th><th>昨收（9/23）</th><th>漲跌幅</th><th>重點</th></tr></thead>
+    <tbody>
+      <tr><td><strong>NVIDIA (NVDA)</strong></td><td>$225.51</td><td><span class="down">-1.47%</span></td><td>隨殖利率跳升回檔，無個股利空</td></tr>
+      <tr><td><strong>AMD</strong></td><td>$614.61</td><td><span class="down">-1.47%</span></td><td>市值破兆後首日明顯回吐</td></tr>
+      <tr><td><strong>Intel (INTC)</strong></td><td>$122.60</td><td><span class="down">-1.02%</span></td><td>連兩日上漲後小幅拉回，跌幅小於費半</td></tr>
+      <tr><td><strong>Broadcom (AVGO)</strong></td><td>$354.99</td><td><span class="down">-2.62%</span></td><td>8檔中跌幅第二大，ASIC龍頭成為高估值調節對象</td></tr>
+      <tr><td><strong>Lumentum (LITE)</strong></td><td>$937.00</td><td><span class="down">-0.92%</span></td><td>連兩日收黑，但今日跌幅小於費半</td></tr>
+      <tr><td><strong>Coherent (COHR)</strong></td><td>$300.60</td><td><span class="down">-3.15%</span></td><td>連兩日跌逾3%、兩日累計約-6.5%，連續弱於費半</td></tr>
+      <tr><td><strong>Eaton (ETN)</strong></td><td>$438.76</td><td><span class="down">-0.84%</span></td><td>連三紅後小幅拉回</td></tr>
+      <tr><td><strong>GE Vernova (GEV)</strong></td><td>$951.82</td><td><span class="up">+0.16%</span></td><td>8檔中唯一收紅，電力基建相對抗跌</td></tr>
+    </tbody>
+  </table>
+  <div class="analysis">
+    <strong>美股對台廠今日影響評估：</strong>
+    9/23的下跌不是AI基本面出事，而是利率：強勁PMI讓市場重新定價Fed續升息，5年期殖利率觸及5%、10年期5.106%，全市場逾七成個股收黑、S&amp;P 500僅能源類股收紅（TheStreet）。這種「估值壓縮型」下跌對台股的傳導路徑是：高本益比、漲多的AI硬體族群先被調節。對四個板塊的含意分別是——ABF載板：費半−1.23%、AVGO−2.62%，昨日追價部位在連假前最後一日有調節壓力；矽光子：COHR連兩日弱於費半，昨日設定的「族群輪出確認」條件在COHR上已成立（LITE則未成立），偏空；重電：GEV收紅、ETN小跌，相對抗跌，但台廠重電不具利率防禦性（本益比同樣偏高）。另台指期夜盤9/23開高走低由紅翻黑，且美股收盤在夜盤觀察之後，今日開盤偏空。
+  </div>
+</div>
+
+<!-- ===== ABF 載板 ===== -->
+<div class="section">
+  <div class="section-title">一｜ABF 載板
+    <span class="signal signal-opp">機會（維持；景碩8月EPS 1.59元證實漲價已進入獲利，但欣興盤中漲7%收3.6%留長上影）</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📰 今日重點新聞（48小時內）</div>
+    <div class="news-item">
+      <div class="news-title">載板漲價效應顯現！景碩自結8月獲利8.17億元、年增353.89%，單月EPS 1.59元</div>
+      <div class="news-meta">自由財經 | 2026/09/23 17:03；經濟日報、MoneyDJ 同日報導</div>
+      <div class="news-summary">8月營收48.10億元創單月新高、年增40.60%；單月EPS已達Q2全季（2.57元）的61.86%。今年兩度追加專案資本支出，合計約196億元。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">台積電收2,500元撐大盤，加權指數收48,157點再創收盤新高；PCB族群強勢，欣興漲逾3%</div>
+      <div class="news-meta">Newtalk新聞 | 2026/09/23 15:19</div>
+      <div class="news-summary">外資現貨買超373億元、台指期淨空單增至76,084口（現貨買、期貨加空）；櫃買指數−0.34%，上漲740家、下跌982家，「大盤強、個股弱」。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">高盛喊2028年ABF缺口51%，四雄目標價一次看；欣興盤中最高1,200元、南電最高1,225元</div>
+      <div class="news-meta">旺得富理財網 | 2026/09/23</div>
+      <div class="news-summary">延續9/22高盛報告：南電、景碩「買進」，欣興「中立」目標價1,220元。欣興9/23盤中已觸及1,200元，距目標價不到2%。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">瑞銀上修CoWoS產能：2027年底全球月產能由26萬片上修至27萬片，ASIC與CPU成下一波擴產主力</div>
+      <div class="news-meta">經濟日報 | 2026/09/23；工商時報 9/22</div>
+      <div class="news-summary">瑞銀按讚台積電、世芯等11檔台廠。CoWoS擴產直接對應大尺寸ABF載板需求，與高盛缺口論在需求端互相印證。</div>
+    </div>
+  </div>
+
+  <div class="analysis">
+    <strong>產業趨勢解讀：</strong>
+    昨天我們把高盛報告的價值定位在「分化邏輯」——非長約比重高的南電、景碩應該跑贏欣興。9/23盤面給了一個反例：欣興+3.57%、南電+3.86%，景碩反而−0.33%。這不代表高盛錯了，而是提醒短線價格不按基本面邏輯排序；欣興盤中一度+7.14%到1,200元、收盤只剩一半漲幅，才是更值得注意的訊號——它已經碰到高盛中立評等的目標價區，上檔賣壓是實質的。另一方面，景碩盤後公布的8月自結EPS 1.59元（單月即達Q2的六成）是本週最硬的基本面數據，證明「漲價」已經從報告裡的推論變成損益表上的數字，這個訊息在9/23收盤後才揭露，尚未反映在股價上。短中期展望不變（缺口至2028年、設備交期卡死供給），但今日面臨三重短線壓力：美債殖利率跳升、連假前最後一日、川習會結果在休市期間揭曉。我們預期今天是「景碩補反映財報 vs. 族群節前調節」的拉鋸。
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 個股狀況</div>
+    <div class="stock-grid">
+      <div class="stock-card">
+        <div class="stock-name">欣興 3037</div>
+        <div class="stock-price up">NT$1,160.00（+3.57%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（9/23）</span></div>
+        <div class="stock-detail">8月 +56.26% YoY（累計 +34.16%）｜盤中最高1,200元（+7.14%）收斂至+3.57%，長上影；距高盛目標價1,220元約5%</div>
+      </div>
+      <div class="stock-card">
+        <div class="stock-name">景碩 3189</div>
+        <div class="stock-price down">NT$906.00（-0.33%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（9/23）</span></div>
+        <div class="stock-detail">8月 +40.58% YoY（累計 +32.1%）｜盤後公布8月EPS 1.59元、淨利年增353.89%；高盛目標價1,125元</div>
+      </div>
+      <div class="stock-card">
+        <div class="stock-name">南電 8046</div>
+        <div class="stock-price up">NT$1,210.00（+3.86%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（9/23）</span></div>
+        <div class="stock-detail">8月 +40.59% YoY（累計 +39.56%）｜盤中最高1,225元；兩日累計約+14%，高盛目標價2,500元</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="four-dim">
+    <div class="dim-card">
+      <div class="dim-label">基本面 <span class="dim-badge badge-bull">強</span></div>
+      <div>景碩8月EPS 1.59元，漲價效應正式進入獲利。</div>
+      <details><summary>更多說明</summary><div class="detail-body">景碩8月營收年增40.6%，但淨利年增353.89%——獲利增速遠高於營收，代表價格與產品組合貢獻，而非單純出貨量。這是驗證高盛「非長約業者受惠最大」論點的第一筆硬數據。瑞銀上修CoWoS產能，需求端同步獲得支撐。</div></details>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">消息面 <span class="dim-badge badge-bull">正向</span></div>
+      <div>高盛、瑞銀兩大外資報告，加上景碩自結獲利。</div>
+      <details><summary>更多說明</summary><div class="detail-body">48小時內三個正面催化劑疊加，消息面已偏滿；後續需要9月營收（10/10前）接棒，連假期間缺乏新題材。</div></details>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">技術面 <span class="dim-badge badge-watch">過熱分化</span></div>
+      <div>欣興、南電續漲但留上影線，景碩收小黑；高位整理中，待觀察。</div>
+      <details><summary>更多說明</summary><div class="detail-body">欣興9/17收940元→9/23收1,160元，四個交易日+23%；9/23盤中1,200元回落至1,160元，上影線約占漲幅一半。南電兩日由1,060元漲至1,210元。景碩漲停隔日即收黑、量能待觀察。今日守住9/22漲停價（欣興1,120／南電1,165／景碩909）為強勢，跌破則短線高點成形。</div></details>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">籌碼面 <span class="dim-badge badge-neutral">個股無資料</span></div>
+      <div>外資9/23整體買超373億元，但台指期淨空單增至76,084口。</div>
+      <details><summary>更多說明</summary><div class="detail-body">外資「現貨買、期貨加空」為避險結構，顯示對連假與川習會風險有防備；投信單日賣超42.16億元。載板個股法人買賣超因付費牆不列。</div></details>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 本週行事曆</div>
+    <div class="cal-item"><div class="cal-date">09/24（四）</div><div><div class="cal-content">連假前最後交易日 — 追蹤重點：景碩是否補反映8月EPS；欣興能否守1,120元</div><div class="cal-note">9/25–9/28休市四天，9/29恢復交易</div></div></div>
+    <div class="cal-item"><div class="cal-date">09/24（美東）</div><div><div class="cal-content">川習會（華府）— 追蹤重點：關稅、AI晶片出口管制條款</div><div class="cal-note">結果於台股休市期間公布，9/29開盤承擔跳空風險</div></div></div>
+    <div class="cal-item"><div class="cal-date">10/10前</div><div><div class="cal-content">三雄9月營收 — 追蹤重點：欣興、南電能否複製景碩的「獲利增速遠高於營收增速」</div><div class="cal-note">欣興、南電8月自結獲利尚未查得，需補追</div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ 風險與機會</div>
+    <div style="font-size:13px;line-height:1.75;">
+      <p><strong style="color:#4ade80;">機會：</strong>景碩8月EPS為漲價論提供損益表證據，且在收盤後揭露、尚未反映；若連假前遭錯殺，9/29後是較佳的觀察位置。</p>
+      <p style="margin-top:8px;"><strong style="color:#f87171;">風險：</strong>欣興已觸及外資目標價區、長上影線；美債殖利率跳升壓縮高本益比族群；川習會結果不確定，四天休市無法調整部位。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 低軌衛星 ===== -->
+<div class="section">
+  <div class="section-title">二｜低軌衛星
+    <span class="signal signal-watch">觀察（昇達科+5.74%止跌反彈，但無新催化，屬資金回補）</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📰 今日重點新聞（48小時內）</div>
+    <div class="news-item">
+      <div class="news-title">低軌衛星族群勁揚逾4%，昇達科、台光電領軍強勢表態</div>
+      <div class="news-meta">CMoney | 2026/09/23 09:30</div>
+      <div class="news-summary">盤中類股漲幅4.05%，昇達科漲逾5.7%領漲，台揚、燿華、華通紅盤；文中亦指出個股已出現分歧（建漢逆勢拉回），提醒觀察量能能否延續。</div>
+    </div>
+    <div class="alert-note">ℹ️ 除盤勢報導外，48小時內查無昇達科、華通、燿華的訂單或營運新消息。本週最新基本面動態為9/18經濟日報「昇達科：9–12月營收可望逐月成長、Q4為全年最高」（已超過48小時，列入趨勢解讀引用）。</div>
+  </div>
+
+  <div class="analysis">
+    <strong>產業趨勢解讀：</strong>
+    昨天設定的檢驗點是「昇達科連三黑即確認資金撤離」，結果是相反的：9/23大漲5.74%收1,565元，一口氣收復前兩日跌幅（9/21–9/22累計約−5.4%）。但要誠實看待這次反彈的性質——當天沒有新訂單或新數據，驅動力是族群輪動回補，而且發生在櫃買指數收黑、下跌家數多於上漲的盤面，代表資金是從別處（面板、部分AI硬體）轉進，而非增量資金。基本面支撐則是實的：公司9/18已表態9–12月營收逐月成長、Q4為全年高點，8月營收YoY+93%為11檔最強，這讓回檔時有人接。華通+0.9%、燿華−0.6%，族群內只有昇達科有明確動能。結論：止跌確認，但尚不足以升級為機會；需要9月營收（10/10前）驗證「逐月成長」的指引，才構成下一段走勢的依據。
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 個股狀況</div>
+    <div class="stock-grid">
+      <div class="stock-card">
+        <div class="stock-name">昇達科 3491</div>
+        <div class="stock-price up">NT$1,565.00（+5.74%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（9/23）</span></div>
+        <div class="stock-detail">8月 +93.19% YoY（累計 +73.4%）｜單日收復前兩日跌幅；公司指引9–12月營收逐月成長</div>
+      </div>
+      <div class="stock-card">
+        <div class="stock-name">華通 2313</div>
+        <div class="stock-price up">NT$224.00（+0.90%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（9/23）</span></div>
+        <div class="stock-detail">8月 +6.87% YoY（累計 +12.7%）｜隨族群小漲，營收動能仍是三檔最弱</div>
+      </div>
+      <div class="stock-card">
+        <div class="stock-name">燿華 2367</div>
+        <div class="stock-price down">NT$41.70（-0.60%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（9/23）</span></div>
+        <div class="stock-detail">8月 +26.13% YoY（累計 -0.08%）｜族群大漲日逆勢收黑，盤中紅盤未守住</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="four-dim">
+    <div class="dim-card">
+      <div class="dim-label">基本面 <span class="dim-badge badge-watch">分化</span></div>
+      <div>昇達科最強且有逐月成長指引；華通放緩、燿華累計持平。</div>
+      <details><summary>更多說明</summary><div class="detail-body">昇達科上半年衛星營收占比約77%、毛利率56.9%，打入SpaceX、Amazon LEO、ASTS供應鏈；Starlink 8月發射261顆、月增13%，Starship V3提升單次部署量。華通8月YoY僅6.87%。</div></details>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">消息面 <span class="dim-badge badge-neutral">中性</span></div>
+      <div>48小時內僅盤勢報導，無訂單新聞。</div>
+      <details><summary>更多說明</summary><div class="detail-body">Trump申報持有SpaceX股票（Reuters，9/22）屬話題性新聞，對台廠供應鏈無實質影響。</div></details>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">技術面 <span class="dim-badge badge-bull">止跌反彈</span></div>
+      <div>昇達科長紅收復兩日跌幅；高位整理中，待觀察。</div>
+      <details><summary>更多說明</summary><div class="detail-body">昇達科由9/18收約1,565元跌至9/22收1,480元，9/23收回1,565元，形成V型；今日若量縮守住1,520元以上，前兩日下跌可視為洗盤。燿華族群大漲日收黑，相對弱勢。</div></details>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">籌碼面 <span class="dim-badge badge-neutral">無資料</span></div>
+      <div>個股法人買賣超無法取得。</div>
+      <details><summary>更多說明</summary><div class="detail-body">CMoney稱「法人點火」，但未提供具體買超數字，不予採信為籌碼證據。</div></details>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 本週行事曆</div>
+    <div class="cal-item"><div class="cal-date">09/24（四）</div><div><div class="cal-content">昇達科反彈延續性 — 追蹤重點：量縮守1,520元以上為健康</div><div class="cal-note">連假前最後交易日</div></div></div>
+    <div class="cal-item"><div class="cal-date">10/10前</div><div><div class="cal-content">三檔9月營收 — 追蹤重點：昇達科9月是否MoM成長（驗證公司指引）；華通YoY是否跌破5%</div><div class="cal-note">通常每月10日前公告</div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ 風險與機會</div>
+    <div style="font-size:13px;line-height:1.75;">
+      <p><strong style="color:#4ade80;">機會：</strong>昇達科有公司指引背書（9–12月逐月成長），且在低迷兩日後迅速收復，顯示逢低承接力道存在。</p>
+      <p style="margin-top:8px;"><strong style="color:#f87171;">風險：</strong>反彈無新消息支撐、屬輪動資金，持續性存疑；族群內僅昇達科有動能，華通、燿華拖累板塊評價。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 矽光子 ===== -->
+<div class="section">
+  <div class="section-title">三｜矽光子
+    <span class="signal signal-watch">觀察（偏空：華星光利多不漲，COHR連兩日弱於費半）</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📰 今日重點新聞（48小時內）</div>
+    <div class="news-item">
+      <div class="news-title">華星光奪邁威爾800G ZR/ZR+大單，打入微軟、Google、Meta供應鏈；法人目標價上調至800元</div>
+      <div class="news-meta">三立新聞網 | 2026/09/23 02:00；經濟日報「華星光奪邁威爾大單」同期報導</div>
+      <div class="news-summary">本土投顧預估EPS 2026年7.69元、2027年15.88元；800G DCI下半年量產、EML第四季放量，2027年雷射晶粒後段月產能由600萬顆倍增至1,200萬顆。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">華星光8月自結淨賺0.92億元、EPS 0.64元</div>
+      <div class="news-meta">經濟日報 | 2026/09/23</div>
+      <div class="news-summary">應主管機關要求公告自結獲利；報導稱成長趨勢明確。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">美股光通訊：Coherent 9/23再跌3.15%，兩日累計約−6.5%；Lumentum −0.92%</div>
+      <div class="news-meta">Yahoo Finance 行情資料 | 2026/09/23 收盤</div>
+      <div class="news-summary">同日費半−1.23%；COHR連兩日弱於費半，LITE今日跌幅小於費半。</div>
+    </div>
+  </div>
+
+  <div class="analysis">
+    <strong>產業趨勢解讀：</strong>
+    9/23華星光出現典型的「利多不漲」：邁威爾大單、目標價800元（較現價高約36%）的報導在開盤前刊出，股價卻下跌2.48%收590元，連兩日回落。一檔個股在具體訂單利多見報當天收黑，意味著這個訊息已被市場提前消化，或者持股者正利用利多出場——兩種解讀對短線都不友善。美股端，昨日設定的「連兩日弱於費半即確認輪出」條件，在COHR上已經成立，LITE則未成立，所以結論是部分確認而非全面確認。長線方面，華星光的訂單與產能規劃（EML放量、晶粒產能倍增）其實強化了2027年的成長敘事，800G ZR年需求從70萬支成長到2028年130萬支也是實在的市場擴張；問題純粹在估值與資金偏好。維持觀察，但方向偏空：若美股光通訊持續弱勢、台股連假後華星光跌破580元，應考慮下修至風險。
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 個股狀況</div>
+    <div class="stock-grid">
+      <div class="stock-card">
+        <div class="stock-name">波若威 3163</div>
+        <div class="stock-price down">NT$663.00（-0.60%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（9/23）</span></div>
+        <div class="stock-detail">8月 +9.69% YoY（累計 +17.73%）｜9/22平盤後小跌，685元上檔壓力未解</div>
+      </div>
+      <div class="stock-card">
+        <div class="stock-name">華星光 4979</div>
+        <div class="stock-price down">NT$590.00（-2.48%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（9/23）</span></div>
+        <div class="stock-detail">8月 +37.45% YoY（累計 +20.32%）｜8月EPS 0.64元；邁威爾大單見報當日收黑，連兩日回落</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="four-dim">
+    <div class="dim-card">
+      <div class="dim-label">基本面 <span class="dim-badge badge-bull">轉強</span></div>
+      <div>華星光取得邁威爾訂單、客戶分散至三大雲端。</div>
+      <details><summary>更多說明</summary><div class="detail-body">華星光過去最大疑慮是客戶集中，此次終端客戶涵蓋微軟、Google、Meta，可分散風險。波若威8月YoY降至+9.69%，Vera Rubin FAU出貨時點仍是9月營收關鍵。</div></details>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">消息面 <span class="dim-badge badge-bull">正向</span></div>
+      <div>訂單＋目標價上調＋自結獲利，48小時內三則利多。</div>
+      <details><summary>更多說明</summary><div class="detail-body">消息面正向與股價反應負向的背離，是本板塊今日最關鍵的訊號。</div></details>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">技術面 <span class="dim-badge badge-bear">轉弱</span></div>
+      <div>華星光連兩日收黑、波若威小跌；高位整理中，待觀察。</div>
+      <details><summary>更多說明</summary><div class="detail-body">華星光9/21收618元→9/23收590元，兩日−4.5%；580元附近為短線觀察支撐。波若威667→663元，量價皆無方向。</div></details>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">籌碼面 <span class="dim-badge badge-neutral">無資料</span></div>
+      <div>個股法人買賣超無法取得。</div>
+      <details><summary>更多說明</summary><div class="detail-body">以美股COHR連兩日弱於大盤推估，全球光通訊族群資金偏流出。</div></details>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 本週行事曆</div>
+    <div class="cal-item"><div class="cal-date">09/24–28</div><div><div class="cal-content">美股COHR、LITE走勢 — 追蹤重點：COHR能否止跌；LITE若也轉為弱於費半，族群輪出全面確認</div><div class="cal-note">台股休市期間美股照常交易（9/24–9/25）</div></div></div>
+    <div class="cal-item"><div class="cal-date">10/10前</div><div><div class="cal-content">兩檔9月營收 — 追蹤重點：華星光800G DCI量產是否反映；波若威YoY能否回到20%以上</div><div class="cal-note">通常每月10日前公告</div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ 風險與機會</div>
+    <div style="font-size:13px;line-height:1.75;">
+      <p><strong style="color:#4ade80;">機會：</strong>華星光2027年成長路徑（EML、晶粒產能倍增、邁威爾大單）清晰度提升；若族群估值修正到位，基本面支撐比8月時更強。</p>
+      <p style="margin-top:8px;"><strong style="color:#f87171;">風險：</strong>利多不漲是短線最負面的價格行為；COHR已連兩日弱於費半，利率上升環境對高估值光通訊壓力最大。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 重電 ===== -->
+<div class="section">
+  <div class="section-title">四｜重電（台灣）
+    <span class="signal signal-watch">觀察（三雄連三日小跌，資金排擠持續；9/29立院審台電撥補）</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📰 近期重點動態</div>
+    <div class="alert-note">ℹ️ 今日無48小時內新聞（9/22–9/24查無華城、士電、中興電專屬新聞或台電新標案），以下為本週最新動態。</div>
+    <div class="news-item">
+      <div class="news-title">變壓器族群強勢大漲5.60%：重電大廠點火、AI供電題材熱度不減</div>
+      <div class="news-meta">CMoney | 2026/09/21</div>
+      <div class="news-summary">9/21族群單日大漲後，9/22–9/23三雄連續小跌，漲幅已大半回吐。</div>
+    </div>
+    <div class="news-item">
+      <div class="news-title">政院擬撥補台電711億元，立法院9/29開議討論；中興電手握431億元訂單、能見度至2030年</div>
+      <div class="news-meta">旺得富理財網、FTNN | 2026/09/19</div>
+      <div class="news-summary">富邦投顧點名士電、華城、中興電、亞力、東元營運正向；台電近期約94億元亭置式變壓器標案重電廠均有斬獲。</div>
+    </div>
+  </div>
+
+  <div class="analysis">
+    <strong>產業趨勢解讀：</strong>
+    重電已連三個交易日小跌（華城712→704元、士電197→196.5元、中興電166→165.5元），跌幅都在1.2%以內，屬於典型的「沒人賣、也沒人買」。9/23台股的資金主線是台積電與PCB（欣興、台光電、金像電），加上電源二極體、低軌衛星的輪動，重電不在任何一條線上。美股端GEV在全市場逾七成下跌的日子收紅、ETN僅小跌，說明電力基建在全球層面仍被視為相對防禦的AI受惠股；但這層防禦性沒有傳導到台股，因為台灣重電的評價（市場估華城本益比約60倍）與AI硬體同屬高估值，利率上升時一樣承壓。真正的催化劑仍是9/29立院審台電711億撥補案（連假後首日），我們維持先前判斷：撥補本質是填補燃氣虧損，對電網資本支出只是間接效果，市場若解讀為直接利多，驗證期會落在後續標案與9月營收。
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 個股狀況</div>
+    <div class="stock-grid">
+      <div class="stock-card">
+        <div class="stock-name">華城 1519</div>
+        <div class="stock-price down">NT$704.00（-1.12%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（9/23）</span></div>
+        <div class="stock-detail">8月 +12.50% YoY（累計 -1.77%）｜連三日下跌，三檔中跌幅最大；北美出貨占比逾五成</div>
+      </div>
+      <div class="stock-card">
+        <div class="stock-name">士電 1503</div>
+        <div class="stock-price down">NT$196.50（-0.25%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（9/23）</span></div>
+        <div class="stock-detail">8月 -0.38% YoY（累計 +9.54%）｜在手訂單逾600億元；跌幅收斂</div>
+      </div>
+      <div class="stock-card">
+        <div class="stock-name">中興電 1513</div>
+        <div class="stock-price down">NT$165.50（-0.30%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（9/23）</span></div>
+        <div class="stock-detail">8月 +8.93% YoY（累計 +4.21%）｜在手訂單431億元，能見度至2030年</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="four-dim">
+    <div class="dim-card">
+      <div class="dim-label">基本面 <span class="dim-badge badge-watch">分化</span></div>
+      <div>華城、中興電8月轉正，士電唯一單月年減。</div>
+      <details><summary>更多說明</summary><div class="detail-body">大型變壓器交期約2.5年，在手訂單能見度延伸至2028–2030年；單月營收波動主要來自交貨排程，法人預期第4季起動能回升。</div></details>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">消息面 <span class="dim-badge badge-neutral">空窗</span></div>
+      <div>48小時內無新消息；9/29撥補案為最近催化劑。</div>
+      <details><summary>更多說明</summary><div class="detail-body">美股GEV逆勢收紅屬情緒面支撐，對台廠無直接訂單意涵。</div></details>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">技術面 <span class="dim-badge badge-bear">弱勢整理</span></div>
+      <div>三雄連三日小跌；高位整理中，待觀察。</div>
+      <details><summary>更多說明</summary><div class="detail-body">華城逼近700元整數關，為短線觀察支撐；士電、中興電跌幅極小，量縮盤整為主。</div></details>
+    </div>
+    <div class="dim-card">
+      <div class="dim-label">籌碼面 <span class="dim-badge badge-neutral">無資料</span></div>
+      <div>個股法人買賣超無法取得。</div>
+      <details><summary>更多說明</summary><div class="detail-body">以價量推估，資金仍被台積電、PCB與輪動題材排擠。</div></details>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 本週行事曆</div>
+    <div class="cal-item"><div class="cal-date">09/29（二）</div><div><div class="cal-content">立法院開議討論台電711億撥補案 — 追蹤重點：是否附帶電網投資條件或延宕</div><div class="cal-note">連假後首個交易日</div></div></div>
+    <div class="cal-item"><div class="cal-date">10/10前</div><div><div class="cal-content">三雄9月營收 — 追蹤重點：士電能否轉正、華城累計YoY能否轉正</div><div class="cal-note">通常每月10日前公告</div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ 風險與機會</div>
+    <div style="font-size:13px;line-height:1.75;">
+      <p><strong style="color:#4ade80;">機會：</strong>9/29撥補案若順利，是連假後資金回流的明確理由；美股電力基建相對抗跌，全球敘事未變。</p>
+      <p style="margin-top:8px;"><strong style="color:#f87171;">風險：</strong>高本益比在利率上升環境下同樣承壓；撥補案若延宕或被解讀為「只補虧損」，唯一催化劑落空。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 今日總結 ===== -->
+<div class="section">
+  <div class="section-title">📋 今日總結</div>
+
+  <div class="card">
+    <div class="card-title">🎯 值得特別注意（優先順序）</div>
+    <div style="font-size:13px;line-height:1.9;padding: 4px 0;">
+      <p><strong>1. 美債5年期觸及5%，連假前最後一日要先處理利率風險：</strong>9/23美股下跌的主因是殖利率而非AI基本面，這類下跌最先打擊漲多、高本益比的族群。台股昨日「指數創高、下跌家數多於上漲、外資期貨加空」本就是高檔鬆動的組合，今天又疊加四天休市與川習會，部位控管優先於追價。</p>
+      <p style="margin-top:6px;"><strong>2. 景碩8月EPS 1.59元是本週最硬的基本面數據：</strong>淨利年增353.89%、遠高於營收年增40.6%，證明ABF漲價已進入損益表。此訊息在9/23盤後揭露，今天是第一個反映日；同時欣興已碰到高盛目標價區並留長上影——ABF族群內部開始出現「誰漲價彈性大」的真實分化依據。</p>
+      <p style="margin-top:6px;"><strong>3. 華星光「利多不漲」，矽光子偏空觀察：</strong>邁威爾大單與800元目標價見報當日收跌2.48%，美股COHR連兩日弱於費半。連假後若華星光跌破580元、LITE也轉弱，下修為風險。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 各板塊訊號總覽</div>
+    <table style="margin-bottom:0;">
+      <thead><tr><th>板塊</th><th>今日訊號</th><th>核心理由</th><th>近期最重要事件</th></tr></thead>
+      <tbody>
+        <tr><td><strong>ABF 載板</strong></td><td><span style="color:#4ade80;font-weight:700;">機會</span>（→）</td><td>景碩8月EPS證實漲價入帳；短線過熱需節前調節</td><td>9/24能否守9/22漲停價、10/10前9月營收</td></tr>
+        <tr><td><strong>低軌衛星</strong></td><td><span style="color:#fbbf24;font-weight:700;">觀察</span>（→）</td><td>昇達科止跌反彈，但無新催化</td><td>昇達科9月營收驗證逐月成長指引</td></tr>
+        <tr><td><strong>矽光子</strong></td><td><span style="color:#fbbf24;font-weight:700;">觀察</span>（偏空）</td><td>華星光利多不漲，COHR連兩日弱於費半</td><td>COHR/LITE連假期間走勢、華星光580元</td></tr>
+        <tr><td><strong>重電</strong></td><td><span style="color:#fbbf24;font-weight:700;">觀察</span>（→）</td><td>連三日小跌，資金排擠；美股同業抗跌</td><td>9/29立院審台電711億撥補</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">今日無重大變化的板塊</div>
+    <div style="font-size:13px;line-height:1.85;">
+      <p>重電：48小時內無新消息，三雄連三日小幅整理，訊號維持觀察，等待9/29撥補案。低軌衛星雖有昇達科大漲，但缺乏新基本面消息，訊號同樣不變。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 明日追蹤清單（連假期間）</div>
+    <div style="font-size:13px;line-height:1.85;">
+      <p>① 9/24台股收盤：ABF三雄是否守住9/22漲停價，景碩是否補反映8月EPS；昇達科是否守1,520元</p>
+      <p>② 川習會結果（9/24美東）：關稅與AI晶片出口管制條款，評估9/29跳空方向</p>
+      <p>③ 休市期間美股（9/24–9/25）：美債5年期能否守住5%以下、費半與COHR/LITE是否止跌</p>
+      <p>④ 補追欣興、南電8月自結獲利（景碩已公布），比對漲價反映程度</p>
+      <p>⑤ 9/29立院台電撥補案審議結果（連假後首日）</p>
+    </div>
+  </div>
+
+  <div class="alert-warn">⚠️ <strong>資料來源與方法說明</strong>：台股11檔取自 `_系統/stock_data_20260924.json`（data_date 9/23，全數 confirmed），漲跌幅已以9/23晨報所載9/22收盤逐檔驗算一致。美股部分JSON仍為9/21–9/22舊資料（ETN、GEV停在9/21），不符日期要求，改由 Chrome 讀取 Yahoo Finance 行情取9/23收盤，前一日收盤取自9/23晨報（Yahoo 9/22收盤），自行計算漲跌幅；AMD −1.47%、AVGO −2.62% 與 WebSearch 結果交叉核對一致。<strong>stock_fetch.py 的美股抓取仍有日期落後問題，需檢查。</strong>欣興、南電盤中高點取自旺得富理財網。月營收為8月最新一期（9月營收10/10前公告）。台指期夜盤資訊為9/23晚間（美股收盤前）觀察，最終收盤未取得。新聞來源：自由財經、Newtalk新聞、旺得富理財網、經濟日報、三立新聞網、CMoney、工商時報、TheStreet、Yahoo Finance。個股法人買賣超因付費牆不列。</div>
+</div>
+
+</div><!-- /container -->
+
+<div style="text-align:center;padding:16px;color:#4a5568;font-size:11px;border-top:1px solid #1e293b;">
+  每日產業晨報 2026/09/24 | 美債5年期觸及5%、費半−1.23%｜景碩8月EPS 1.59元證實ABF漲價入帳｜華星光利多不漲、矽光子偏空觀察｜連假前最後交易日＋川習會
+</div>
+
+</body>
+</html>
