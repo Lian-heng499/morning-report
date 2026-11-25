@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日產業晨報 2026/11/25</title>
+<style>
+  :root {
+    --bg: #0f1117; --card: #161b27; --card2: #1c2333; --border: #2a3448;
+    --blue: #4d7cfe; --blue-dim: #2a4099; --green: #22c55e; --red: #ef4444;
+    --yellow: #eab308; --text: #e2e8f0; --muted: #8492a6; --accent: #60a5fa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system,'Helvetica Neue',Arial,sans-serif; font-size: 14px; line-height: 1.6; }
+  .header { background: linear-gradient(135deg,#0f1117 0%,#1a2540 100%); border-bottom: 2px solid var(--blue); padding: 24px 32px; }
+  .header h1 { font-size: 24px; color: var(--blue); font-weight: 700; letter-spacing: 1px; }
+  .header .meta { color: var(--muted); font-size: 12px; margin-top: 4px; line-height: 1.8; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px 20px; }
+  .section { margin-bottom: 32px; }
+  .section-title { font-size: 16px; font-weight: 700; color: var(--blue); border-left: 4px solid var(--blue); padding-left: 10px; margin-bottom: 16px; }
+  .signal { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; margin-left: 10px; }
+  .signal-opp { background: #14532d; color: #4ade80; border: 1px solid #22c55e; }
+  .signal-watch { background: #422006; color: #fbbf24; border: 1px solid #eab308; }
+  .signal-risk { background: #450a0a; color: #f87171; border: 1px solid #ef4444; }
+  .signal-neutral { background: #1e293b; color: #94a3b8; border: 1px solid #475569; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  th { background: var(--card2); color: var(--muted); font-size: 12px; font-weight: 600; text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:hover td { background: rgba(77,124,254,0.05); }
+  .up { color: var(--green); font-weight: 600; }
+  .down { color: var(--red); font-weight: 600; }
+  .neutral { color: var(--muted); }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+  .card-title { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+  .news-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .news-item:last-child { border-bottom: none; }
+  .news-title { font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .news-meta { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  .news-summary { font-size: 13px; color: #b0bcd0; padding-left: 8px; border-left: 2px solid var(--blue-dim); }
+  .stock-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 12px; }
+  .stock-card { background: var(--card2); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; }
+  .stock-name { font-weight: 700; font-size: 14px; color: var(--accent); }
+  .stock-price { font-size: 18px; font-weight: 700; margin: 4px 0; }
+  .stock-price.flat { color: var(--muted); }
+  .stock-detail { font-size: 12px; color: var(--muted); }
+  .analysis { background: rgba(77,124,254,0.06); border: 1px solid var(--blue-dim); border-radius: 6px; padding: 14px 16px; font-size: 13px; line-height: 1.75; color: #c8d5e8; margin: 12px 0; }
+  .cal-item { display: flex; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+  .cal-date { color: var(--blue); font-weight: 700; min-width: 80px; font-size: 12px; }
+  .cal-content { font-size: 13px; }
+  .cal-note { font-size: 12px; color: var(--muted); }
+  .four-dim { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0; }
+  .dim-card { background: var(--card2); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; font-size: 12px; }
+  .dim-label { font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .dim-badge { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: 700; }
+  .badge-bull { background: #14532d; color: #4ade80; }
+  .badge-bear { background: #450a0a; color: #f87171; }
+  .badge-neutral { background: #1e293b; color: #94a3b8; }
+  .badge-watch { background: #422006; color: #fbbf24; }
+  .alert-note { background: #1a1f2e; border: 1px solid #3a4060; border-radius: 4px; padding: 6px 12px; font-size: 12px; color: #7a8aa0; margin-bottom: 10px; }
+  .alert-warn { background: #1e1408; border: 1px solid #6b4a00; border-radius: 4px; padding: 6px 12px; font-size: 12px; color: #c08030; margin-bottom: 10px; }
+  .alert-hot { background: #1e0a0a; border: 1px solid #7f1d1d; border-radius: 4px; padding: 6px 12px; font-size: 12px; color: #f87171; margin-bottom: 10px; }
+  details summary { cursor: pointer; font-size: 12px; color: var(--accent); margin-top: 6px; }
+  details[open] summary { color: var(--muted); }
+  details .detail-body { font-size: 12px; color: #b0bcd0; padding: 8px 0 4px 8px; line-height: 1.7; }
+  @media (max-width: 640px) { .four-dim { grid-template-columns: 1fr; } .header { padding: 20px 16px; } .container { padding: 16px; } }
+</style>
+</head>
+<body><div class="header"><h1>📊 每日產業晨報</h1><div class="meta">日期：2026/11/25（星期三） | 產出時間：08:50<br>資料基準：美股8檔「昨收」為11/24（二）美東收盤、台股11檔「昨收」為11/24（二）台北收盤，皆取自 _系統/stock_data_20261125.json（11/25 08:30產生，data_date 2026-11-24），已以 stock_data_20261124.json（11/23收盤）逐檔驗算漲跌幅一致。<br><strong>今日主軸：</strong>台股11/24把NVIDIA復職一次反映完：加權指數+3,310.46點（+8.99%）收40,122.35，史上最大漲點，本報11檔中10檔漲停。但台股收盤後美股反手：Nasdaq −1.48%、費半−7.88%（單一來源），NVDA −5.86%、LITE −10.52%、COHR −9.07%。<strong>昨天台股買的是前一晚的美股，今天要還的是昨晚的美股。</strong>11/24的漲勢量能是今年最低（4,194億元），三大法人反手賣超1,230億元，這是禁空與惜售撐出來的價格，不是買盤。唯一比較乾淨的利多是Dell盤後：AI積壓訂單單季增加600億美元至1,323億美元、盤後+6%。訊號：重電升「觀察」（華城收回452，前報升級條件達成），其餘三板塊維持「風險」。</div></div><div class="container">
+<div class="section"><div class="section-title">🇺🇸 美股頭部動態</div><table><thead><tr><th>公司</th><th>昨收（11/24）</th><th>漲跌幅</th><th>重點</th></tr></thead><tbody>
+<tr><td><strong>NVIDIA (NVDA)</strong></td><td>$155.38</td><td><span class="down">−5.86%</span></td><td>前一日+31%後獲利了結；SEC會計調查仍在初期，公司未有正式說明（Motley Fool 11/24 07:15 ET）。8檔中唯一仍高於11/19收盤（約$145.98，自算）</td></tr>
+<tr><td><strong>AMD</strong></td><td>$413.27</td><td><span class="down">−8.86%</span></td><td>本報未查得個股新聞；跟隨AI晶片回吐，前一日+6.85%全數吐回且再低</td></tr>
+<tr><td><strong>Intel (INTC)</strong></td><td>$54.80</td><td><span class="down">−8.15%</span></td><td>晶圓代工部門上季營業虧損18.5億美元，財務長暗示明年自由現金流可能為負（Motley Fool 11/24 17:56 ET）</td></tr>
+<tr><td><strong>Broadcom (AVGO)</strong></td><td>$301.08</td><td><span class="down">−3.98%</span></td><td>郭明錤稱Google下修2027年TPU 8i出貨約100萬顆、部分可能轉單聯發科；Goldman下調目標價、Rothschild Redburn降評至中立（Investing.com 11/24）。12/9財報為下一個催化劑</td></tr>
+<tr><td><strong>Lumentum (LITE)</strong></td><td>$487.12</td><td><span class="down">−10.52%</span></td><td>8檔最弱；同日AAOI取得hyperscaler四年22億美元800G供貨合約、逆勢漲約5%（24/7 Wall St. 11/24 09:58 ET），市場解讀為份額競爭。已跌回11/19收盤（約535，自算）下方</td></tr>
+<tr><td><strong>Coherent (COHR)</strong></td><td>$196.24</td><td><span class="down">−9.07%</span></td><td>與LITE同步走弱（24/7 Wall St. 11/24）；前一日+15.27%的漲幅吐回約七成（自算）</td></tr>
+<tr><td><strong>Eaton (ETN)</strong></td><td>$319.27</td><td><span class="down">−5.08%</span></td><td>MarketBeat標題稱遭分析師降評、Baird調降目標價（未讀全文，僅供參考）；跌回11/19收盤（約330.6，自算）下方</td></tr>
+<tr><td><strong>GE Vernova (GEV)</strong></td><td>$720.65</td><td><span class="down">−4.77%</span></td><td>風電部門2026年EBITDA虧損預估擴大至4億～5億美元；Erste Group由買進降為持有（TradingKey 11/24 18:15）</td></tr>
+</tbody></table>
+<div class="analysis"><strong>美股對台廠今日影響評估：</strong>11/24（二）Dow +0.85%收50,018.70、S&amp;P 500 −0.50%收7,201.09、Nasdaq −1.48%收23,733.54（Yahoo Finance 11/24）；費半−7.88%收8,832.50（BigGo Finance 11/24，僅單一來源）；VIX 26.36。資金從AI硬體撤到醫療（+2.88%，Sanofi擬410億美元收購Insmed）與道瓊權值股。期貨隱含12月升息1碼機率約95%～97%。<br><br>前報說11/23修復的只有CEO空缺；11/24美股證明連這一段也只維持一天。NVDA還守在11/19之上，但LITE、COHR、ETN、GEV全部跌回11/19收盤下方，AVGO續創低。這對台廠的意義很直接：<strong>11/24台股反映的美股基礎，有一半已經不存在</strong>。今天開盤最直接受壓的是矽光子（LITE −10.52%是對應最強的一檔），其次是ABF（費半−7.88%、AVGO續弱）。Dell財報是唯一反向訊號：營收549.4億美元、調整後EPS 9.45美元均大幅超預期，AI積壓訂單單季+600億美元至1,323億美元，全年營收財測由1,920億上調至2,020億美元，盤後+6.08%（Yahoo Finance 11/24 13:21 PST）。這證明AI伺服器需求端沒壞，壞的是估值與會計可信度。今晚21:30（台北）PCE與Q3 GDP二估、11/26感恩節休市，流動性只會更薄。</div></div>
+<div class="section"><div class="section-title">🇹🇼 台股大盤（11/24）與救市措施</div><div class="card"><div class="card-title">📰 今日重點新聞</div>
+<div class="news-item"><div class="news-title">加權指數漲3,310.46點（+8.99%）收40,122.35，史上最大漲點；台積電漲停2,230元</div><div class="news-meta">中央社 2026/11/24 13:46；聯合新聞網 2026/11/24 13:47；今周刊 2026/11/24 15:38</div><div class="news-summary">盤中最高40,180.38；成交值4,194.05億元，今周刊稱為今年最低。櫃買指數+22.33點（+8.24%）收293.23、成交531.01億元（中央社）。漲停家數各家口徑不一，本報不引用。</div></div>
+<div class="news-item"><div class="news-title">三大法人合計賣超1,230.11億元：外資賣503.9億、自營商賣810.25億，投信買84.04億</div><div class="news-meta">中央社（Yahoo股市轉載）2026/11/24</div><div class="news-summary">史上最大漲點日，法人是賣方；自營商賣超規模大於外資。</div></div>
+<div class="news-item"><div class="news-title">禁空、融資維持率120%皆無退場時間表；證交所11/27開專家會議，國安基金擬擴大至1兆元</div><div class="news-meta">Business Insider Taiwan 2026/11/24 21:53；經濟日報 2026/11/24 03:21</div><div class="news-summary">證期局對退場時點回應「再看一下」；融券保證金成數維持150%。國安基金擴大案最快12月第二週排入立法院審查（立委賴惠員）。</div></div>
+</div>
+<div class="analysis">本報判斷：前報設定的檢驗是「中小型股能否補漲」，答案是全面補漲，本報11檔中10檔漲停，只有中興電+6.04%落後大盤。但這個結果的品質要拆開看：<strong>量縮、法人賣超、禁空</strong>三件事同時出現，代表價格是被「沒有人能放空、持股者不賣」推上去的，而不是新資金進場。外資與自營商合計賣出約1,314億元（自算），投信只接84億。這種結構最怕的就是隔夜美股轉弱——今天正是。本報預期今日台股會回吐一部分，真正要看的是回吐幅度：若加權指數守住11/24開盤跳空缺口上緣（約36,812，即11/23收盤），11/20以來的恐慌算是告一段落；若回補缺口，則11/24只是一日空頭回補。</div></div>
+<div class="section"><div class="section-title">一｜ABF 載板<span class="signal signal-risk">風險（維持；三雄漲停但AVGO續弱，升級條件未全達成）</span></div><div class="card"><div class="card-title">📰 今日重點新聞</div>
+<div class="news-item"><div class="news-title">ABF三雄全數漲停：欣興613元、景碩514元、南電737元；臻鼎-KY同步漲停</div><div class="news-meta">今周刊 2026/11/24 15:38；中天新聞 2026/11/24 16:58</div><div class="news-summary">中天將ABF列為當日四大噴出族群之一，並認為記憶體與被動元件的回檔風險高於ABF與晶圓代工。</div></div>
+<div class="news-item"><div class="news-title">郭明錤：Google下修2027年TPU 8i出貨約100萬顆，部分可能轉單聯發科；AVGO續跌3.98%</div><div class="news-meta">Investing.com 2026/11/24 10:05 ET</div><div class="news-summary">Goldman下調AVGO目標價、Rothschild Redburn降評至中立；AVGO 12/9公布財報。</div></div>
+<div class="news-item"><div class="news-title">Dell FY27 Q3：AI積壓訂單單季增加600億美元至1,323億美元，全年營收財測上調至2,020億美元</div><div class="news-meta">Yahoo Finance 2026/11/24 13:21 PST</div><div class="news-summary">調整後EPS 9.45美元（預估6.59美元）；正常盤−11.83%收295.28美元，盤後+6.08%。</div></div>
+</div><div class="card"><div class="card-title">🔍 產業趨勢解讀</div><div class="analysis">三雄11/24漲停，景碩也翻紅，前報的第一個檢驗（景碩能否翻紅）通過。但升級條件三項只達成半項：南電、欣興已連兩日收紅，景碩只有一日；AVGO收回約$347（11/19，自算）——反而再跌到$301.08；11/30 MSCI生效尚未到。<br><br>ABF今天面對的是兩股相反的力量。<strong>一邊是Dell證明AI伺服器出貨端仍在加速</strong>，積壓訂單1,323億美元是GPU伺服器載板需求最直接的前導指標，這對以NVIDIA GB系列為主的欣興最有利。<strong>另一邊是ASIC這條線還在惡化</strong>：郭明錤的TPU 8i下修100萬顆若成立，打的是景碩、南電在ASIC載板的成長斜率，AVGO連跌就是市場在定價這件事。所以三雄不該再被當成同一籃子：欣興偏GPU、受Dell支撐；景碩、南電的ASIC曝險今天會被重新檢視。市場還沒注意到的是：TPU若部分轉單聯發科，台灣ASIC設計端換手，載板訂單未必流失，只是客戶結構改變——這要等12/9 AVGO財報與景碩法說確認。今日14:00欣興出席台新證券論壇，是崩跌後第一次對外說明。訊號維持「風險」。升「觀察」條件：景碩今日收紅（連兩日）、且今日三雄跌幅小於加權指數。</div></div><div class="card"><div class="card-title">📌 個股狀況</div><div class="stock-grid">
+<div class="stock-card"><div class="stock-name">欣興 3037</div><div class="stock-price up">NT$613（+9.86%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（11/24）</span></div><div class="stock-detail">10月 +67.6% YoY（累計 +40.9%）｜漲停；收回11/19收盤596上方；今日14:00台新證券論壇｜前一日（11/23）收 558</div></div>
+<div class="stock-card"><div class="stock-name">景碩 3189</div><div class="stock-price up">NT$514（+9.95%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（11/24）</span></div><div class="stock-detail">10月 +49.0% YoY（累計 +35.4%）｜漲停但仍低於11/19收盤522；ASIC曝險最高；11/27法說｜前一日（11/23）收 467.5</div></div>
+<div class="stock-card"><div class="stock-name">南電 8046</div><div class="stock-price up">NT$737（+10.00%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（11/24）</span></div><div class="stock-detail">10月 +69.7% YoY（累計 +45.0%）｜連兩日收紅、收回11/19收盤698上方；11/30納入MSCI｜前一日（11/23）收 670</div></div>
+</div></div><div class="four-dim">
+<div class="dim-card"><div class="dim-label">基本面 <span class="dim-badge badge-bull">GPU端強</span></div><div>Dell AI積壓訂單1,323億美元；三雄10月YoY +49%～+70%。</div><details><summary>更多說明</summary><div class="detail-body">Yahoo Finance 11/24（Dell）。投顧估2027年ABF缺口10%～15%（旺得富 11/23 10:47）。11月營收12/10前公告。</div></details></div>
+<div class="dim-card"><div class="dim-label">消息面 <span class="dim-badge badge-bear">ASIC端惡化</span></div><div>TPU 8i下修約100萬顆；AVGO遭降評、續創低。</div><details><summary>更多說明</summary><div class="detail-body">Investing.com 11/24 10:05 ET。轉單聯發科為郭明錤推測，尚無公司確認。</div></details></div>
+<div class="dim-card"><div class="dim-label">技術面 <span class="dim-badge badge-watch">漲停後面臨回測</span></div><div>欣興、南電站回11/19收盤；景碩仍在522下方。</div><details><summary>更多說明</summary><div class="detail-body">支撐為11/23收盤：欣興558、景碩467.5、南電670。今日費半−7.88%是第一個回測。</div></details></div>
+<div class="dim-card"><div class="dim-label">籌碼面 <span class="dim-badge badge-watch">大盤法人賣超</span></div><div>11/24三大法人合計賣超1,230億元，漲停非法人買盤推動。</div><details><summary>更多說明</summary><div class="detail-body">中央社 11/24。個股法人資料已移除（付費牆）。</div></details></div>
+</div><div class="card"><div class="card-title">📅 本週行事曆</div>
+<div class="cal-item"><div class="cal-date">11/25（三）14:00</div><div><div class="cal-content">欣興出席台新證券論壇（晶華）</div><div class="cal-note">追蹤重點：2027年產能與GPU／ASIC客戶比重說法</div></div></div>
+<div class="cal-item"><div class="cal-date">11/27（五）15:30</div><div><div class="cal-content">景碩法說（君悅）；12/2、12/3、12/4、12/9另有券商論壇</div><div class="cal-note">追蹤重點：TPU下修對2027年ASIC載板的影響</div></div></div>
+<div class="cal-item"><div class="cal-date">11/30（一）盤後</div><div><div class="cal-content">MSCI調整生效：景碩、南電納入</div><div class="cal-note">追蹤重點：被動買盤後是否出現賣壓</div></div></div>
+<div class="cal-item"><div class="cal-date">12/9（三）</div><div><div class="cal-content">AVGO財報；FOMC</div><div class="cal-note">追蹤重點：AI ASIC營收指引、Google訂單說法</div></div></div>
+<div class="cal-item"><div class="cal-date">12/10前</div><div><div class="cal-content">三雄11月營收</div><div class="cal-note">追蹤重點：YoY能否維持+50%以上</div></div></div>
+</div><div class="card"><div class="card-title">⚡ 風險與機會</div><div class="cal-content"><strong>機會：</strong>Dell積壓訂單證明GPU伺服器需求加速，欣興最直接受惠；景碩、南電11/30納入MSCI。</div><div class="cal-content" style="margin-top:6px"><strong>風險：</strong>TPU 8i下修與AVGO降評打的是ASIC載板成長斜率；11/24漲停無法人買盤，今日費半−7.88%直接回測。</div></div></div>
+<div class="section"><div class="section-title">二｜低軌衛星<span class="signal signal-risk">風險（維持；LE-04成功，但漲停只是跟上大盤）</span></div><div class="card"><div class="card-title">📰 今日重點新聞</div>
+<div class="news-item"><div class="news-title">Ariane 6 VA271（LE-04）成功發射，36顆Amazon Leo全數部署並建立聯繫</div><div class="news-meta">Starlust 2026/11/24</div><div class="news-summary">11/24 11:14 UTC升空（較原訂10:45延後），衛星部署於約460公里、後續升至630公里；Ariane 6連續第10次成功，Amazon今年經Ariane 6累計發射136顆。距ULA Vulcan失利（損失40顆）僅9天。</div></div>
+<div class="news-item"><div class="news-title">昇達科開盤後10:12漲停1,385元，漲停委買2,000張</div><div class="news-meta">鉅亨網 2026/11/24</div><div class="news-summary">前5個交易日累跌10.32%。華通、燿華同日漲停（收盤取自JSON），48小時內無個別專文。</div></div>
+</div><div class="card"><div class="card-title">🔍 產業趨勢解讀</div><div class="analysis">前報的兩個風險事件，11/24都往好的方向解決：LE-04發射成功，三檔股價也全部收回11/19收盤（昇達科1,360、華通169、燿華32.95）之上。但本報不升級，理由是<strong>這三檔的漲幅跟櫃買+8.24%、加權+8.99%幾乎一樣</strong>——在一個全市場漲停的日子，漲停不帶任何板塊資訊。前報指出的問題是「利多換不到價格」，11/24並沒有證明這點被修正，只證明了大盤的beta。<br><br>LE-04的意義在中期：Amazon在Vulcan失利後9天就以Ariane 6補上36顆，代表Kuiper（Amazon Leo）的佈建節奏沒有因單一火箭失敗而停擺，這對以Amazon為客戶的天線、PCB供應鏈是去風險。但估值問題沒動：昇達科以前三季EPS 11.86元年化約15.8元計，1,385元約88倍（自算）；華通180億元、昇達科20億元CB的發行條件也還沒出來。今天沒有直接的美股對照標的，衛星股反而可能是今天跌幅最小的板塊，這才是觀察點。升「觀察」條件：今日三檔跌幅小於櫃買指數。</div></div><div class="card"><div class="card-title">📌 個股狀況</div><div class="stock-grid">
+<div class="stock-card"><div class="stock-name">昇達科 3491</div><div class="stock-price up">NT$1,385（+9.92%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（11/24）</span></div><div class="stock-detail">10月 +20.05% YoY（累計 +64.62%）｜漲停，收回11/19收盤1,360；年化本益比約88倍（自算）；20億元CB待定價｜前一日（11/23）收 1,260</div></div>
+<div class="stock-card"><div class="stock-name">華通 2313</div><div class="stock-price up">NT$169.5（+9.71%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（11/24）</span></div><div class="stock-detail">10月 +24.7% YoY（累計 +14.3%）｜漲停，站回11/19收盤169；仍低於現增價205元；180億元CB待定價｜前一日（11/23）收 154.5</div></div>
+<div class="stock-card"><div class="stock-name">燿華 2367</div><div class="stock-price up">NT$33.6（+9.45%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（11/24）</span></div><div class="stock-detail">10月 +21.3% YoY（累計 +2.4%）｜漲停，收回11/19收盤32.95；累計營收三檔最弱｜前一日（11/23）收 30.7</div></div>
+</div></div><div class="four-dim">
+<div class="dim-card"><div class="dim-label">基本面 <span class="dim-badge badge-neutral">成長、但估值高</span></div><div>華通前3季淨利+20.52%；昇達科累計營收+64.62%。</div><details><summary>更多說明</summary><div class="detail-body">FTNN 11/22 18:30（48小時外，沿用）。昇達科前三季EPS 11.86元、華通4.31元。</div></details></div>
+<div class="dim-card"><div class="dim-label">消息面 <span class="dim-badge badge-bull">事件風險解除</span></div><div>LE-04成功，36顆全數聯繫。</div><details><summary>更多說明</summary><div class="detail-body">Starlust 11/24。48小時內未查得SpaceX／Starlink台廠供應鏈新消息。</div></details></div>
+<div class="dim-card"><div class="dim-label">技術面 <span class="dim-badge badge-watch">收回11/19收盤</span></div><div>三檔皆站回崩跌前收盤。</div><details><summary>更多說明</summary><div class="detail-body">支撐為11/23收盤：昇達科1,260、華通154.5、燿華30.7。</div></details></div>
+<div class="dim-card"><div class="dim-label">籌碼面 <span class="dim-badge badge-watch">CB稀釋待定</span></div><div>漲幅與櫃買相當，無超額買盤證據。</div><details><summary>更多說明</summary><div class="detail-body">櫃買指數+8.24%（中央社 11/24）。個股法人資料已移除（付費牆）。</div></details></div>
+</div><div class="card"><div class="card-title">📅 本週行事曆</div>
+<div class="cal-item"><div class="cal-date">11/25（三）09:00</div><div><div class="cal-content">無美股直接對照的板塊，首次反映LE-04成功</div><div class="cal-note">追蹤重點：三檔跌幅是否小於櫃買</div></div></div>
+<div class="cal-item"><div class="cal-date">待定</div><div><div class="cal-content">華通180億元、昇達科20億元CB發行條件</div><div class="cal-note">追蹤重點：轉換價與定價日</div></div></div>
+<div class="cal-item"><div class="cal-date">12/10前</div><div><div class="cal-content">11月營收</div><div class="cal-note">追蹤重點：昇達科累計成長能否維持60%以上</div></div></div>
+</div><div class="card"><div class="card-title">⚡ 風險與機會</div><div class="cal-content"><strong>機會：</strong>LE-04成功、Amazon Leo佈建未停擺；本板塊與美股AI硬體賣壓連動最低。</div><div class="cal-content" style="margin-top:6px"><strong>風險：</strong>昇達科約88倍；CB稀釋與華通現增套牢；11/24漲停只是大盤beta。</div></div></div>
+<div class="section"><div class="section-title">三｜矽光子<span class="signal signal-risk">風險（維持；台廠補漲一天，LITE隔夜−10.52%）</span></div><div class="card"><div class="card-title">📰 今日重點新聞</div>
+<div class="news-item"><div class="news-title">光通訊逾10檔漲停：波若威、華星光、聯亞、眾達-KY、上詮、光聖同步亮燈</div><div class="news-meta">鉅亨網 2026/11/24 13:11</div><div class="news-summary">報導歸因於NVIDIA人事疑慮解除、政府護盤與選前行情。波若威354元、華星光280.5元（收盤取自JSON）。</div></div>
+<div class="news-item"><div class="news-title">AAOI取得hyperscaler四年22億美元800G合約；Lumentum、Coherent早盤跌約6%</div><div class="news-meta">24/7 Wall St. 2026/11/24 09:58 ET</div><div class="news-summary">收盤LITE −10.52%收$487.12、COHR −9.07%收$196.24（JSON）。</div></div>
+</div><div class="card"><div class="card-title">🔍 產業趨勢解讀</div><div class="analysis">前報說矽光子是最直接的檢驗：11/24兩檔都漲停，第一天通過；升級需要連兩日收紅，今天是第二天，而LITE隔夜−10.52%、COHR −9.07%，第二天大概率不會通過。<br><br>這裡要修正一個敘事。11/23的LITE +18%和11/24的−10.5%加起來，LITE淨漲約5.8%（自算），仍低於11/19收盤；而波若威、華星光兩天各從322、255漲到354、280.5，約+10%。<strong>台廠的反彈已經超過美國對標</strong>，前報「台美背離」已被補上、甚至反轉。另一個新變數是AAOI的22億美元800G長約：hyperscaler開始把800G訂單分散給第二、第三供應商，這對LITE、COHR是份額壓力，對台灣元件廠（波若威做被動光元件、華星光做雷射與模組代工）影響要看是否在AAOI供應鏈內，本報未查得相關資料。華星光10月+75.4%、波若威+11.35%的基本面差距不變。訊號維持「風險」。升「觀察」條件：兩檔今日收紅（完成連兩日），或今日跌幅小於櫃買且守住11/23收盤。</div></div><div class="card"><div class="card-title">📌 個股狀況</div><div class="stock-grid">
+<div class="stock-card"><div class="stock-name">波若威 3163</div><div class="stock-price up">NT$354（+9.94%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（11/24）</span></div><div class="stock-detail">10月 +11.35% YoY（累計 +18.1%）｜漲停，收回11/20收盤342，仍低於11/19的380｜前一日（11/23）收 322</div></div>
+<div class="stock-card"><div class="stock-name">華星光 4979</div><div class="stock-price up">NT$280.5（+10.00%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（11/24）</span></div><div class="stock-detail">10月 +75.4% YoY（累計 +31.6%）｜漲停，收回11/20收盤266，仍低於11/19的295.5｜前一日（11/23）收 255</div></div>
+</div></div><div class="four-dim">
+<div class="dim-card"><div class="dim-label">基本面 <span class="dim-badge badge-watch">分化</span></div><div>華星光10月+75.4%強；波若威+11.35%減速。</div><details><summary>更多說明</summary><div class="detail-body">10月營收沿用前報；11月營收12/10前公告。</div></details></div>
+<div class="dim-card"><div class="dim-label">消息面 <span class="dim-badge badge-bear">轉負面</span></div><div>LITE、COHR重挫；AAOI搶下800G長約。</div><details><summary>更多說明</summary><div class="detail-body">24/7 Wall St. 11/24；stock_data_20261125.json。</div></details></div>
+<div class="dim-card"><div class="dim-label">技術面 <span class="dim-badge badge-watch">反彈至11/20收盤上方</span></div><div>站回11/20收盤，11/19收盤為反壓。</div><details><summary>更多說明</summary><div class="detail-body">反壓380／295.5（11/19收盤）；支撐322／255（11/23收盤）。</div></details></div>
+<div class="dim-card"><div class="dim-label">籌碼面 <span class="dim-badge badge-bear">題材股融資重</span></div><div>上櫃題材股，漲停來自整籃回補。</div><details><summary>更多說明</summary><div class="detail-body">鉅亨網 11/24 13:11。個股法人資料已移除（付費牆）。</div></details></div>
+</div><div class="card"><div class="card-title">📅 本週行事曆</div>
+<div class="cal-item"><div class="cal-date">11/25（三）09:00</div><div><div class="cal-content">首次反映LITE −10.52%、COHR −9.07%</div><div class="cal-note">追蹤重點：能否守住11/23收盤322／255</div></div></div>
+<div class="cal-item"><div class="cal-date">12/10前</div><div><div class="cal-content">11月營收</div><div class="cal-note">追蹤重點：華星光能否維持+70%以上</div></div></div>
+</div><div class="card"><div class="card-title">⚡ 風險與機會</div><div class="cal-content"><strong>機會：</strong>Dell積壓訂單撐住800G／1.6T長期需求；華星光營收動能仍強。</div><div class="cal-content" style="margin-top:6px"><strong>風險：</strong>台廠反彈已超過美國對標；AAOI長約顯示800G供應商分散化，份額與價格壓力上升。</div></div></div>
+<div class="section"><div class="section-title">四｜重電<span class="signal signal-watch">觀察（↑升級；華城收回452，前報升級條件達成）</span></div><div class="card"><div class="card-title">📰 今日重點新聞</div>
+<div class="news-item"><div class="news-title">士電09:05漲停、華城09:31漲停；華城收467.5元</div><div class="news-meta">鉅亨網 2026/11/24；CMoney 2026/11/24</div><div class="news-summary">CMoney引法人預估華城今年EPS 16.56元、明年22.79元，明年本益比約18.65倍（以盤中價計），但提醒技術與籌碼面偏空。士電收161.5元（JSON）。</div></div>
+<div class="news-item"><div class="news-title">GE Vernova風電EBITDA虧損預估擴大至4億～5億美元，遭Erste降評至持有</div><div class="news-meta">TradingKey 2026/11/24 18:15</div><div class="news-summary">GEV −4.77%、ETN −5.08%（JSON）。降評原因集中在風電，電網與燃氣業務未見下修。</div></div>
+<div class="news-item"><div class="news-title">中興電Q3每股純益2.61元創單季新高，在手訂單431億元</div><div class="news-meta">鉅亨網 2026/11/23 12:17</div><div class="news-summary">三大法人連6日買超合計1,975張；11/24漲幅6.04%，為本報11檔中唯一未漲停。</div></div>
+</div><div class="card"><div class="card-title">🔍 產業趨勢解讀</div><div class="analysis">前報的升級條件是「華城收回452，或中興電、士電連兩日勝大盤」。11/24華城收467.5，條件達成，訊號由「風險」升「觀察」。這是本報四個板塊中唯一按事先條件升級的，邏輯也最一致：重電當初是因為資金面（AIDC題材整籃賣出）降級，基本面——台電強韌電網、半導體建廠、在手訂單看到2029～2030年——從頭到尾沒有變。<br><br>但升級不等於轉多，有兩件事要盯。第一，隔夜ETN −5.08%、GEV −4.77%，美國電力設備又跌回11/19收盤下方，不過GEV的降評原因是風電，與台灣重電的變壓器、GIS業務無關，<strong>這是今天四個板塊中美股利空最不相關的一個</strong>。第二，內部角色換手：11/23中興電領漲、華城落後，11/24反過來，華城漲停、中興電只有+6.04%輸大盤。華城10月營收−15.38%仍是弱項，但CMoney引法人估明年EPS 22.79元，以467.5元計約20.5倍（自算），市場在用明年獲利定價華城的交期遞延。Dell積壓訂單1,323億美元對應的是資料中心用電，支撐AIDC訂單這條線。回「風險」條件：華城跌回452以下。</div></div><div class="card"><div class="card-title">📌 個股狀況</div><div class="stock-grid">
+<div class="stock-card"><div class="stock-name">華城 1519</div><div class="stock-price up">NT$467.5（+10.00%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（11/24）</span></div><div class="stock-detail">10月 −15.38% YoY（累計 −2.49%）｜漲停，收回452反壓；法人估明年EPS 22.79元（約20.5倍，自算）｜前一日（11/23）收 425</div></div>
+<div class="stock-card"><div class="stock-name">士電 1503</div><div class="stock-price up">NT$161.5（+9.86%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（11/24）</span></div><div class="stock-detail">10月 +16.45% YoY（累計 +10.02%）｜開盤即漲停，站回11/19收盤159.5；在手訂單逾600億元｜前一日（11/23）收 147</div></div>
+<div class="stock-card"><div class="stock-name">中興電 1513</div><div class="stock-price up">NT$140.5（+6.04%）<span style="font-size:11px;color:var(--muted);font-weight:400;"> 昨收（11/24）</span></div><div class="stock-detail">10月 +18.2% YoY（累計 +6.27%）｜11檔中唯一未漲停，但已站回11/19收盤138.5｜前一日（11/23）收 132.5</div></div>
+</div></div><div class="four-dim">
+<div class="dim-card"><div class="dim-label">基本面 <span class="dim-badge badge-bull">訂單強</span></div><div>士電訂單逾600億、華城600億～700億（AIDC至少250億）、中興電431億。</div><details><summary>更多說明</summary><div class="detail-body">工商時報 11/23；鉅亨網 11/23 12:17。華城前三季EPS 10.48元創同期新高，但10月營收−15.38%。</div></details></div>
+<div class="dim-card"><div class="dim-label">消息面 <span class="dim-badge badge-watch">美股轉弱但不相關</span></div><div>GEV降評原因為風電；Dell積壓訂單支撐AIDC用電。</div><details><summary>更多說明</summary><div class="detail-body">TradingKey 11/24 18:15；Yahoo Finance 11/24（Dell）。ETN降評僅見MarketBeat標題。</div></details></div>
+<div class="dim-card"><div class="dim-label">技術面 <span class="dim-badge badge-bull">三檔收回11/19收盤</span></div><div>華城467.5＞452、士電161.5＞159.5、中興電140.5＞138.5。</div><details><summary>更多說明</summary><div class="detail-body">支撐：華城452（原反壓）、士電147、中興電132.5（11/23收盤）。</div></details></div>
+<div class="dim-card"><div class="dim-label">籌碼面 <span class="dim-badge badge-watch">中興電法人回補</span></div><div>中興電三大法人連6日買超1,975張（11/23前）。</div><details><summary>更多說明</summary><div class="detail-body">鉅亨網 11/23 12:17。個股法人資料已移除（付費牆），此為媒體報導數字。</div></details></div>
+</div><div class="card"><div class="card-title">📅 本週行事曆</div>
+<div class="cal-item"><div class="cal-date">11/25（三）09:00</div><div><div class="cal-content">承接ETN −5.08%、GEV −4.77%</div><div class="cal-note">追蹤重點：華城能否守住452</div></div></div>
+<div class="cal-item"><div class="cal-date">11/26（四）</div><div><div class="cal-content">美股感恩節休市；11/27提前於13:00 ET收盤</div><div class="cal-note">追蹤重點：美股流動性下降</div></div></div>
+<div class="cal-item"><div class="cal-date">12/9（三）</div><div><div class="cal-content">FOMC</div><div class="cal-note">追蹤重點：期貨隱含升息1碼機率約95%～97%</div></div></div>
+<div class="cal-item"><div class="cal-date">12/10前</div><div><div class="cal-content">11月營收</div><div class="cal-note">追蹤重點：華城交期遞延是否回補</div></div></div>
+</div><div class="card"><div class="card-title">⚡ 風險與機會</div><div class="cal-content"><strong>機會：</strong>訂單能見度到2029～2030年，與NVIDIA會計、Google ASIC無直接關係；三檔皆收回崩跌前價位。</div><div class="cal-content" style="margin-top:6px"><strong>風險：</strong>華城營收仍衰退，股價已在預支明年獲利；ETN、GEV再度轉弱，AIDC題材溢價仍受美股牽動。</div></div></div>
+<div class="section"><div class="section-title">📋 今日總結</div><div class="card"><div class="card-title">🎯 值得特別注意（優先順序）</div>
+<div class="news-item"><div class="news-title">1. 11/24台股+8.99%買的是11/23美股，而11/24美股已收回一半</div><div class="news-meta">中央社 2026/11/24 13:46；Yahoo Finance 2026/11/24；stock_data_20261125.json</div><div class="news-summary">費半−7.88%、LITE −10.52%、AMD −8.86%，只有NVDA還在11/19之上。加上11/24量縮、法人賣超1,230億元，今日回吐是預期內；判斷基準是加權指數能否守住11/23收盤36,812。</div></div>
+<div class="news-item"><div class="news-title">2. Dell證明AI需求端沒壞：積壓訂單單季+600億美元至1,323億美元</div><div class="news-meta">Yahoo Finance 2026/11/24 13:21 PST</div><div class="news-summary">這是11/19以來第一個來自需求端的硬數據，對GPU伺服器相關的欣興、AIDC用電相關的重電最直接。崩跌的源頭是會計可信度與ASIC，不是出貨量。</div></div>
+<div class="news-item"><div class="news-title">3. ASIC這條線還在惡化：TPU 8i下修約100萬顆、AVGO遭降評</div><div class="news-meta">Investing.com 2026/11/24 10:05 ET</div><div class="news-summary">ABF三雄不能再當同一籃子看，景碩、南電的ASIC曝險今天起被重新定價；12/9 AVGO財報與11/27景碩法說是確認點。</div></div>
+</div><div class="card"><div class="card-title">📊 各板塊訊號總覽</div><table><thead><tr><th>板塊</th><th>今日訊號</th><th>核心理由</th><th>近期最重要事件</th></tr></thead><tbody>
+<tr><td>ABF 載板</td><td>風險（→）</td><td>GPU端受Dell支撐，ASIC端惡化；景碩僅一日收紅</td><td>11/25欣興論壇、11/27景碩法說</td></tr>
+<tr><td>低軌衛星</td><td>風險（→）</td><td>LE-04成功，但漲停僅等於大盤beta；估值約88倍與CB壓力</td><td>CB發行條件</td></tr>
+<tr><td>矽光子</td><td>風險（→）</td><td>台廠反彈已超過美國對標；LITE隔夜−10.52%、AAOI搶單</td><td>今日能否守住322／255</td></tr>
+<tr><td>重電</td><td>觀察（↑）</td><td>華城收回452，升級條件達成；美股利空與台灣業務不相關</td><td>華城守452</td></tr>
+</tbody></table></div><div class="card"><div class="card-title">今日無重大變化的板塊</div><div class="cal-content">ABF、低軌衛星、矽光子訊號維持「風險」：衛星的事件風險（LE-04）已解除但估值未變；ABF與矽光子的隔夜美股對照轉弱。</div></div><div class="card"><div class="card-title">📌 明日追蹤清單</div>
+<div class="cal-content">① 加權指數今日是否守住36,812（11/23收盤）；三大法人是否續賣超。</div>
+<div class="cal-content">② 欣興今日14:00論壇對GPU／ASIC比重與2027年產能的說法；景碩是否連兩日收紅。</div>
+<div class="cal-content">③ 衛星三檔跌幅是否小於櫃買（升級條件）；華城是否守住452（回降條件）。</div>
+<div class="cal-content">④ 今晚21:30（台北）美國10月PCE與Q3 GDP二估；11/26感恩節休市；11/27證交所禁空檢討專家會議。</div>
+</div><div class="alert-warn">⚠️ 資料來源與方法說明：本報產出時間為台北11/25約08:50。美股8檔與台股11檔收盤及漲跌幅取自 _系統/stock_data_20261125.json（stock_fetch.py，11/25 08:30產生，data_date 2026-11-24），已以 stock_data_20261124.json（11/23收盤）逐檔驗算一致；部分媒體所載個股漲跌幅（如GEV −5.36%）與JSON不同，以JSON為準。美股指數：Yahoo Finance 11/24 盤後更新；費半與VIX僅見BigGo Finance 11/24 22:25 UTC，單一來源。個股新聞：Motley Fool 11/24（NVDA、INTC）、Investing.com 11/24 10:05 ET（AVGO）、24/7 Wall St. 11/24 09:58 ET（LITE、COHR、AAOI）、TradingKey 11/24 18:15（GEV）、MarketBeat標題（ETN，未讀全文）、Yahoo Finance 11/24 13:21 PST（Dell）。台股大盤：中央社 11/24 13:46、聯合新聞網 11/24 13:47、今周刊 11/24 15:38、中央社轉載（櫃買、三大法人）、Business Insider Taiwan 11/24 21:53、經濟日報 11/24 03:21。板塊：中天 11/24 16:58、鉅亨網 11/24（昇達科、光通訊13:11、士電）、CMoney 11/24（華城）、Starlust 11/24（LE-04）、旺得富 11/23 10:47、工商時報 11/23、鉅亨網 11/23 12:17、FTNN 11/22 18:30（48小時外，僅作基本面引用）。法說資訊：FinLab行事曆與Yahoo公告，未經公開資訊觀測站核對；其餘9家未查得30天內法說。10月營收沿用前報（11月營收12/10前公告）。本益比、相對11/19收盤的回復程度、法人合計賣超為本報自算。個股外資、投信資料因付費牆未列入。本報告不構成投資建議。</div></div></div></body></html>
